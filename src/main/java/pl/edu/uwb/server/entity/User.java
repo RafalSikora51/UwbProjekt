@@ -1,15 +1,23 @@
 package pl.edu.uwb.server.entity;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+// TODO: Auto-generated Javadoc
 /**
  * The Class User.
  * 
@@ -44,6 +52,16 @@ public class User {
 	/** The created on. */
 	@Column(name = "CREATEDON", nullable = false)
 	private Timestamp createdOn;
+
+	/** The token set. */
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "IDUSER")
+	@JsonIgnore
+	private Set<Token> tokenSet;
+
+	{
+		tokenSet = new HashSet<Token>();
+	}
 
 	/**
 	 * Instantiates a new user.
@@ -185,5 +203,26 @@ public class User {
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
 	}
+
+	/**
+	 * Gets the token set.
+	 *
+	 * @return the token set
+	 */
+	public Set<Token> getTokenSet() {
+		return tokenSet;
+	}
+
+	/**
+	 * Sets the token set.
+	 *
+	 * @param tokenSet
+	 *            the new token set
+	 */
+	public void setTokenSet(Set<Token> tokenSet) {
+		this.tokenSet = tokenSet;
+	}
+	
+	
 
 }

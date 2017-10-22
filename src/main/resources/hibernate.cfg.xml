@@ -42,6 +42,7 @@
 		<property name="hbm2ddl.auto">update</property>
 		<mapping class="pl.edu.uwb.server.entity.User" />
 		<mapping class="pl.edu.uwb.server.entity.Specialization" />
+		<mapping class="pl.edu.uwb.server.entity.Token" />
 
 	</session-factory>
 </hibernate-configuration>

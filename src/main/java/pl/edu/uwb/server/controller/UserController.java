@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.repository.UserDao;
+import pl.edu.uwb.server.util.TokenGenerator;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UserController.
  * 
@@ -60,7 +62,8 @@ public class UserController {
 	public boolean addNewUser(@RequestParam String countryId, @RequestParam String firstName,
 			@RequestParam String lastName, @RequestParam String email) {
 		logger.debug("addNewUser");
-		return userDao.addNewUser(countryId, firstName, lastName, email);
+		String token = TokenGenerator.randomStringGenerator(10).get("token");
+		return userDao.addNewUser(countryId, firstName, lastName, email, token);
 	}
 
 	/**
@@ -82,7 +85,7 @@ public class UserController {
 	 * @return the user info
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User getUserInfo(@PathVariable long id) {
+	public User getUserInfo(@PathVariable int id) {
 		logger.debug("getUserInfo");
 		return userDao.findUserById(id).get();
 	}

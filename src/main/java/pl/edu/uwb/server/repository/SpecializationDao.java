@@ -11,6 +11,7 @@ import pl.edu.uwb.server.entity.Specialization;
 import pl.edu.uwb.server.util.SessionConnection;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class SpecializationDao.
  * 
@@ -37,7 +38,7 @@ public class SpecializationDao {
 		session.save(specialization);
 		session.getTransaction().commit();
 		SessionConnection.shutdown(session);
-		logger.info("User registered correctly.");
+		logger.info("New specialization added correctly.");
 		return true;
 	}
 
@@ -53,7 +54,7 @@ public class SpecializationDao {
 		Session session = SessionConnection.getSessionFactory().openSession();
 		specs = session.createQuery("from Specialization").list();
 		SessionConnection.shutdown(session);
-		logger.info("All users listed.");
+		logger.info("All specializations listed.");
 		return specs;
 	}
 
