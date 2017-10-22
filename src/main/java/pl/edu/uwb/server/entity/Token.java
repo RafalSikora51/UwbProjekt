@@ -17,6 +17,7 @@ import javax.persistence.Table;
  * The Class Token.
  * 
  * @author acewiczm
+ * @author Rafał
  */
 @Entity
 @Table(name = "Token")
