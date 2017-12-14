@@ -12,30 +12,14 @@ import org.springframework.stereotype.Component;
 import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.util.SessionConnection;
 
-
-// TODO: Auto-generated Javadoc
-/**
- * The Class TokenDao.
- * 
- * @author acewiczm
- */
-
 @Component
 public class TokenDao {
 
-	/** The Log4j2 logger. */
 	private static Logger logger = LogManager.getLogger(TokenDao.class);
 
-	/** The user dao. */
 	@Autowired
 	private UserDao userDao;
 
-	/**
-	 * Find active token by user id.
-	 *
-	 * @param id the id
-	 * @return the token
-	 */
 	@SuppressWarnings("unchecked")
 	public Token findActiveTokenByUserId(int id) {
 		logger.debug("findActiveTokenByUserId");

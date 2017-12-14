@@ -10,26 +10,11 @@ import org.springframework.stereotype.Component;
 import pl.edu.uwb.server.entity.Specialization;
 import pl.edu.uwb.server.util.SessionConnection;
 
-
-// TODO: Auto-generated Javadoc
-/**
- * The Class SpecializationDao.
- * 
- * @author acewiczm
- */
 @Component
 public class SpecializationDao {
 
-	/** The Log4j2 logger. */
 	private static Logger logger = LogManager.getLogger(SpecializationDao.class);
 
-	/**
-	 * Adds the new specialization.
-	 *
-	 * @param name
-	 *            the name
-	 * @return true, if successful
-	 */
 	public boolean addNewSpecialization(String name) {
 		logger.debug("addNewSpecialization");
 		Session session = SessionConnection.getSessionFactory().openSession();
@@ -42,11 +27,6 @@ public class SpecializationDao {
 		return true;
 	}
 
-	/**
-	 * Find all specializations.
-	 *
-	 * @return the list
-	 */
 	@SuppressWarnings("unchecked")
 	public List<Specialization> findAllSpecializations() {
 		logger.debug("findAllSpecializations");

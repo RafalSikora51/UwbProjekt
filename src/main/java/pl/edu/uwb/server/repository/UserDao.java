@@ -1,5 +1,6 @@
 package pl.edu.uwb.server.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,13 +14,7 @@ import org.springframework.stereotype.Component;
 import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.SessionConnection;
-
-// TODO: Auto-generated Javadoc
-/**
- * The Class UserDao.
- * 
- * @author acewiczm
- */
+import pl.edu.uwb.server.util.TokenGenerator;
 
 @Component
 public class UserDao {
@@ -27,15 +22,9 @@ public class UserDao {
 	/** The Log4j2 logger. */
 	private static Logger logger = LogManager.getLogger(UserDao.class);
 
-	/** The token dao. */
 	@Autowired
 	private TokenDao tokenDao;
-	
-	/**
-	 * Find all users.
-	 *
-	 * @return the list
-	 */
+
 	@SuppressWarnings("unchecked")
 	public List<User> findAllUsers() {
 		logger.debug("findAllUsers");
@@ -47,13 +36,6 @@ public class UserDao {
 		return users;
 	}
 
-	/**
-	 * Find user by id.
-	 *
-	 * @param id
-	 *            the id
-	 * @return the user
-	 */
 	public Optional<User> findUserById(int id) {
 		logger.debug("findUserById");
 		Session session = SessionConnection.getSessionFactory().openSession();
@@ -69,13 +51,6 @@ public class UserDao {
 		}
 	}
 
-	/**
-	 * Find user by email.
-	 *
-	 * @param email
-	 *            the email
-	 * @return the optional
-	 */
 	public Optional<User> findUserByEmail(String email) {
 		logger.debug("findUserByEmail");
 		User user;
@@ -85,13 +60,6 @@ public class UserDao {
 		return Optional.ofNullable(user);
 	}
 
-	/**
-	 * Find user by country id.
-	 *
-	 * @param countryId
-	 *            the country id
-	 * @return the optional
-	 */
 	@SuppressWarnings("unchecked")
 	public Optional<User> findUserByCountryId(String countryId) {
 		logger.debug("findUserByCountryId");
@@ -109,54 +77,21 @@ public class UserDao {
 		}
 	}
 
-	/**
-	 * Adds the new user.
-	 *
-	 * @param countryId
-	 *            the country id
-	 * @param firstName
-	 *            the first name
-	 * @param lastName
-	 *            the last name
-	 * @param email
-	 *            the email
-	 * @param token
-	 *            the token
-	 * @return true, if successful
-	 */
-	public boolean addNewUser(String countryId, String firstName, String lastName, String email, String token) {
-		logger.debug("addNewUser");
-		if (findUserByEmail(email).isPresent()) {
-			logger.info("Email is already taken.");
-			return false;
-		}
-		if (findUserByCountryId(countryId).isPresent()) {
-			logger.info("User with given PESEL already exist.");
-			return false;
-		} else {
-			Session session = SessionConnection.getSessionFactory().openSession();
-			session.beginTransaction();
-			User user = new User(countryId, firstName, lastName, email);
-			session.save(user);
-			Token userToken = new Token(token, user);
-			user.getTokenSet().add(userToken);
-			session.save(userToken);
-			session.getTransaction().commit();
-			SessionConnection.shutdown(session);
-			logger.info("User registered correctly.");
-			return true;
-		}
+	public void saveUser(User user)
+	{
+		Session session = SessionConnection.getSessionFactory().openSession();
+		session.beginTransaction();
+		user.setCreatedOn(new Timestamp(System.currentTimeMillis()));
+		session.save(user);
+		String token = TokenGenerator.randomStringGenerator(10).get("token");
+		Token userToken = new Token(token, user);
+		user.getTokenSet().add(userToken);
+		session.save(userToken);
+		session.getTransaction().commit();
+		SessionConnection.shutdown(session);
+		logger.info("User created correctly.");
 	}
-
-	/**
-	 * Checks if user is in data base.
-	 *
-	 * @param email
-	 *            the email
-	 * @param token
-	 *            the token
-	 * @return true, if is user in data base
-	 */
+	
 	public boolean isUserInDataBase(String email, String token) {
 		logger.debug("isUserInDataBase");
 		if (!findUserByEmail(email).isPresent()) {
@@ -171,6 +106,5 @@ public class UserDao {
 			return true;
 		}
 	}
-	
-	
+
 }
