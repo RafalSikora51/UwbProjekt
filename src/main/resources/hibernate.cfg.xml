@@ -41,8 +41,12 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
 		<mapping class="pl.edu.uwb.server.entity.User" />
+		<mapping class="pl.edu.uwb.server.entity.Doctor" />
 		<mapping class="pl.edu.uwb.server.entity.Specialization" />
 		<mapping class="pl.edu.uwb.server.entity.Token" />
+		<mapping class="pl.edu.uwb.server.entity.Appointment" />
+		<mapping class="pl.edu.uwb.server.entity.MedicalHistory" />
+		
 
 	</session-factory>
 </hibernate-configuration>

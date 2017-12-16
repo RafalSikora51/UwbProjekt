@@ -1,6 +1,7 @@
 package pl.edu.uwb.server.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,8 +16,8 @@ public class SpecializationDao {
 
 	private static Logger logger = LogManager.getLogger(SpecializationDao.class);
 
-	public boolean addNewSpecialization(String name) {
-		logger.debug("addNewSpecialization");
+	public void createSpecialization(String name) {
+		logger.debug("createSpecialization");
 		Session session = SessionConnection.getSessionFactory().openSession();
 		session.beginTransaction();
 		Specialization specialization = new Specialization(name);
@@ -24,7 +25,6 @@ public class SpecializationDao {
 		session.getTransaction().commit();
 		SessionConnection.shutdown(session);
 		logger.info("New specialization added correctly.");
-		return true;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -36,6 +36,15 @@ public class SpecializationDao {
 		SessionConnection.shutdown(session);
 		logger.info("All specializations listed.");
 		return specs;
+	}
+	
+	public Optional<Specialization> getSpecByName(String name) {
+		logger.debug("findSpecByName");
+		Specialization specialization;
+		Session session = SessionConnection.getSessionFactory().openSession();
+		specialization = session.byNaturalId(Specialization.class).using("name", name).load();
+		SessionConnection.shutdown(session);
+		return Optional.ofNullable(specialization);
 	}
 
 }

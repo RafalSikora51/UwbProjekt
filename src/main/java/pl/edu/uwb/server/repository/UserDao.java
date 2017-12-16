@@ -18,8 +18,7 @@ import pl.edu.uwb.server.util.TokenGenerator;
 
 @Component
 public class UserDao {
-
-	/** The Log4j2 logger. */
+	
 	private static Logger logger = LogManager.getLogger(UserDao.class);
 
 	@Autowired
@@ -77,7 +76,7 @@ public class UserDao {
 		}
 	}
 
-	public void saveUser(User user)
+	public void createUser(User user)
 	{
 		Session session = SessionConnection.getSessionFactory().openSession();
 		session.beginTransaction();

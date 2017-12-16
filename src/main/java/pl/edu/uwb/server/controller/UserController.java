@@ -42,7 +42,7 @@ public class UserController {
 			logger.debug("User already exists");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		} else {
-			userDao.saveUser(user);
+			userDao.createUser(user);
 			HttpHeaders headers = new HttpHeaders();
 			headers.setLocation(ucBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri());
 			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);

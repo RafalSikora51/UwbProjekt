@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 public class Specialization {
 
@@ -14,14 +16,16 @@ public class Specialization {
 	@Column(name = "ID", insertable = false, updatable = false)
 	private Integer id;
 
+	@NaturalId
+	@Column(name = "NAME", nullable = false, unique = true)
 	private String name;
-
-	public Specialization() {
-
-	}
 
 	public Specialization(String name) {
 		this.name = name;
+	}
+
+	public Specialization() {
+
 	}
 
 	public Integer getId() {

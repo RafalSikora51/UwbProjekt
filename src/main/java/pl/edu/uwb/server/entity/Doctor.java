@@ -18,14 +18,14 @@ import org.hibernate.annotations.NaturalId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User {
+public class Doctor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", insertable = false, updatable = false)
 	private Integer id;
 
-	@Column(name = "PESEL", nullable = false, unique=true)
+	@Column(name = "PESEL", nullable = false, unique = true)
 	private String countryId;
 
 	@Column(name = "FIRSTNAME", nullable = false)
@@ -35,26 +35,31 @@ public class User {
 	private String lastName;
 
 	@NaturalId
-	@Column(name = "EMAIL", nullable = false, unique=true)
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "CREATEDON", nullable = false)
 	private Timestamp createdOn;
-	
+
 	@Column(name = "ADMIN", nullable = false)
 	private boolean isAdmin;
+	
+	@Column(name = "SPECIALIZATIONID", nullable = false)
+	private int specId;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "IDUSER")
+	@JoinColumn(name = "IDDOCTOR")
 	@JsonIgnore
 	private Set<Token> tokenSet;
 
 	{
 		tokenSet = new HashSet<Token>();
 	}
-	
+
+
+
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "IDUSER")
+	@JoinColumn(name = "IDDOCTOR")
 	@JsonIgnore
 	private Set<Appointment> appointmentSet;
 
@@ -62,27 +67,20 @@ public class User {
 		appointmentSet = new HashSet<Appointment>();
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "IDUSER")
-	@JsonIgnore
-	private Set<MedicalHistory> medicalHistorySet;
+	
+	
+	public Doctor() {
 
-	{
-		medicalHistorySet = new HashSet<MedicalHistory>();
-	}
+		}
 
-	public User() {
-
-	}
-
-	public User(String countryId, String firstName, String lastName, String email, boolean isAdmin) {
-		this.countryId = countryId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.isAdmin = isAdmin;
-		this.createdOn = new Timestamp(System.currentTimeMillis());
-	}
+	public Doctor(String countryId, String firstName, String lastName, String email, boolean isAdmin) {
+			this.countryId = countryId;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.isAdmin = isAdmin;
+			this.createdOn = new Timestamp(System.currentTimeMillis());
+		}
 
 	public Integer getId() {
 		return id;
@@ -132,6 +130,14 @@ public class User {
 		this.createdOn = createdOn;
 	}
 
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public Set<Token> getTokenSet() {
 		return tokenSet;
 	}
@@ -140,12 +146,12 @@ public class User {
 		this.tokenSet = tokenSet;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
+	public int getSpecId() {
+		return specId;
 	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setSpecId(int specId) {
+		this.specId = specId;
 	}
 
 	public Set<Appointment> getAppointmentSet() {
@@ -156,15 +162,9 @@ public class User {
 		this.appointmentSet = appointmentSet;
 	}
 
-	public Set<MedicalHistory> getMedicalHistorySet() {
-		return medicalHistorySet;
-	}
-
-	public void setMedicalHistorySet(Set<MedicalHistory> medicalHistorySet) {
-		this.medicalHistorySet = medicalHistorySet;
-	}
+	
 
 	
 	
-	
+
 }

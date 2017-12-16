@@ -27,6 +27,13 @@ public class Token {
 		this.active = true;
 	}
 
+	public Token(String token, Doctor doctor) {
+		this.token = token;
+		this.createdOn = new Timestamp(System.currentTimeMillis());
+		this.doctor = doctor;
+		this.active = true;
+	}
+	
 	@Column(name = "TOKEN", nullable = false)
 	private String token;
 
@@ -40,6 +47,10 @@ public class Token {
 	@JoinColumn(name = "IDUSER", foreignKey = @ForeignKey(name = "IDUSERTOKEN"))
 	private User user;
 
+	@ManyToOne()
+	@JoinColumn(name = "IDDOCTOR", foreignKey = @ForeignKey(name = "IDDOCTORTOKEN"))
+	private Doctor doctor;
+	
 	@Column(name = "ACTIVE", nullable = false)
 	private boolean active;
 
@@ -95,5 +106,15 @@ public class Token {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+	
+	
 
 }
