@@ -82,6 +82,14 @@ public class Appointment {
 		this.appointmentProcess = appointmentProcess;
 	}
 
+	public MedicalHistory getMedicalHistory() {
+		return medicalHistory;
+	}
+
+	public void setMedicalHistory(MedicalHistory medicalHistory) {
+		this.medicalHistory = medicalHistory;
+	}
+
 	
 	
 	

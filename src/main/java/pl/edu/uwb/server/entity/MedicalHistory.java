@@ -19,19 +19,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class MedicalHistory {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", insertable = false, updatable = false)
 	private Integer id;
-	
-	@ManyToOne()
-	@JoinColumn(name = "IDUSER", foreignKey = @ForeignKey(name = "IDUSERAPPOINTMENT"))
-	private User user;
-	
+
 	@Column(name = "SPECIALIZATIONID", nullable = false)
 	private int specId;
-	
+
+	@ManyToOne()
+	@JoinColumn(name = "IDUSER", foreignKey = @ForeignKey(name = "IDUSERHISTORY"))
+	private User user;
+
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "IDAPPOINTMENT")
 	@JsonIgnore
@@ -40,6 +39,41 @@ public class MedicalHistory {
 	{
 		appointmentSet = new HashSet<Appointment>();
 	}
-	
-	
+
+	public MedicalHistory() {
+
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getSpecId() {
+		return specId;
+	}
+
+	public void setSpecId(int specId) {
+		this.specId = specId;
+	}
+
+	public Set<Appointment> getAppointmentSet() {
+		return appointmentSet;
+	}
+
+	public void setAppointmentSet(Set<Appointment> appointmentSet) {
+		this.appointmentSet = appointmentSet;
+	}
+
 }

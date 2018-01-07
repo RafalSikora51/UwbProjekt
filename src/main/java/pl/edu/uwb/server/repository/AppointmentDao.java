@@ -1,5 +1,6 @@
 package pl.edu.uwb.server.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -49,6 +50,28 @@ public class AppointmentDao {
 		appointments = session.createQuery("from Appointment").list();
 		SessionConnection.shutdown(session);
 		logger.info("All appointments listed.");
+		return appointments;
+	}
+	
+	//TODO
+	public List<Appointment> findAllAppointmentsForUser(User user) {
+		logger.debug("findAllAppointmentsForUser");
+		List<Appointment> appointments = new ArrayList();
+		Session session = SessionConnection.getSessionFactory().openSession();
+	// user ma Set wizyt, z tego chyba lepiej skorzystac a nie z hql, bez sensu robic drugi raz to samo 
+		SessionConnection.shutdown(session);
+		logger.info("All appointments for user listed.");
+		return appointments;
+	}
+	
+	//TODO
+	public List<Appointment> findAllAppointmentsForUserBySpecialization(User user, int specId) {
+		logger.debug("findAllAppointmentsForUser");
+		List<Appointment> appointments = new ArrayList();
+		Session session = SessionConnection.getSessionFactory().openSession();
+	
+		SessionConnection.shutdown(session);
+		logger.info("All appointments for user listed.");
 		return appointments;
 	}
 

@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import pl.edu.uwb.server.entity.Specialization;
+import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.SessionConnection;
 
 @Component
@@ -37,7 +38,7 @@ public class SpecializationDao {
 		logger.info("All specializations listed.");
 		return specs;
 	}
-	
+
 	public Optional<Specialization> getSpecByName(String name) {
 		logger.debug("findSpecByName");
 		Specialization specialization;
@@ -45,6 +46,21 @@ public class SpecializationDao {
 		specialization = session.byNaturalId(Specialization.class).using("name", name).load();
 		SessionConnection.shutdown(session);
 		return Optional.ofNullable(specialization);
+	}
+
+	public Optional<Specialization> getSpecializationById(int id) {
+		logger.debug("getSpecializationById");
+		Session session = SessionConnection.getSessionFactory().openSession();
+		if (session.get(Specialization.class, id) != null) {
+			Specialization specialization = session.load(Specialization.class, id);
+			SessionConnection.shutdown(session);
+			logger.info("Specialization found by id.");
+			return Optional.ofNullable(specialization);
+		} else {
+			SessionConnection.shutdown(session);
+			logger.info("There is no such Specialization.");
+			return Optional.empty();
+		}
 	}
 
 }
