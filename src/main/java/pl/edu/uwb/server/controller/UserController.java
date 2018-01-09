@@ -1,5 +1,5 @@
 package pl.edu.uwb.server.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +23,7 @@ import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.repository.UserDao;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -58,7 +59,7 @@ public class UserController {
 		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> getUser(@PathVariable int id) {
 		Optional<User> userOptional = userDao.findUserById(id);

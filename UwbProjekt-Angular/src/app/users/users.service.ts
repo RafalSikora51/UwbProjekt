@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import {
   Http,
@@ -18,9 +19,10 @@ import {
 
 @Injectable()
 export class UsersService {
+
   private static readonly API_URL: string = '/users/'
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   private extractData(res: Response) {
     const body = res.json();
