@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {
-  Http,
-  Headers,
-  RequestOptions,
-  Response
-} from '@angular/http';
-import {
-  Observable
-} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -17,10 +9,12 @@ import {
   User
 } from '../shared/model/user';
 
+import { catchError, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+
 @Injectable()
 export class UsersService {
-
-  private static readonly API_URL: string = '/users/'
+  private static readonly API_URL: string = '//localhost:9080/users'
 
   constructor(private http: HttpClient) { }
 
@@ -29,24 +23,26 @@ export class UsersService {
     console.log(res.text());
     return body || {};
   }
-  
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg.toString());
-    return Observable.throw(errMsg);
-  }
+
   public getUsers(): Observable<User[]> {
-    const url = UsersService.API_URL;
-    return this.http.get(url)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this.http.get<User[]>(UsersService.API_URL)
+      .pipe(
+        tap(heroes => this.log(`fetched users`)),
+        catchError(this.handleError('getUsers', []))
+      );
   }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); 
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
+  private log(message: string) {
+    console.log(message);
+  }
+
  
 }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component'; 
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  {path: 'users', component: UsersComponent }
+  { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({
@@ -11,3 +11,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+//export const appRouting = RouterModule.forRoot(routes, { useHash: true });
