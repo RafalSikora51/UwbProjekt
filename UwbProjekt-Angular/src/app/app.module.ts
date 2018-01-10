@@ -8,6 +8,9 @@ import { UsersService} from './users/users.service';
 import { AppComponent } from './app.component';
 import { SpecsService } from './specs/specs.service';
 import { SpecsComponent } from './specs/specs.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 
 @NgModule({
@@ -15,13 +18,15 @@ import { SpecsComponent } from './specs/specs.component';
     AppComponent,
     UsersComponent,
     SpecsComponent,
+    DashboardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [UsersService, SpecsService],
+  providers: [UsersService, SpecsService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

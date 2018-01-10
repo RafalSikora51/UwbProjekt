@@ -1,25 +1,108 @@
-<nav class="navbar navbar-inverse bg-inverse">
-
-    <a class="navbar-brand" href="/#/">Medicare</a>
-
-    <ul class="nav navbar-nav">
-
-        <li class="nav-item active">
-
-            <a class="nav-link" href="/#/">Home</a>
-        </li>
-
-        <li class="nav-item">
-
-            <a class="nav-link" href="/#/search">Search</a>
-        </li>
-    </ul>
-</nav>
-
-<nav>
-
-    <a routerLink="/users">Users</a>
-    <a routerLink="/specs">Specs</a>
-</nav>
-
-<router-outlet></router-outlet>
+<section class="hero is-medium is-dark is-bold">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="../">
+                            <img src="http://www.thecliniccolorado.com/wp-content/uploads/2016/02/The_Clinic_ReverseLogo_DarkBlue_Stroke.png" alt="Logo">
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item">
+                                Strona główna
+                            </a>
+                            <a class="navbar-item">
+                                Specjalizacje
+                            </a>
+                            <a class="navbar-item" routerLink="/login">
+                                Zaloguj się
+                            </a>
+                            <a class="navbar-item" href="../">
+                                Zarejestruj się
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    Nowy standard kliniki Medicare
+                </h1>
+                <h2>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </h2>
+            </div>
+        </div>
+    
+    </section>
+    
+    <div class="box cta">
+        <p class="has-text-centered">
+        </p>
+    </div>
+    
+    <section class="container">
+        <div class="columns features">
+          <div class="column is-4">
+            <div class="card">
+              <div class="card-image has-text-centered" style="font-size:120px; color: #209cee;">
+                  <i class="fa fa-user-circle"></i>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <h4></h4>
+                  <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                  <p><a href="#">Learn more</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="card">
+                    <div class="card-image has-text-centered" style="font-size:120px; color: #6f767a;">
+                  <i class="fa fa-address-card-o"></i>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <h4>Tempor orci dapibus ultrices in.</h4>
+                  <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem sed risus.</p>
+                  <p><a href="#">Learn more</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="card">
+                    <div class="card-image has-text-centered" style="font-size:120px; color: #209cee;">
+                  <i class="fa fa-medkit"></i>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <h4> Leo integer malesuada nunc vel risus.  </h4>
+                  <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                  <p><a href="../" class="button is-primary">Dowiedz się więcej</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!--
+    <nav>
+        <h1> Itd itp</h1>
+        <a routerLink="/users">Users</a>
+        <a routerLink="/users">Users</a>
+        <a routerLink="/specs">Specs</a>
+    </nav>
+-->
+    
+    <router-outlet></router-outlet>
