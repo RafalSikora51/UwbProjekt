@@ -52,7 +52,6 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 
-//export const appRouting = RouterModule.forRoot(routes, { useHash: true }); 
 
 
 /***/ }),
@@ -189,7 +188,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specs/specs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table is-bordered is-striped is-narrow\">\n  <thead class=\"thead\">\n    <tr>\n      <th>Id</th>\n      <th>Name</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let specs of specs\">\n      <td>{{specs.id}}</td>\n      <td>{{specs.name}}</td>\n    </tr>\n  </tbody>\n</table>"
+module.exports = "<table class=\"table is-bordered is-striped is-narrow\">\r\n  <thead class=\"thead\">\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Name</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let specs of specs\">\r\n      <td>{{specs.id}}</td>\r\n      <td>{{specs.name}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 
@@ -293,7 +292,7 @@ var SpecsService = (function () {
     SpecsService.prototype.getSpecs = function () {
         var _this = this;
         return this.http.get(SpecsService_1.API_URL)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (heroes) { return _this.log("fetched specs"); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError('getSpecs', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (specs) { return _this.log("fetched specs"); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError('getSpecs', [])));
     };
     SpecsService.prototype.log = function (message) {
         console.log(message);
@@ -332,7 +331,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table is-bordered is-striped is-narrow\">\r\n  <thead class=\"thead\">\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>First name</th>\r\n      <th>Last name</th>\r\n      <th>Email</th>\r\n      <th>Admin</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let user of users\">\r\n      <td>{{user.id}}</td>\r\n      <td>{{user.firstName}}</td>\r\n      <td>{{user.lastName}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<table class=\"table is-bordered is-striped is-narrow\">\n  <thead class=\"thead\">\n    <tr>\n      <th>Id</th>\n      <th>First name</th>\n      <th>Last name</th>\n      <th>Email</th>\n      <th>Admin</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users\">\n      <td>{{user.id}}</td>\n      <td>{{user.firstName}}</td>\n      <td>{{user.lastName}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\n    </tr>\n  </tbody>\n</table>"
 
 /***/ }),
 
@@ -427,7 +426,7 @@ var UsersService = (function () {
     UsersService.prototype.getUsers = function () {
         var _this = this;
         return this.http.get(UsersService_1.API_URL)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (heroes) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
     };
     UsersService.prototype.handleError = function (operation, result) {
         var _this = this;

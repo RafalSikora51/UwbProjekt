@@ -35,7 +35,7 @@ export class SpecsService {
   public getSpecs(): Observable<Spec[]>{
     return this.http.get<Spec[]>(SpecsService.API_URL)
     .pipe(
-      tap(heroes => this.log(`fetched specs`)),
+      tap(specs => this.log(`fetched specs`)),
       catchError(this.handleError('getSpecs', []))
     );
   }

@@ -77,6 +77,7 @@ public class DoctorDao {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Doctor> findDoctorsBySpecId(int id) {
         List<Doctor> doctors;
         Session session = SessionConnection.getSessionFactory().openSession();

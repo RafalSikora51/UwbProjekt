@@ -25,7 +25,7 @@ export class UsersService {
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(UsersService.API_URL)
       .pipe(
-      tap(heroes => this.log(`fetched users`)),
+      tap(users => this.log(`fetched users`)),
       catchError(this.handleError('getUsers', []))
       );
   }
