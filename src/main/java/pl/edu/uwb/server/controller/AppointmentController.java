@@ -50,5 +50,11 @@ public class AppointmentController {
 		}
 		return new ResponseEntity<List<Appointment>>(appointments, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	
 
 }

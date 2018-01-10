@@ -29,7 +29,7 @@ public class Appointment {
 	@ManyToOne()
 	@JoinColumn(name = "IDDOCTOR", foreignKey = @ForeignKey(name = "IDDOCTORAPPOINTMENT"))
 	private Doctor doctor;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "IDAPPOINTMENT", foreignKey = @ForeignKey(name = "IDHISTORYAPPOINTMENT"))
 	private MedicalHistory medicalHistory;
@@ -40,6 +40,14 @@ public class Appointment {
 
 	public Appointment() {
 		this.date = new Timestamp(System.currentTimeMillis());
+	}
+
+	public Appointment(User user, Doctor doctor, MedicalHistory medicalHistory) {
+		this.user = user;
+		this.doctor = doctor;
+		this.medicalHistory = medicalHistory;
+		this.date = new Timestamp(System.currentTimeMillis());
+		this.appointmentProcess = "";
 	}
 
 	public Integer getId() {
@@ -90,7 +98,4 @@ public class Appointment {
 		this.medicalHistory = medicalHistory;
 	}
 
-	
-	
-	
 }

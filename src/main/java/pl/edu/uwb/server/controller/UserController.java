@@ -1,4 +1,5 @@
 package pl.edu.uwb.server.controller;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import pl.edu.uwb.server.entity.Appointment;
+import pl.edu.uwb.server.entity.MedicalHistory;
 import pl.edu.uwb.server.entity.User;
+import pl.edu.uwb.server.repository.AppointmentDao;
 import pl.edu.uwb.server.repository.UserDao;
 
 @RestController
@@ -30,10 +34,12 @@ public class UserController {
 	private static Logger logger = LogManager.getLogger(UserController.class);
 
 	private final UserDao userDao;
+	private final AppointmentDao appointmentDao;
 
 	@Autowired
-	public UserController(UserDao userDao) {
+	public UserController(UserDao userDao, AppointmentDao appointmentDao) {
 		this.userDao = userDao;
+		this.appointmentDao = appointmentDao;
 	}
 
 	@PostMapping
@@ -59,7 +65,7 @@ public class UserController {
 		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> getUser(@PathVariable int id) {
 		Optional<User> userOptional = userDao.findUserById(id);
@@ -68,6 +74,49 @@ public class UserController {
 		} else {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@RequestMapping(value = "/{id}/appointments", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Appointment>> findAllAppointmentsForUser(@PathVariable int id) throws Exception {
+		List<Appointment> appointments = appointmentDao.findAllAppointmentsForUser(id);
+		if (appointments.isEmpty()) {
+			return new ResponseEntity<List<Appointment>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Appointment>>(appointments, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{userId}/appointments/{specId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Appointment>> findAllAppointmentsForUserBySpecialization(@PathVariable int userId,
+			@PathVariable int specId) throws Exception {
+		List<Appointment> appointments = appointmentDao.findAllAppointmentsForUserBySpecialization(userId, specId);
+		if (appointments.isEmpty()) {
+			return new ResponseEntity<List<Appointment>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Appointment>>(appointments, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{userId}/histories", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<MedicalHistory>> findAllMedicalHistoriesForUser(@PathVariable int userId)
+			throws Exception {
+		List<MedicalHistory> medicalHistories = userDao.findAllMedicalHistoriesForUser(userId);
+		if (medicalHistories.isEmpty()) {
+			return new ResponseEntity<List<MedicalHistory>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<MedicalHistory>>(medicalHistories, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{userId}/histories/{specId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<MedicalHistory>> findAllMedicalHistoriesForUser(@PathVariable int userId,
+			@PathVariable int specId) throws Exception {
+		List<MedicalHistory> medicalHistories = userDao.findAllMedicalHistoriesForUserBySpecialization(userId, specId);
+		if (medicalHistories.isEmpty()) {
+			return new ResponseEntity<List<MedicalHistory>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<MedicalHistory>>(medicalHistories, HttpStatus.OK);
 	}
 
 }

@@ -44,6 +44,11 @@ public class MedicalHistory {
 
 	}
 
+	public MedicalHistory(User user, int specId) {
+		this.user = user;
+		this.specId = specId;
+	}
+
 	public Integer getId() {
 		return id;
 	}

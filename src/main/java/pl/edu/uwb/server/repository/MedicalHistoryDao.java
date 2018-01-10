@@ -2,6 +2,9 @@ package pl.edu.uwb.server.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,30 +52,24 @@ public class MedicalHistoryDao {
 		return histories;
 	}
 	
-	//TODO: We have to use hql here
 	public List<MedicalHistory> findAllMedicalHistoriesForGivenUser(User user) {
 		logger.debug("findAllMedicalHistoriesForGivenUser");
-		List<MedicalHistory> histories = new ArrayList();
-		Session session = SessionConnection.getSessionFactory().openSession();
-
-		
-		
-		SessionConnection.shutdown(session);
+		List<MedicalHistory> histories = user.getMedicalHistorySet().stream().collect(Collectors.toList());	
 		logger.info("All medical histories for given user listed.");
 		return histories;
 	}
 	
-	//TODO: We have to use hql here
-	public List<MedicalHistory> findMedicalHistoryBySpecIdForGivenUser(User user, int specId) {
-		logger.debug("findAllMedicalHistoriesForGivenUser");
-		List<MedicalHistory> histories = new ArrayList();
-		Session session = SessionConnection.getSessionFactory().openSession();
+	public Optional<MedicalHistory> getMedicalHistoryForUserBySpec(User user, int specId) {
+		MedicalHistory medicalHistory = null;
+		Set<MedicalHistory> medicalHistorySet = user.getMedicalHistorySet();
 
-		
-		
-		SessionConnection.shutdown(session);
-		logger.info("All medical histories for given user listed.");
-		return histories;
+		for (MedicalHistory medHistory : medicalHistorySet) {
+			if (medHistory.getSpecId() == specId) {
+				medicalHistory = medHistory;
+				break;
+			}
+		}
+		return Optional.ofNullable(medicalHistory);
 	}
 
 }

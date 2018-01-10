@@ -3,6 +3,8 @@ package pl.edu.uwb.server.repository;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +13,8 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pl.edu.uwb.server.entity.Appointment;
+import pl.edu.uwb.server.entity.MedicalHistory;
 import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.SessionConnection;
@@ -18,7 +22,7 @@ import pl.edu.uwb.server.util.TokenGenerator;
 
 @Component
 public class UserDao {
-	
+
 	private static Logger logger = LogManager.getLogger(UserDao.class);
 
 	@Autowired
@@ -76,8 +80,7 @@ public class UserDao {
 		}
 	}
 
-	public void createUser(User user)
-	{
+	public void createUser(User user) {
 		Session session = SessionConnection.getSessionFactory().openSession();
 		session.beginTransaction();
 		user.setCreatedOn(new Timestamp(System.currentTimeMillis()));
@@ -90,7 +93,7 @@ public class UserDao {
 		SessionConnection.shutdown(session);
 		logger.info("User created correctly.");
 	}
-	
+
 	public boolean isUserInDataBase(String email, String token) {
 		logger.debug("isUserInDataBase");
 		if (!findUserByEmail(email).isPresent()) {
@@ -104,6 +107,43 @@ public class UserDao {
 			logger.info("User found in data base.");
 			return true;
 		}
+	}
+
+	public List<MedicalHistory> findAllMedicalHistoriesForUser(User user) {
+		logger.debug("findAllMedicalHistoriesForUser");
+		List<MedicalHistory> medicalHistories = user.getMedicalHistorySet().stream().collect(Collectors.toList());
+		logger.info("All medical histories for user listed.");
+		return medicalHistories;
+	}
+
+	public List<MedicalHistory> findAllMedicalHistoriesForUser(int userId) throws Exception {
+		logger.debug("findAllMedicalHistoriesForUser");
+		Optional<User> userOptional = findUserById(userId);
+		if (userOptional.isPresent()) {
+			return findAllMedicalHistoriesForUser(userOptional.get());
+		} else
+			throw new Exception("User not found");
+	}
+
+	public static Predicate<MedicalHistory> isMedicalHistoryFromGivenSpec(int specId) {
+		return p -> p.getSpecId() == specId;
+	}
+
+	public List<MedicalHistory> findAllMedicalHistoriesForUserBySpecialization(User user, int specId) {
+		logger.debug("findAllMedicalHistoriesForUserBySpecialization");
+		logger.info("All medical histories for user from given specialization listed.");
+		return findAllMedicalHistoriesForUser(user).stream().filter(isMedicalHistoryFromGivenSpec(specId))
+				.collect(Collectors.toList());
+	}
+
+	public List<MedicalHistory> findAllMedicalHistoriesForUserBySpecialization(int userId, int specId)
+			throws Exception {
+		logger.debug("findAllMedicalHistoriesForUserBySpecialization");
+		Optional<User> userOptional = findUserById(userId);
+		if (userOptional.isPresent()) {
+			return findAllMedicalHistoriesForUserBySpecialization(userOptional.get(), specId);
+		} else
+			throw new Exception("User not found");
 	}
 
 }
