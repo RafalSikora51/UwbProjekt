@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import pl.edu.uwb.server.entity.Specialization;
-import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.SessionConnection;
 
 @Component

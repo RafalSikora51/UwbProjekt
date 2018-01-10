@@ -1,8 +1,11 @@
 package pl.edu.uwb.server.repository;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,9 +14,11 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pl.edu.uwb.server.entity.Appointment;
 import pl.edu.uwb.server.entity.Doctor;
 import pl.edu.uwb.server.entity.Specialization;
 import pl.edu.uwb.server.entity.Token;
+import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.SessionConnection;
 import pl.edu.uwb.server.util.TokenGenerator;
 
@@ -21,7 +26,7 @@ import pl.edu.uwb.server.util.TokenGenerator;
 public class DoctorDao {
 
 	private static Logger logger = LogManager.getLogger(UserDao.class);
-	
+
 	@Autowired
 	private SpecializationDao specializationDao;
 
@@ -76,18 +81,18 @@ public class DoctorDao {
 			return Optional.empty();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Doctor> findDoctorsBySpecId(int id) {
-        List<Doctor> doctors;
-        Session session = SessionConnection.getSessionFactory().openSession();
-        String hql = "from Doctor where SPECIALIZATIONID = :id";
-        Query query = session.createQuery(hql);
-        query.setParameter("id", id);
-        doctors = query.list();
-        SessionConnection.shutdown(session);
-        return doctors;
-    }
+		List<Doctor> doctors;
+		Session session = SessionConnection.getSessionFactory().openSession();
+		String hql = "from Doctor where SPECIALIZATIONID = :id";
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		doctors = query.list();
+		SessionConnection.shutdown(session);
+		return doctors;
+	}
 
 	public void createDoctor(Doctor doctor, String specName) {
 		Session session = SessionConnection.getSessionFactory().openSession();
@@ -103,6 +108,36 @@ public class DoctorDao {
 		session.getTransaction().commit();
 		SessionConnection.shutdown(session);
 		logger.info("Doctor created correctly.");
+	}
+
+	public static Predicate<User> isUserAlreadyInList(List<User> users) {
+		return p -> !users.contains(p);
+	}
+
+	public List<User> findAllUsersByDoctor(Doctor doctor) {
+		logger.debug("findAllUsersByDoctor");
+		List<Appointment> appointments = doctor.getAppointmentSet().stream().collect(Collectors.toList());
+		List<User> users = new ArrayList<>();
+		appointments.forEach(x -> users.add(x.getUser()));
+		logger.info("All users listed.");
+		return users.stream().distinct().collect(Collectors.toList());
+	}
+
+	public List<User> findAllUsersByDoctor(int docId) throws Exception {
+		logger.debug("findAllUsersByDoctor");
+		Optional<Doctor> docOptional = findDoctorById(docId);
+
+		if (docOptional.isPresent()) {
+			List<Appointment> appointments = docOptional.get().getAppointmentSet().stream()
+					.collect(Collectors.toList());
+			List<User> users = new ArrayList<>();
+			appointments.forEach(x -> users.add(x.getUser()));
+			logger.info("All users listed.");
+			return users.stream().distinct().collect(Collectors.toList());
+		} else {
+			throw new Exception("Doctor not found");
+		}
+
 	}
 
 }

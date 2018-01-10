@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import pl.edu.uwb.server.entity.Doctor;
+import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.repository.DoctorDao;
 
 @CrossOrigin
@@ -72,6 +73,16 @@ public class DoctorController {
 		} else {
 			return new ResponseEntity<Doctor>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@RequestMapping(value = "/{id}/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<User>> findAllUsersForDoctor(@PathVariable int id) throws Exception {
+		List<User> users = doctorDao.findAllUsersByDoctor(id);
+		if (users.isEmpty()) {
+			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
 }

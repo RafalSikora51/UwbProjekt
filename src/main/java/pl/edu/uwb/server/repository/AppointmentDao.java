@@ -1,6 +1,5 @@
 package pl.edu.uwb.server.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -96,7 +95,7 @@ public class AppointmentDao {
 		return findAllAppointmentsForUser(user).stream().filter(isAppointmentFromGivenSpec(specId))
 				.collect(Collectors.toList());
 	}
-	
+
 	public List<Appointment> findAllAppointmentsForUserBySpecialization(int userId, int specId) throws Exception {
 		logger.debug("findAllAppointmentsForUser");
 		Optional<User> userOptional = userDao.findUserById(userId);
@@ -105,7 +104,5 @@ public class AppointmentDao {
 		} else
 			throw new Exception("User not found");
 	}
-	
-	
 
 }
