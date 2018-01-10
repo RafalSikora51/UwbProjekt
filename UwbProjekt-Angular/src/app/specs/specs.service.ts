@@ -5,14 +5,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
-import { User } from '../shared/model/user';
+import { Spec } from '../shared/model/spec';
 
-import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable()
-export class UsersService {
-  private static readonly API_URL: string = '//localhost:9080/users'
+export class SpecsService {
+
+  private static readonly API_URL:string ='//localhost:9080/specs'
 
   constructor(private http: HttpClient) { }
 
@@ -22,25 +24,24 @@ export class UsersService {
     return body || {};
   }
 
-  public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(UsersService.API_URL)
-      .pipe(
-      tap(heroes => this.log(`fetched users`)),
-      catchError(this.handleError('getUsers', []))
-      );
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(error); 
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }
 
+  public getSpecs(): Observable<Spec[]>{
+    return this.http.get<Spec[]>(SpecsService.API_URL)
+    .pipe(
+      tap(heroes => this.log(`fetched specs`)),
+      catchError(this.handleError('getSpecs', []))
+    );
+  }
+
   private log(message: string) {
     console.log(message);
   }
-
 
 }

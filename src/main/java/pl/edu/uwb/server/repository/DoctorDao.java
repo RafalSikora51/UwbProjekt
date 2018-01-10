@@ -76,6 +76,17 @@ public class DoctorDao {
 			return Optional.empty();
 		}
 	}
+	
+	public List<Doctor> findDoctorsBySpecId(int id) {
+        List<Doctor> doctors;
+        Session session = SessionConnection.getSessionFactory().openSession();
+        String hql = "from Doctor where SPECIALIZATIONID = :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        doctors = query.list();
+        SessionConnection.shutdown(session);
+        return doctors;
+    }
 
 	public void createDoctor(Doctor doctor, String specName) {
 		Session session = SessionConnection.getSessionFactory().openSession();

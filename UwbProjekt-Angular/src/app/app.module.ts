@@ -6,18 +6,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
 import { UsersService} from './users/users.service';
 import { AppComponent } from './app.component';
+import { SpecsService } from './specs/specs.service';
+import { SpecsComponent } from './specs/specs.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    SpecsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [UsersService],
+  providers: [UsersService, SpecsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
