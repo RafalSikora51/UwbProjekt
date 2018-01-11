@@ -14,6 +14,8 @@ import { LoginService } from './login/login.service';
 import { HomeComponent } from './home/home.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorsService } from './doctors/doctors.service';
+import { SpecdetailsComponent } from './specdetails/specdetails.component';
+import { SpecdetailsService } from './specdetails/specdetails.service';
 
 
 @NgModule({
@@ -24,13 +26,14 @@ import { DoctorsService } from './doctors/doctors.service';
     LoginComponent,
     HomeComponent,
     DoctorsComponent,
+    SpecdetailsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [UsersService, SpecsService, LoginService, DoctorsService],
+  providers: [UsersService, SpecsService, LoginService, DoctorsService, SpecdetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
