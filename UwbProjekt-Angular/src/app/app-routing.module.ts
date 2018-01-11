@@ -15,11 +15,11 @@ const routes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'home', component: HomeComponent},
     { path: 'doctors', component: DoctorsComponent, pathMatch: 'full'},
-    { path: 'specdetails', component: SpecdetailsComponent, pathMatch: 'full' },
+    { path: 'specs', component: SpecsComponent, pathMatch: 'full' },
   ] },
 
 
-  { path: 'specs', component: SpecsComponent },
+  { path: 'specdetails', component: SpecdetailsComponent },
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent }
 
