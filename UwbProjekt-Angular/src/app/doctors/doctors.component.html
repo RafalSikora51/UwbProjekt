@@ -1,0 +1,21 @@
+<table>
+    <thead class="thead">
+      <tr>
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doctor of doctors">
+        <td>{{doctor.id}}</td>
+        <td>{{doctor.firstName}}</td>
+        <td>{{doctor.lastName}}</td>
+        <td>{{doctor.email}}</td>
+        <td>{{doctor.specName}}</td>
+        <td>{{doctor.admin ? "Yes": "No"}}</td>
+      </tr>
+    </tbody>
+  </table>

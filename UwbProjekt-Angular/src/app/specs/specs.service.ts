@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { Spec } from '../shared/model/spec';
+import { Doctor } from '../shared/model/doctor';
 
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -18,11 +19,6 @@ export class SpecsService {
 
   constructor(private http: HttpClient) { }
 
-  private extractData(res: Response) {
-    const body = res.json();
-    console.log(res.text());
-    return body || {};
-  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
