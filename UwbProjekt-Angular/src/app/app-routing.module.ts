@@ -7,14 +7,23 @@ import { HomeComponent } from './home/home.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { SpecdetailsComponent } from './specdetails/specdetails.component';
 
+import { HomeLayoutComponent } from './home-layout/home-layout.component';
+
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'users', component: UsersComponent },
+  { path: '', component: HomeLayoutComponent,
+  children: [
+    { path: '', component: HomeComponent},
+    { path: 'home', component: HomeComponent},
+    { path: 'doctors', component: DoctorsComponent, pathMatch: 'full'},
+    { path: 'specdetails', component: SpecdetailsComponent, pathMatch: 'full' },
+  ] },
+
+
   { path: 'specs', component: SpecsComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'doctors', component: DoctorsComponent },
-  {path: 'specdetails', component:SpecdetailsComponent}
+  { path: 'users', component: UsersComponent },
+  { path: 'login', component: LoginComponent }
+
+
 ];
 
 @NgModule({

@@ -16,6 +16,8 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorsService } from './doctors/doctors.service';
 import { SpecdetailsComponent } from './specdetails/specdetails.component';
 import { SpecdetailsService } from './specdetails/specdetails.service';
+import { HeaderComponent } from './header/header.component';
+import { HomeLayoutComponent } from './home-layout/home-layout.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { SpecdetailsService } from './specdetails/specdetails.service';
     HomeComponent,
     DoctorsComponent,
     SpecdetailsComponent,
+    HeaderComponent,
+    HomeLayoutComponent,
   ],
   imports: [
     BrowserModule,

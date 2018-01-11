@@ -30,6 +30,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__doctors_doctors_component__ = __webpack_require__("../../../../../src/app/doctors/doctors.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__specdetails_specdetails_component__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_layout_home_layout_component__ = __webpack_require__("../../../../../src/app/home-layout/home-layout.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44,14 +45,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
-    { path: 'users', component: __WEBPACK_IMPORTED_MODULE_2__users_users_component__["a" /* UsersComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_8__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
+        children: [
+            { path: '', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
+            { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
+            { path: 'doctors', component: __WEBPACK_IMPORTED_MODULE_6__doctors_doctors_component__["a" /* DoctorsComponent */], pathMatch: 'full' },
+            { path: 'specdetails', component: __WEBPACK_IMPORTED_MODULE_7__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], pathMatch: 'full' },
+        ] },
     { path: 'specs', component: __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__["a" /* SpecsComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
-    { path: 'doctors', component: __WEBPACK_IMPORTED_MODULE_6__doctors_doctors_component__["a" /* DoctorsComponent */] },
-    { path: 'specdetails', component: __WEBPACK_IMPORTED_MODULE_7__specdetails_specdetails_component__["a" /* SpecdetailsComponent */] }
+    { path: 'users', component: __WEBPACK_IMPORTED_MODULE_2__users_users_component__["a" /* UsersComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -146,12 +151,16 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__doctors_doctors_service__ = __webpack_require__("../../../../../src/app/doctors/doctors.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__specdetails_specdetails_component__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__specdetails_specdetails_service__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__home_layout_home_layout_component__ = __webpack_require__("../../../../../src/app/home-layout/home-layout.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -181,6 +190,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__doctors_doctors_component__["a" /* DoctorsComponent */],
                 __WEBPACK_IMPORTED_MODULE_14__specdetails_specdetails_component__["a" /* SpecdetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__header_header_component__["a" /* HeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -219,7 +230,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctors/doctors.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\n    <thead class=\"thead\">\n      <tr>\n        <th>Id</th>\n        <th>First name</th>\n        <th>Last name</th>\n        <th>Email</th>\n        <th>specName</th>\n        <th>Admin</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let doctor of doctors\">\n        <td>{{doctor.id}}</td>\n        <td>{{doctor.firstName}}</td>\n        <td>{{doctor.lastName}}</td>\n        <td>{{doctor.email}}</td>\n        <td>{{doctor.specId}}</td>\n        <td>{{doctor.admin ? \"Yes\": \"No\"}}</td>\n      </tr>\n    </tbody>\n  </table>"
+module.exports = "<table>\r\n    <thead class=\"thead\">\r\n      <tr>\r\n        <th>Id</th>\r\n        <th>First name</th>\r\n        <th>Last name</th>\r\n        <th>Email</th>\r\n        <th>specName</th>\r\n        <th>Admin</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let doctor of doctors\">\r\n        <td>{{doctor.id}}</td>\r\n        <td>{{doctor.firstName}}</td>\r\n        <td>{{doctor.lastName}}</td>\r\n        <td>{{doctor.email}}</td>\r\n        <td>{{doctor.specId}}</td>\r\n        <td>{{doctor.admin ? \"Yes\": \"No\"}}</td>\r\n      </tr>\r\n    </tbody>\r\n  </table>"
 
 /***/ }),
 
@@ -336,6 +347,128 @@ var DoctorsService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/header/header.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/header/header.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\n  <div class=\"hero-head\">\n      <nav class=\"navbar\">\n          <div class=\"container\">\n              <div class=\"navbar-brand\">\n                  <a class=\"navbar-item\" routerLink=\"\">\n                      <img src=\"http://www.thecliniccolorado.com/wp-content/uploads/2016/02/The_Clinic_ReverseLogo_DarkBlue_Stroke.png\" alt=\"Logo\">\n                  </a>\n\n              </div>\n              <div id=\"navbarMenu\" class=\"navbar-menu\">\n                  <div class=\"navbar-end\">\n                      <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n                          Strona główna\n                      </a>\n                      <a class=\"navbar-item\" routerLink=\"/specdetails\" routerLinkActive=\"active\">\n                          Specjalizacje\n                      </a>\n                      <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\n                          Zaloguj się\n                      </a>\n                      <a class=\"navbar-item\" routerLink=\"\">\n                          Zarejestruj się\n                      </a>\n                  </div>\n              </div>\n          </div>\n      </nav>\n  </div>\n  <div class=\"hero-body\">\n      <div class=\"container has-text-centered\">\n          <h1 class=\"title\">\n              Nowy standard kliniki Medicare\n          </h1>\n          <h2>\n              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n          </h2>\n      </div>\n  </div>\n\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/header/header.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HeaderComponent = (function () {
+    function HeaderComponent() {
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-header',
+            template: __webpack_require__("../../../../../src/app/header/header.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/header/header.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/home-layout/home-layout.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/home-layout/home-layout.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/home-layout/home-layout.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeLayoutComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HomeLayoutComponent = (function () {
+    function HomeLayoutComponent() {
+    }
+    HomeLayoutComponent.prototype.ngOnInit = function () {
+    };
+    HomeLayoutComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-home-layout',
+            template: __webpack_require__("../../../../../src/app/home-layout/home-layout.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/home-layout/home-layout.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HomeLayoutComponent);
+    return HomeLayoutComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/home/home.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -357,7 +490,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-medium is-dark is-bold\">\n    <div class=\"hero-head\">\n        <nav class=\"navbar\">\n            <div class=\"container\">\n                <div class=\"navbar-brand\">\n                    <a class=\"navbar-item\" routerLink=\"\">\n                        <img src=\"http://www.thecliniccolorado.com/wp-content/uploads/2016/02/The_Clinic_ReverseLogo_DarkBlue_Stroke.png\" alt=\"Logo\">\n                    </a>\n\n                </div>\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\n                    <div class=\"navbar-end\">\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n                            Strona główna\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"/specdetails\" routerLinkActive=\"active\">\n                            Specjalizacje\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\n                            Zaloguj się\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"\">\n                            Zarejestruj się\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </nav>\n    </div>\n    <div class=\"hero-body\">\n        <div class=\"container has-text-centered\">\n            <h1 class=\"title\">\n                Nowy standard kliniki Medicare\n            </h1>\n            <h2>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n            </h2>\n        </div>\n    </div>\n\n</section>\n\n<div class=\"box cta\">\n    <p class=\"has-text-centered\">\n    </p>\n</div>\n\n<section class=\"container\">\n    <div class=\"columns features\">\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\n                    <i class=\"fa fa-user-circle\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4></h4>\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\n                            viverra nam.</p>\n                        <p>\n                            <a href=\"#\">Learn more</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n                    <i class=\"fa fa-address-card-o\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4>Tempor orci dapibus ultrices in.</h4>\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\n                            Phasellus vestibulum lorem sed risus.</p>\n                        <p>\n                            <a href=\"#\">Learn more</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\n                    <i class=\"fa fa-medkit\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\n                            vel facilisis.</p>\n                        <p>\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"hero is-dark is-bold\">\n    <div class=\"hero-body\">\n        <div class=\"container\">\n\n        </div>\n    </div>\n</section>\n\n\n<!--\n    <nav>\n        <h1> Itd itp</h1>\n        <a routerLink=\"/users\">Users</a>\n        <a routerLink=\"/users\">Users</a>\n        <a routerLink=\"/specs\">Specs</a>\n    </nav>\n-->\n"
+module.exports = "<div class=\"box cta\">\r\n    <p class=\"has-text-centered\">\r\n    </p>\r\n</div>\r\n\r\n<section class=\"container\">\r\n    <div class=\"columns features\">\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-user-circle\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4></h4>\r\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\r\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\r\n                            viverra nam.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n                    <i class=\"fa fa-address-card-o\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4>Tempor orci dapibus ultrices in.</h4>\r\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\r\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\r\n                            Phasellus vestibulum lorem sed risus.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-medkit\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\r\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\r\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\r\n                            vel facilisis.</p>\r\n                        <p>\r\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n<section class=\"hero is-dark is-bold\">\r\n    <div class=\"hero-body\">\r\n        <div class=\"container\">\r\n\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<!--\r\n    <nav>\r\n        <h1> Itd itp</h1>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/specs\">Specs</a>\r\n    </nav>\r\n-->\r\n"
 
 /***/ }),
 
@@ -509,7 +642,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specdetails/specdetails.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-primary is-bold\">\n  <div class=\"hero-head\">\n    <nav class=\"navbar\">\n      <div class=\"container\">\n        <div class=\"navbar-brand\">\n          <a class=\"navbar-item\" routerLink=\"\">\n          </a>\n        </div>\n        <div id=\"navbarMenu\" class=\"navbar-menu\">\n          <div class=\"navbar-end\">\n            <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n              Strona główna\n            </a>\n          </div>\n        </div>\n      </div>\n    </nav>\n  </div>\n  <div class=\"hero-body\">\n    <div class=\"container has-text-centered\">\n      <h1 class=\"title\">\n        Specjalizacje dostępne w klinice\n      </h1>\n      <h2>\n          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n      </h2>\n    </div>\n  </div>\n\n</section>\n\n<div class=\"box cta\">\n  <div class=\"has-text-centered\">\n  </div>\n</div>\n<section class=\"section\">\n  <div class=\"container\">\n    <h1 class=\"title\"></h1>\n    <h2 class=\"subtitle\">\n    </h2>\n  </div>\n</section>\n\n<section class=\"container\">\n  <div class=\"columns features\">\n    <div class=\"column\">\n      <div class=\"card\">\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n          <img src=\"/assets/stomatology.JPG\">\n        </div>\n        <div class=\"card-content\">\n          <div class=\"content\">\n            <h4>Stomatologia</h4>\n            <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat\n              ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>\n            <p>\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"column\">\n      <div class=\"card\">\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n          <img src=\"/assets/alergology.JPG\" alt=\"Avatar\">\n        </div>\n        <div class=\"card-content\">\n          <div class=\"content\">\n            <h4>Alergologia</h4>\n            <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod\n              lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum\n              lorem sed risus.</p>\n            <p>\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"column\">\n      <div class=\"card\">\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n          <img src=\"/assets/cosmetic-surgery.JPG\">\n        </div>\n        <div class=\"card-content\">\n          <div class=\"content\">\n            <h4>Chirurgia plastyczna</h4>\n            <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\n              Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\n            <p>\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n\n\n\n<!--\n    <nav>\n        <h1> Itd itp</h1>\n        <a routerLink=\"/users\">Users</a>\n        <a routerLink=\"/users\">Users</a>\n        <a routerLink=\"/specs\">Specs</a>\n    </nav>\n-->"
+module.exports = "<div class=\"box cta\">\r\n  <div class=\"has-text-centered\">\r\n  </div>\r\n</div>\r\n<section class=\"section\">\r\n  <div class=\"container\">\r\n    <h1 class=\"title\"></h1>\r\n    <h2 class=\"subtitle\">\r\n    </h2>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"container\">\r\n  <div class=\"columns features\">\r\n    <div class=\"column\">\r\n      <div class=\"card\">\r\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n          <img src=\"/assets/stomatology.JPG\">\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <div class=\"content\">\r\n            <h4>Stomatologia</h4>\r\n            <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat\r\n              ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>\r\n            <p>\r\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card\">\r\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n          <img src=\"/assets/alergology.JPG\" alt=\"Avatar\">\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <div class=\"content\">\r\n            <h4>Alergologia</h4>\r\n            <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod\r\n              lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum\r\n              lorem sed risus.</p>\r\n            <p>\r\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card\">\r\n        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n          <img src=\"/assets/cosmetic-surgery.JPG\">\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <div class=\"content\">\r\n            <h4>Chirurgia plastyczna</h4>\r\n            <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\r\n              Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\r\n            <p>\r\n              <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n\r\n\r\n<!--\r\n    <nav>\r\n        <h1> Itd itp</h1>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/specs\">Specs</a>\r\n    </nav>\r\n-->"
 
 /***/ }),
 
