@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { Spec } from '../shared/model/spec';
-import { Doctor } from '../shared/model/doctor';
-
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -18,7 +15,6 @@ export class SpecsService {
   private static readonly API_URL:string ='//localhost:9080/specs'
 
   constructor(private http: HttpClient) { }
-
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

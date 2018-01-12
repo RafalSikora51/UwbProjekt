@@ -18,6 +18,12 @@ import { SpecdetailsComponent } from './specdetails/specdetails.component';
 import { SpecdetailsService } from './specdetails/specdetails.service';
 import { HeaderComponent } from './header/header.component';
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { UserPanelService } from './user-panel/user-panel.service';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelService } from './admin-panel/admin-panel.service';
+import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
+import { DoctorPanelService } from './doctor-panel/doctor-panel.service';
 
 
 @NgModule({
@@ -31,13 +37,16 @@ import { HomeLayoutComponent } from './home-layout/home-layout.component';
     SpecdetailsComponent,
     HeaderComponent,
     HomeLayoutComponent,
+    UserPanelComponent,
+    AdminPanelComponent,
+    DoctorPanelComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [UsersService, SpecsService, LoginService, DoctorsService, SpecdetailsService],
+  providers: [UsersService, SpecsService, LoginService, DoctorsService, SpecdetailsService,UserPanelService,AdminPanelService, DoctorPanelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,6 +17,97 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 /***/ }),
 
+/***/ "../../../../../src/app/admin-panel/admin-panel.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin-panel/admin-panel.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar is-dark\">\n  <div class=\"container\">\n    <div class=\"navbar-brand\">\n      <a class=\"navbar-item brand-text\" href=\"../\">\n        Powrót\n      </a>\n      <div class=\"navbar-burger burger\" data-target=\"navMenu\">\n        <span></span>\n        <span></span>\n        <span></span>\n      </div>\n    </div>\n    <div id=\"navMenu\" class=\"navbar-menu\">\n      <div class=\"navbar-start\">\n        <a class=\"navbar-item\" routerLink=\"\">\n          Strona główna\n        </a>\n        <a class=\"navbar-item\" href=\"admin.html\">\n          Użytkownicy\n        </a>\n        <a class=\"navbar-item\" href=\"admin.html\">\n          Lekarze\n        </a>\n      </div>\n\n    </div>\n  </div>\n</nav>\n<!-- END NAV -->\n<div class=\"container\">\n  <div class=\"columns\">\n    <div class=\"column is-3\">\n      <aside class=\"menu\">\n        <p class=\"menu-label\">\n          General\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n            <a class=\"is-active\">Dashboard</a>\n          </li>\n          <li>\n            <a>Customers</a>\n          </li>\n        </ul>\n        <p class=\"menu-label\">\n          Administration\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n            <a>Team Settings</a>\n          </li>\n          <li>\n            <a>Invitations</a>\n          </li>\n          <li>\n            <a>Cloud</a>\n          </li>\n          <li>\n            <a>Authentication</a>\n          </li>\n        </ul>\n        <p class=\"menu-label\">\n          Transactions\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n            <a>Payments</a>\n          </li>\n          <li>\n            <a>Transfers</a>\n          </li>\n          <li>\n            <a>Balance</a>\n          </li>\n        </ul>\n      </aside>\n    </div>\n    <div class=\"column is-9\">\n      <nav class=\"breadcrumb has-arrow-separator\" aria-label=\"breadcrumbs\">\n        <ul>\n          <li>\n            <a href=\"../\">Link1</a>\n          </li>\n          <li>\n            <a href=\"../\">Link2</a>\n          </li>\n          <li>\n            <a href=\"../\">Link3</a>\n          </li>\n        </ul>\n      </nav>\n      <section class=\"hero is-info welcome is-small\">\n        <div class=\"hero-body\">\n          <div class=\"container\">\n            <h1 class=\"title\">\n              Panel Administratora\n            </h1>\n            <h2 class=\"subtitle\">\n            </h2>\n          </div>\n        </div>\n      </section>\n      <section class=\"info-tiles\">\n        <div class=\"tile is-ancestor has-text-centered\">\n          <div class=\"tile is-parent\">\n            <article class=\"tile is-child box\">\n              <p class=\"title\">439k</p>\n              <p class=\"subtitle\">Users</p>\n            </article>\n          </div>\n          <div class=\"tile is-parent\">\n            <article class=\"tile is-child box\">\n              <p class=\"title\">59k</p>\n              <p class=\"subtitle\">Products</p>\n            </article>\n          </div>\n          <div class=\"tile is-parent\">\n            <article class=\"tile is-child box\">\n              <p class=\"title\">3.4k</p>\n              <p class=\"subtitle\">Open Orders</p>\n            </article>\n          </div>\n          <div class=\"tile is-parent\">\n            <article class=\"tile is-child box\">\n              <p class=\"title\">19</p>\n              <p class=\"subtitle\">Exceptions</p>\n            </article>\n          </div>\n        </div>\n      </section>\n        <div class=\"column\">\n          <div class=\"card events-card\">\n            <header class=\"card-header\">\n              <p class=\"card-header-title\">\n                Działania\n              </p>\n            </header>\n            <div class=\"card-table\">\n              <div class=\"content\">\n                <h2> Content tutaj</h2>\n              </div>\n            </div>\n          </div>\n        </div>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin-panel/admin-panel.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminPanelComponent = (function () {
+    function AdminPanelComponent() {
+    }
+    AdminPanelComponent.prototype.ngOnInit = function () {
+    };
+    AdminPanelComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin-panel',
+            template: __webpack_require__("../../../../../src/app/admin-panel/admin-panel.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/admin-panel/admin-panel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminPanelComponent);
+    return AdminPanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/admin-panel/admin-panel.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminPanelService = (function () {
+    function AdminPanelService() {
+    }
+    AdminPanelService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], AdminPanelService);
+    return AdminPanelService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -28,9 +119,11 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__ = __webpack_require__("../../../../../src/app/specs/specs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__doctors_doctors_component__ = __webpack_require__("../../../../../src/app/doctors/doctors.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__specdetails_specdetails_component__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_layout_home_layout_component__ = __webpack_require__("../../../../../src/app/home-layout/home-layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_layout_home_layout_component__ = __webpack_require__("../../../../../src/app/home-layout/home-layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__ = __webpack_require__("../../../../../src/app/user-panel/user-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__ = __webpack_require__("../../../../../src/app/admin-panel/admin-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -46,25 +139,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_8__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
+    {
+        path: '', component: __WEBPACK_IMPORTED_MODULE_7__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
         children: [
             { path: '', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
             { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
-            { path: 'doctors', component: __WEBPACK_IMPORTED_MODULE_6__doctors_doctors_component__["a" /* DoctorsComponent */], pathMatch: 'full' },
+            { path: 'doctors', redirectTo: 'specs' },
             { path: 'specs', component: __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__["a" /* SpecsComponent */], pathMatch: 'full' },
-        ] },
-    { path: 'specdetails', component: __WEBPACK_IMPORTED_MODULE_7__specdetails_specdetails_component__["a" /* SpecdetailsComponent */] },
+        ]
+    },
+    { path: 'specs/:id', component: __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], },
     { path: 'users', component: __WEBPACK_IMPORTED_MODULE_2__users_users_component__["a" /* UsersComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] }
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
+    { path: 'userpanel', component: __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__["a" /* UserPanelComponent */] },
+    { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */] },
+    { path: 'doctorpanel', component: __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
-            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forRoot(routes)],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(routes)],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */]]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -95,7 +195,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<router-outlet></router-outlet>"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -153,12 +253,24 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__specdetails_specdetails_service__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__home_layout_home_layout_component__ = __webpack_require__("../../../../../src/app/home-layout/home-layout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__user_panel_user_panel_component__ = __webpack_require__("../../../../../src/app/user-panel/user-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__user_panel_user_panel_service__ = __webpack_require__("../../../../../src/app/user-panel/user-panel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__admin_panel_admin_panel_component__ = __webpack_require__("../../../../../src/app/admin-panel/admin-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__admin_panel_admin_panel_service__ = __webpack_require__("../../../../../src/app/admin-panel/admin-panel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__doctor_panel_doctor_panel_component__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__doctor_panel_doctor_panel_service__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
 
 
 
@@ -192,17 +304,111 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_14__specdetails_specdetails_component__["a" /* SpecdetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__header_header_component__["a" /* HeaderComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__user_panel_user_panel_component__["a" /* UserPanelComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */],
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_5__users_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_7__specs_specs_service__["a" /* SpecsService */], __WEBPACK_IMPORTED_MODULE_10__login_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_13__doctors_doctors_service__["a" /* DoctorsService */], __WEBPACK_IMPORTED_MODULE_15__specdetails_specdetails_service__["a" /* SpecdetailsService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_5__users_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_7__specs_specs_service__["a" /* SpecsService */], __WEBPACK_IMPORTED_MODULE_10__login_login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_13__doctors_doctors_service__["a" /* DoctorsService */], __WEBPACK_IMPORTED_MODULE_15__specdetails_specdetails_service__["a" /* SpecdetailsService */], __WEBPACK_IMPORTED_MODULE_19__user_panel_user_panel_service__["a" /* UserPanelService */], __WEBPACK_IMPORTED_MODULE_21__admin_panel_admin_panel_service__["a" /* AdminPanelService */], __WEBPACK_IMPORTED_MODULE_23__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-panel.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-panel.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  doctor-panel works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-panel.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorPanelComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DoctorPanelComponent = (function () {
+    function DoctorPanelComponent() {
+    }
+    DoctorPanelComponent.prototype.ngOnInit = function () {
+    };
+    DoctorPanelComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-doctor-panel',
+            template: __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DoctorPanelComponent);
+    return DoctorPanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-panel.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorPanelService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DoctorPanelService = (function () {
+    function DoctorPanelService() {
+    }
+    DoctorPanelService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], DoctorPanelService);
+    return DoctorPanelService;
 }());
 
 
@@ -230,7 +436,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctors/doctors.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\n    <thead class=\"thead\">\n      <tr>\n        <th>Id</th>\n        <th>First name</th>\n        <th>Last name</th>\n        <th>Email</th>\n        <th>specName</th>\n        <th>Admin</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let doctor of doctors\">\n        <td>{{doctor.id}}</td>\n        <td>{{doctor.firstName}}</td>\n        <td>{{doctor.lastName}}</td>\n        <td>{{doctor.email}}</td>\n        <td>{{doctor.specId}}</td>\n        <td>{{doctor.admin ? \"Yes\": \"No\"}}</td>\n      </tr>\n    </tbody>\n  </table>"
+module.exports = ""
 
 /***/ }),
 
@@ -368,7 +574,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n  <div class=\"hero-head\">\r\n      <nav class=\"navbar\">\r\n          <div class=\"container\">\r\n              <div class=\"navbar-brand\">\r\n                  <a class=\"navbar-item\" routerLink=\"\">\r\n                      <img src=\"http://www.thecliniccolorado.com/wp-content/uploads/2016/02/The_Clinic_ReverseLogo_DarkBlue_Stroke.png\" alt=\"Logo\">\r\n                  </a>\r\n\r\n              </div>\r\n              <div id=\"navbarMenu\" class=\"navbar-menu\">\r\n                  <div class=\"navbar-end\">\r\n                      <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\r\n                          Strona główna\r\n                      </a>\r\n                      <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\r\n                          Specjalizacje\r\n                      </a>\r\n                      <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\r\n                          Zaloguj się\r\n                      </a>\r\n                      <a class=\"navbar-item\" routerLink=\"\">\r\n                          Zarejestruj się\r\n                      </a>\r\n                  </div>\r\n              </div>\r\n          </div>\r\n      </nav>\r\n  </div>\r\n  <div class=\"hero-body\">\r\n      <div class=\"container has-text-centered\">\r\n          <h1 class=\"title\">\r\n              Nowy standard kliniki Medicare\r\n          </h1>\r\n          <h2>\r\n              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n          </h2>\r\n      </div>\r\n  </div>\r\n\r\n</section>"
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\n    <div class=\"hero-head\">\n        <nav class=\"navbar\">\n            <div class=\"container\">\n                <div class=\"navbar-brand\">\n                    <a class=\"navbar-item\" routerLink=\"\">\n                        <img src=\"http://www.thecliniccolorado.com/wp-content/uploads/2016/02/The_Clinic_ReverseLogo_DarkBlue_Stroke.png\" alt=\"Logo\">\n                    </a>\n                </div>\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\n                    <div class=\"navbar-end\">\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n                            Strona główna\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\n                            Specjalizacje\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\n                            Zaloguj się\n                        </a>\n                        <a class=\"navbar-item\" routerLink=\"\">\n                            Zarejestruj się\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </nav>\n    </div>\n    <div class=\"hero-body\">\n        <div class=\"container has-text-centered\">\n            <h1 class=\"title\">\n                Nowy standard kliniki Medicare\n            </h1>\n            <h2>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n            </h2>\n        </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -429,7 +635,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home-layout/home-layout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<router-outlet></router-outlet>"
+module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -490,7 +696,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box cta\">\r\n    <p class=\"has-text-centered\">\r\n    </p>\r\n</div>\r\n\r\n<section class=\"container\">\r\n    <div class=\"columns features\">\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-user-circle\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4></h4>\r\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\r\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\r\n                            viverra nam.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n                    <i class=\"fa fa-address-card-o\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4>Tempor orci dapibus ultrices in.</h4>\r\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\r\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\r\n                            Phasellus vestibulum lorem sed risus.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-medkit\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\r\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\r\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\r\n                            vel facilisis.</p>\r\n                        <p>\r\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n<section class=\"hero is-dark is-bold\">\r\n    <div class=\"hero-body\">\r\n        <div class=\"container\">\r\n\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<!--\r\n    <nav>\r\n        <h1> Itd itp</h1>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/specs\">Specs</a>\r\n    </nav>\r\n-->\r\n"
+module.exports = "<div class=\"box cta\">\n    <p class=\"has-text-centered\">\n    </p>\n</div>\n\n<section class=\"container\">\n    <div class=\"columns features\">\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\n                    <i class=\"fa fa-user-circle\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4></h4>\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\n                            viverra nam.</p>\n                        <p>\n                            <a href=\"#\">Learn more</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n                    <i class=\"fa fa-address-card-o\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4>Tempor orci dapibus ultrices in.</h4>\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\n                            Phasellus vestibulum lorem sed risus.</p>\n                        <p>\n                            <a href=\"#\">Learn more</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"column is-4\">\n            <div class=\"card\">\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\n                    <i class=\"fa fa-medkit\"></i>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"content\">\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\n                            vel facilisis.</p>\n                        <p>\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"hero is-dark is-bold\">\n    <div class=\"hero-body\">\n        <div class=\"container\">\n\n        </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -538,7 +744,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hero.is-success {\r\n    background: #F2F6FA;\r\n  }\r\n  .hero .nav, .hero.is-success .nav {\r\n    box-shadow: none;\r\n  }\r\n  .box {\r\n    margin-top: 5rem;\r\n  }\r\n  .avatar {\r\n    margin-top: -70px;\r\n    padding-bottom: 20px;\r\n  }\r\n  .avatar img {\r\n    padding: 5px;\r\n    background: #fff;\r\n    border-radius: 50%;\r\n    box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);\r\n  }\r\n  input {\r\n    font-weight: 300;\r\n  }\r\n  p {\r\n    font-weight: 700;\r\n  }\r\n  p.subtitle {\r\n    padding-top: 1rem;\r\n  }", ""]);
+exports.push([module.i, ".hero.is-success {\n    background: #F2F6FA;\n  }\n  .hero .nav, .hero.is-success .nav {\n    box-shadow: none;\n  }\n  .box {\n    margin-top: 5rem;\n  }\n  .avatar {\n    margin-top: -70px;\n    padding-bottom: 20px;\n  }\n  .avatar img {\n    padding: 5px;\n    background: #fff;\n    border-radius: 50%;\n    box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);\n  }\n  input {\n    font-weight: 300;\n  }\n  p {\n    font-weight: 700;\n  }\n  p.subtitle {\n    padding-top: 1rem;\n  }", ""]);
 
 // exports
 
@@ -551,7 +757,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-success is-fullheight\">\r\n    <div class=\"hero-body\">\r\n      <div class=\"container has-text-centered\">\r\n        <div class=\"column is-4 is-offset-4\">\r\n          <h3 class=\"title has-text-grey\">Logowanie</h3>\r\n          <p class=\"subtitle has-text-grey\">Zaloguj się aby kontynuować</p>\r\n          <div class=\"box\">\r\n              <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\r\n                  <i class=\"fa fa-user-circle\"></i>\r\n              </div>\r\n            <form>\r\n              <div class=\"field\">\r\n                <div class=\"control\">\r\n                  <input class=\"input is-large\" type=\"email\" placeholder=\"Your Email\" autofocus=\"\">\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"field\">\r\n                <div class=\"control\">\r\n                  <input class=\"input is-large\" type=\"password\" placeholder=\"Your Password\">\r\n                </div>\r\n              </div>\r\n              <div class=\"field\">\r\n                <label class=\"checkbox\">\r\n                  <input type=\"checkbox\">\r\n                  Zapamiętaj mnie\r\n                </label>\r\n              </div>\r\n              <a class=\"button is-block is-info is-large\">Zaloguj</a>\r\n            </form>\r\n          </div>\r\n          <p class=\"has-text-grey\">\r\n            <a href=\"../\">Zarejestruj się</a>\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"hero is-success is-fullheight\">\n    <div class=\"hero-body\">\n      <div class=\"container has-text-centered\">\n        <div class=\"column is-4 is-offset-4\">\n          <h3 class=\"title has-text-grey\">Logowanie</h3>\n          <p class=\"subtitle has-text-grey\">Zaloguj się aby kontynuować</p>\n          <div class=\"box\">\n              <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\n                  <i class=\"fa fa-user-circle\"></i>\n              </div>\n            <form>\n              <div class=\"field\">\n                <div class=\"control\">\n                  <input class=\"input is-large\" type=\"email\" placeholder=\"Your Email\" autofocus=\"\">\n                </div>\n              </div>\n\n              <div class=\"field\">\n                <div class=\"control\">\n                  <input class=\"input is-large\" type=\"password\" placeholder=\"Your Password\">\n                </div>\n              </div>\n              <div class=\"field\">\n                <label class=\"checkbox\">\n                  <input type=\"checkbox\">\n                  Zapamiętaj mnie\n                </label>\n              </div>\n              <a class=\"button is-block is-info is-large\">Zaloguj</a>\n            </form>\n          </div>\n          <p class=\"has-text-grey\">\n            <a href=\"../\">Zarejestruj się</a>\n          </p>\n        </div>\n      </div>\n    </div>\n</section>"
 
 /***/ }),
 
@@ -629,7 +835,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "img {\r\n    border: 2px solid rgb(173, 32, 7);\r\n    border-radius: 4px;\r\n    padding: 5px;\r\n    border-radius: 50%;\r\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -642,7 +848,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specdetails/specdetails.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--\r\n    <nav>\r\n        <h1> Itd itp</h1>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/users\">Users</a>\r\n        <a routerLink=\"/specs\">Specs</a>\r\n    </nav>\r\n-->"
+module.exports = "<section class=\"section\">\n  <div class=\"container\">\n  </div>\n</section>\n\n<div class=\"hero-body\">\n  <div class=\"container has-text-centered\" *ngFor=\"let doctor of doctors\">\n    <div class=\"columns is-vcentered\">\n      <div class=\"column is-4\">\n        <figure>\n          <img src=\"http://placehold.it/800x600\" alt=\"Description\">\n        </figure>\n      </div>\n      <div class=\"column is-half is-offset-2\">\n        <h1 class=\"title is-2\">\n          {{doctor.firstName}} {{doctor.lastName}}\n        </h1>\n        <h2 class=\"subtitle is-4\">\n          {{doctor.email}}\n        </h2>\n        <br>\n        <p class=\"has-text-centered\">\n          <a href='dologinu' class=\"button is-medium is-info is-outlined\">\n            Zarezerwuj wizytę! ( tu ref do loginu/rejestracji może?)\n          </a>\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -652,6 +858,8 @@ module.exports = "\r\n<!--\r\n    <nav>\r\n        <h1> Itd itp</h1>\r\n        
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpecdetailsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__specdetails_specdetails_service__ = __webpack_require__("../../../../../src/app/specdetails/specdetails.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -662,10 +870,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var SpecdetailsComponent = (function () {
-    function SpecdetailsComponent() {
+    function SpecdetailsComponent(specdetailsService, route) {
+        this.specdetailsService = specdetailsService;
+        this.route = route;
     }
     SpecdetailsComponent.prototype.ngOnInit = function () {
+        this.getDoctorsBySpecId();
+    };
+    SpecdetailsComponent.prototype.getDoctorsBySpecId = function () {
+        var _this = this;
+        var id = +this.route.snapshot.paramMap.get('id');
+        this.specdetailsService.getDoctorsBySpecId(id).subscribe(function (doctors) {
+            _this.doctors = doctors;
+            console.table(_this.doctors);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    SpecdetailsComponent.prototype.log = function (message) {
+        console.log(message);
     };
     SpecdetailsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -673,7 +899,7 @@ var SpecdetailsComponent = (function () {
             template: __webpack_require__("../../../../../src/app/specdetails/specdetails.component.html"),
             styles: [__webpack_require__("../../../../../src/app/specdetails/specdetails.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__specdetails_specdetails_service__["a" /* SpecdetailsService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], SpecdetailsComponent);
     return SpecdetailsComponent;
 }());
@@ -688,6 +914,12 @@ var SpecdetailsComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpecdetailsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -698,12 +930,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
 var SpecdetailsService = (function () {
-    function SpecdetailsService() {
+    function SpecdetailsService(http) {
+        this.http = http;
+        this.API_URL = '//localhost:9080/specs';
     }
+    SpecdetailsService.prototype.getDoctorsBySpecId = function (id) {
+        var _this = this;
+        return this.http.get(this.API_URL + "/" + id + "/doctors")
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched doctors"); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError('getDoctors', [])));
+    };
+    SpecdetailsService.prototype.handleError = function (operation, result) {
+        var _this = this;
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            console.error(error);
+            _this.log(operation + " failed: " + error.message);
+            return Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__["a" /* of */])(result);
+        };
+    };
+    SpecdetailsService.prototype.log = function (message) {
+        console.log(message);
+    };
     SpecdetailsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], SpecdetailsService);
     return SpecdetailsService;
 }());
@@ -733,7 +990,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specs/specs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box cta\">\r\n  <div class=\"has-text-centered\">\r\n  </div>\r\n</div>\r\n<section class=\"section\">\r\n  <div class=\"container\">\r\n    <h1 class=\"title\"></h1>\r\n    <h2 class=\"subtitle\">\r\n    </h2>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"hero is-medium is-dark is-bold\">\r\n  <div class=\"hero-body\">\r\n    <div class=\"container\">\r\n      <h1 class=\"title\" align=\"right\">\r\n        Specjalizacje Kliniki\r\n      </h1>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"container\">\r\n  <div class=\"column\" align=\"center\" *ngFor=\"let spec of specs\">\r\n    <div class=\"card\">\r\n      <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n        <img src=\"/assets/{{spec.name}}.jpg\">\r\n      </div>\r\n      <div class=\"card-content\">\r\n        <div class=\"content\">\r\n          <h4>{{spec.name}}</h4>\r\n          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\r\n            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\r\n          <p>\r\n            <a href=\"../\" class=\"button is-danger is-hovered is-fullwidth\">{{spec.name}} - Sprawdź naszych specjalistów</a>\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = "<div class=\"box cta\">\n  <div class=\"has-text-centered\">\n  </div>\n</div>\n<section class=\"section\">\n  <div class=\"container\">\n    <h1 class=\"title\"></h1>\n    <h2 class=\"subtitle\">\n    </h2>\n  </div>\n</section>\n\n<section class=\"hero is-medium is-dark is-bold\">\n  <div class=\"hero-body\">\n    <div class=\"container\">\n      <h1 class=\"title\" align=\"center\">\n        Specjalizacje Kliniki\n      </h1>\n    </div>\n  </div>\n</section>\n\n<section class=\"container\">\n  <div class=\"column\" align=\"center\" *ngFor=\"let spec of specs\">\n    <div class=\"card\">\n      <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\n        <img src=\"/assets/{{spec.name}}.jpg\">\n      </div>\n      <div class=\"card-content\">\n        <div class=\"content\">\n          <h4>{{spec.name}}</h4>\n          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\n            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\n          <p>\n            <a routerLink=\"/specs/{{spec.id}}\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
 
 /***/ }),
 
@@ -850,6 +1107,97 @@ var SpecsService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/user-panel/user-panel.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-panel/user-panel.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  user-panel works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-panel/user-panel.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPanelComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var UserPanelComponent = (function () {
+    function UserPanelComponent() {
+    }
+    UserPanelComponent.prototype.ngOnInit = function () {
+    };
+    UserPanelComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-user-panel',
+            template: __webpack_require__("../../../../../src/app/user-panel/user-panel.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/user-panel/user-panel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], UserPanelComponent);
+    return UserPanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-panel/user-panel.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPanelService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var UserPanelService = (function () {
+    function UserPanelService() {
+    }
+    UserPanelService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], UserPanelService);
+    return UserPanelService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/users/users.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -871,7 +1219,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\r\n  <thead class=\"thead\">\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>First name</th>\r\n      <th>Last name</th>\r\n      <th>Email</th>\r\n      <th>Admin</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let user of users\">\r\n      <td>{{user.id}}</td>\r\n      <td>{{user.firstName}}</td>\r\n      <td>{{user.lastName}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<table>\n  <thead class=\"thead\">\n    <tr>\n      <th>Id</th>\n      <th>First name</th>\n      <th>Last name</th>\n      <th>Email</th>\n      <th>Admin</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users\">\n      <td>{{user.id}}</td>\n      <td>{{user.firstName}}</td>\n      <td>{{user.lastName}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\n    </tr>\n  </tbody>\n</table>"
 
 /***/ }),
 

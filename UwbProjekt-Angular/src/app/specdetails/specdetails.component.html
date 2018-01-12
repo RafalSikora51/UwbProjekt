@@ -1,9 +1,30 @@
+<section class="section">
+  <div class="container">
+  </div>
+</section>
 
-<!--
-    <nav>
-        <h1> Itd itp</h1>
-        <a routerLink="/users">Users</a>
-        <a routerLink="/users">Users</a>
-        <a routerLink="/specs">Specs</a>
-    </nav>
--->
+<div class="hero-body">
+  <div class="container has-text-centered" *ngFor="let doctor of doctors">
+    <div class="columns is-vcentered">
+      <div class="column is-4">
+        <figure>
+          <img src="http://placehold.it/800x600" alt="Description">
+        </figure>
+      </div>
+      <div class="column is-half is-offset-2">
+        <h1 class="title is-2">
+          {{doctor.firstName}} {{doctor.lastName}}
+        </h1>
+        <h2 class="subtitle is-4">
+          {{doctor.email}}
+        </h2>
+        <br>
+        <p class="has-text-centered">
+          <a href='dologinu' class="button is-medium is-info is-outlined">
+            Zarezerwuj wizytę! ( tu ref do loginu/rejestracji może?)
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
