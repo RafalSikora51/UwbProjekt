@@ -3,6 +3,7 @@ export interface User {
     countryId: number;
     createdOn: any;
     email: string;
+    token: string;
     lastName: string;
     firstName: string;
     admin: boolean;

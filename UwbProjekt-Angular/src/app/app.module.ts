@@ -1,16 +1,17 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
-import { UsersService} from './users/users.service';
+import { UsersService } from './users/users.service';
 import { AppComponent } from './app.component';
 import { SpecsService } from './specs/specs.service';
 import { SpecsComponent } from './specs/specs.component';
 import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
 import { HomeComponent } from './home/home.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorsService } from './doctors/doctors.service';
@@ -25,6 +26,11 @@ import { AdminPanelService } from './admin-panel/admin-panel.service';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { DoctorPanelService } from './doctor-panel/doctor-panel.service';
 
+import { AlertComponent } from './alert/alert.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guard/index';
+
+import { AlertService, AuthenticationService, } from './services/index';
 
 @NgModule({
   declarations: [
@@ -40,13 +46,20 @@ import { DoctorPanelService } from './doctor-panel/doctor-panel.service';
     UserPanelComponent,
     AdminPanelComponent,
     DoctorPanelComponent,
+    AlertComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [UsersService, SpecsService, LoginService, DoctorsService, SpecdetailsService,UserPanelService,AdminPanelService, DoctorPanelService],
+  providers: [UsersService, SpecsService, DoctorsService, SpecdetailsService, UserPanelService, AdminPanelService,
+    DoctorPanelService, AuthGuard, AlertService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

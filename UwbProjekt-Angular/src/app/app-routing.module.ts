@@ -12,6 +12,8 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 
+import { AuthGuard } from './guard/index';
+
 const routes: Routes = [
   {
     path: '', component: HomeLayoutComponent,
@@ -27,11 +29,12 @@ const routes: Routes = [
   { path: 'specs/:id', component: SpecdetailsComponent, },
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'userpanel', component: UserPanelComponent },
+  { path: 'userpanel', component: UserPanelComponent,  canActivate: [AuthGuard] },
   { path: 'adminpanel', component: AdminPanelComponent },
   { path: 'doctorpanel', component: DoctorPanelComponent },
 
 
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

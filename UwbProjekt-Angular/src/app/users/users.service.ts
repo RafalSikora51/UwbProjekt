@@ -23,6 +23,11 @@ export class UsersService {
       );
   }
 
+  create(user: User) {
+    return this.http.post(UsersService.API_URL, user);
+}
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
