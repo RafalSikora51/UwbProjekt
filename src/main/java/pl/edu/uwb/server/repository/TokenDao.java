@@ -19,6 +19,9 @@ public class TokenDao {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private DoctorDao doctorDao;
 
 	@SuppressWarnings("unchecked")
 	public Token findActiveTokenByUserId(int id) {
@@ -33,5 +36,20 @@ public class TokenDao {
 		logger.info("User active token found.");
 		return tokens.get(0);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Token findActiveTokenByDoctorId(int id) {
+		logger.debug("findActiveTokenByDoctorId");
+		Session session = SessionConnection.getSessionFactory().openSession();
+		String hql = "from Token t where t.doctor = :doctorId and t.active = :tokenActive";
+		Query query = session.createQuery(hql);
+		query.setParameter("doctorId", doctorDao.findDoctorById(id).get());
+		query.setParameter("tokenActive", true);
+		List<Token> tokens = query.list();
+		SessionConnection.shutdown(session);
+		logger.info("Doctor active token found.");
+		return tokens.get(0);
+	}
+	
 
 }

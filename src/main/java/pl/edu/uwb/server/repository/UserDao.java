@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -106,6 +107,24 @@ public class UserDao {
 			logger.info("User found in data base.");
 			return true;
 		}
+	}
+
+	public boolean isUserAdmin(User user) {
+		return user.isAdmin();
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject isUserInDataBaseJSON(String email, String token) {
+		logger.debug("isUserInDataBase");
+		JSONObject jsonResponse = new JSONObject();
+		if (isUserInDataBase(email, token)) {
+			User user = findUserByEmail(email).get();
+			jsonResponse.put("canLogin", true);
+			jsonResponse.put("admin", isUserAdmin(user)); // jesli true to to jest pani recepcjonistka, else zwykly user
+		} else {
+			jsonResponse.put("canLogin", false);
+		}
+		return jsonResponse;
 	}
 
 	public List<MedicalHistory> findAllMedicalHistoriesForUser(User user) {

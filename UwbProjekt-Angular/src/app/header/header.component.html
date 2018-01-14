@@ -15,26 +15,32 @@
                         <a class="navbar-item" routerLink="/specs" routerLinkActive="active">
                             Specjalizacje
                         </a>
-                        <a class="navbar-item" routerLink="/login" routerLinkActive="active">
+
+                        <a class="navbar-item" routerLink="/userpanel" routerLinkActive="active" *ngIf="isUserLoggedIn$ | async ">
+                            Moje konto
+                        </a>
+
+                        <a class="navbar-item" routerLink="/adminpanel" routerLinkActive="active" *ngIf="(isAdminLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) ">
+                            Panel Administratora
+                        </a>
+                        <a class="navbar-item" routerLink="/doctorpanel" routerLinkActive="active" *ngIf="(isDoctorLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) ">
+                            Panel Lekarza
+                        </a>
+
+                        <a class="navbar-item" routerLink="/login" routerLinkActive="active" *ngIf="!(isAnyoneLoggedIn$ | async)">
                             Zaloguj się
                         </a>
-                        <a class="navbar-item" routerLink="">
+                        <a class="navbar-item" routerLink="" *ngIf="!(isAnyoneLoggedIn$ | async)">
                             Zarejestruj się
                         </a>
+
+                        <a class="navbar-item" routerLink="" routerLinkActive="active" (click)="onLogout()" *ngIf="isAnyoneLoggedIn$ | async">
+                            Wyloguj się
+                        </a>
+
                     </div>
                 </div>
             </div>
         </nav>
-    </div>
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title">
-                Nowy standard kliniki Medicare
-            </h1>
-            <h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </h2>
-        </div>
     </div>
 </section>

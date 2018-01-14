@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
     currentUser: User;
 
     constructor(private userService: UsersService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     

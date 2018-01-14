@@ -14,7 +14,7 @@ public class TokenGenerator {
 	public static HashMap<String, String> randomStringGenerator(int tokenLength) {
 		logger.debug("randomStringGenerator");
 		CharacterPredicate charPredicate = i -> i != 34 && i != 35 && i != 37 && i != 38 && i != 39 && i != 59
-				&& i != 63 && i != 92 && i != 94 && i != 96;
+				&& i != 61 && i != 63 && i != 92 && i != 94 && i != 96;
 		RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange(33, 122)
 				.filteredBy(charPredicate).build();
 		logger.info("Random string generated.");

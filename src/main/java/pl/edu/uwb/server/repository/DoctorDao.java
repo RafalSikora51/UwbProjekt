@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,9 @@ public class DoctorDao {
 
 	@Autowired
 	private SpecializationDao specializationDao;
+	
+	@Autowired
+	private TokenDao tokenDao;
 
 	@SuppressWarnings("unchecked")
 	public List<Doctor> findAllDoctors() {
@@ -138,6 +142,39 @@ public class DoctorDao {
 			throw new Exception("Doctor not found");
 		}
 
+	}
+	
+	public boolean isDoctorInDataBase(String email, String token) {
+		logger.debug("isDoctorInDataBase");
+		if (!findDoctorByEmail(email).isPresent()) {
+			logger.info("No such doctor in data base.");
+			return false;
+		} else if (findDoctorByEmail(email).isPresent()
+				&& !tokenDao.findActiveTokenByDoctorId(findDoctorByEmail(email).get().getId()).getToken().equals(token)) {
+			logger.info("The token is invalid.");
+			return false;
+		} else {
+			logger.info("Doctor found in data base.");
+			return true;
+		}
+	}
+
+	public boolean isDoctorAdmin(Doctor doctor) {
+		return doctor.isAdmin();
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject isDoctorInDataBaseJSON(String email, String token) {
+		logger.debug("isDoctorInDataBaseJSON");
+		JSONObject jsonResponse = new JSONObject();
+		if (isDoctorInDataBase(email, token)) {
+			Doctor doctor = findDoctorByEmail(email).get();
+			jsonResponse.put("canLogin", true);
+			jsonResponse.put("admin", isDoctorAdmin(doctor)); // jesli true to lekarz ma tez admina (wlasciciel kliniki)
+		} else {
+			jsonResponse.put("canLogin", false);
+		}
+		return jsonResponse;
 	}
 
 }

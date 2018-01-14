@@ -29,8 +29,13 @@ import { DoctorPanelService } from './doctor-panel/doctor-panel.service';
 import { AlertComponent } from './alert/alert.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/index';
+import { DoctorPanelGuard } from './guard/doctorpanel.guard';
+import { AdminPanelGuard } from './guard/adminpanel.guard';
 
 import { AlertService, AuthenticationService, } from './services/index';
+import { HeaderuserComponent } from './headeruser/headeruser.component';
+import { HeaderdoctorComponent } from './headerdoctor/headerdoctor.component';
+import { HeaderadminComponent } from './headeradmin/headeradmin.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +53,9 @@ import { AlertService, AuthenticationService, } from './services/index';
     DoctorPanelComponent,
     AlertComponent,
     RegisterComponent,
+    HeaderuserComponent,
+    HeaderdoctorComponent,
+    HeaderadminComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,7 @@ import { AlertService, AuthenticationService, } from './services/index';
     ToastrModule.forRoot(),
   ],
   providers: [UsersService, SpecsService, DoctorsService, SpecdetailsService, UserPanelService, AdminPanelService,
-    DoctorPanelService, AuthGuard, AlertService, AuthenticationService],
+    DoctorPanelService, AuthGuard, DoctorPanelGuard, AdminPanelGuard, AlertService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

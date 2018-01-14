@@ -13,6 +13,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 
 import { AuthGuard } from './guard/index';
+import { DoctorPanelGuard } from './guard/doctorpanel.guard';
+import { AdminPanelGuard } from './guard/adminpanel.guard';
 
 const routes: Routes = [
   {
@@ -20,20 +22,17 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'doctors', redirectTo: 'specs' },
       { path: 'specs', component: SpecsComponent, pathMatch: 'full' },
+      { path: 'userpanel', component: UserPanelComponent, canActivate: [AuthGuard] },
+      { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
+      { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },
     ]
   },
 
-
   { path: 'specs/:id', component: SpecdetailsComponent, },
   { path: 'users', component: UsersComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'userpanel', component: UserPanelComponent,  canActivate: [AuthGuard] },
-  { path: 'adminpanel', component: AdminPanelComponent },
-  { path: 'doctorpanel', component: DoctorPanelComponent },
-
-
   { path: '**', redirectTo: '' }
 ];
 

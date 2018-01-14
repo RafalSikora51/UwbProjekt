@@ -15,37 +15,53 @@
 
 <body>
     <section class="hero is-success is-fullheight">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <div class="column is-4 is-offset-4">
-                <h3 class="title has-text-grey">Logowanie</h3>
-                <p class="subtitle has-text-grey">Zaloguj się aby kontynuować</p>
-                <div class="box">
-                    <div class="card-image has-text-centered" style="font-size:120px; color: #4f5355;">
-                        <i class="fa fa-user-circle"></i>
-                    </div>
-                    <form (ngSubmit)="login()" novalidate>
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="email" id="email" placeholder="Your Email" autofocus="" [(ngModel)]="model.email" name="email" required>
-                            </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title has-text-grey">Logowanie</h3>
+                    <p class="subtitle has-text-grey">Zaloguj się aby kontynuować</p>
+                    <div class="box">
+                        <div class="card-image has-text-centered" style="font-size:120px; color: #4f5355;">
+                            <i class="fa fa-user-circle"></i>
                         </div>
+                        <form (ngSubmit)="onLogin()" novalidate>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="email" id="email" placeholder="Your Email" autofocus="" [(ngModel)]="model.email" name="email"
+                                        required>
+                                </div>
+                            </div>
 
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="password" id="password" placeholder="Your Password" [(ngModel)]="model.token" name="token" required>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="password" id="password" placeholder="Your Password" [(ngModel)]="model.token" name="token"
+                                        required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
                                 <button [disabled]="loading" class="btn btn-primary">Zaloguj</button>
-                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                                />
+                                <!-- <a [routerLink]="['/register']" class="btn btn-link">Register</a> -->
                             </div>
-                    </form>
+                            <div class="field">
+                                <!--
+                                <label class="checkbox">
+                                    <input type="checkbox" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}" (change)="function()"> Zaloguj jako Lekarz
+                                </label>
+
+                                <label [class.selected]="cb1.checked">
+                                        <input #cb1 type="checkbox" value="one" (change)="logCheckbox(cb1)"> One
+                                    </label>
+                                -->
+                                    <input type="checkbox" (click)="clicked()" [checked]="checkbox" (change)="changed($event)"/> Zaloguj jako Lekarz
+
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>

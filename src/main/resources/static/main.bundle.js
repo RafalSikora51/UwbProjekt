@@ -174,6 +174,8 @@ var AlertComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__ = __webpack_require__("../../../../../src/app/admin-panel/admin-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__guard_index__ = __webpack_require__("../../../../../src/app/guard/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guard_doctorpanel_guard__ = __webpack_require__("../../../../../src/app/guard/doctorpanel.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__guard_adminpanel_guard__ = __webpack_require__("../../../../../src/app/guard/adminpanel.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -192,22 +194,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var routes = [
     {
         path: '', component: __WEBPACK_IMPORTED_MODULE_7__home_layout_home_layout_component__["a" /* HomeLayoutComponent */],
         children: [
             { path: '', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
             { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */] },
+            { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
             { path: 'doctors', redirectTo: 'specs' },
             { path: 'specs', component: __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__["a" /* SpecsComponent */], pathMatch: 'full' },
+            { path: 'userpanel', component: __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__["a" /* UserPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_11__guard_index__["a" /* AuthGuard */]] },
+            { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__guard_adminpanel_guard__["a" /* AdminPanelGuard */]] },
+            { path: 'doctorpanel', component: __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */]] },
         ]
     },
     { path: 'specs/:id', component: __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], },
     { path: 'users', component: __WEBPACK_IMPORTED_MODULE_2__users_users_component__["a" /* UsersComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
-    { path: 'userpanel', component: __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__["a" /* UserPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_11__guard_index__["a" /* AuthGuard */]] },
-    { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */] },
-    { path: 'doctorpanel', component: __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */] },
     { path: '**', redirectTo: '' }
 ];
 var AppRoutingModule = (function () {
@@ -317,13 +321,23 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__alert_alert_component__ = __webpack_require__("../../../../../src/app/alert/alert.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__register_register_component__ = __webpack_require__("../../../../../src/app/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__guard_index__ = __webpack_require__("../../../../../src/app/guard/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__guard_doctorpanel_guard__ = __webpack_require__("../../../../../src/app/guard/doctorpanel.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__ = __webpack_require__("../../../../../src/app/guard/adminpanel.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__headeruser_headeruser_component__ = __webpack_require__("../../../../../src/app/headeruser/headeruser.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__headerdoctor_headerdoctor_component__ = __webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__headeradmin_headeradmin_component__ = __webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
 
 
 
@@ -374,6 +388,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_24__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__alert_alert_component__["a" /* AlertComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_32__headeruser_headeruser_component__["a" /* HeaderuserComponent */],
+                __WEBPACK_IMPORTED_MODULE_33__headerdoctor_headerdoctor_component__["a" /* HeaderdoctorComponent */],
+                __WEBPACK_IMPORTED_MODULE_34__headeradmin_headeradmin_component__["a" /* HeaderadminComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -385,7 +402,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_8__users_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_10__specs_specs_service__["a" /* SpecsService */], __WEBPACK_IMPORTED_MODULE_15__doctors_doctors_service__["a" /* DoctorsService */], __WEBPACK_IMPORTED_MODULE_17__specdetails_specdetails_service__["a" /* SpecdetailsService */], __WEBPACK_IMPORTED_MODULE_21__user_panel_user_panel_service__["a" /* UserPanelService */], __WEBPACK_IMPORTED_MODULE_23__admin_panel_admin_panel_service__["a" /* AdminPanelService */],
-                __WEBPACK_IMPORTED_MODULE_25__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */], __WEBPACK_IMPORTED_MODULE_28__guard_index__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_29__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_29__services_index__["b" /* AuthenticationService */]],
+                __WEBPACK_IMPORTED_MODULE_25__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */], __WEBPACK_IMPORTED_MODULE_28__guard_index__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_29__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */], __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__["a" /* AdminPanelGuard */], __WEBPACK_IMPORTED_MODULE_31__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_31__services_index__["b" /* AuthenticationService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -625,6 +642,48 @@ var DoctorsService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/guard/adminpanel.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AdminPanelGuard = (function () {
+    function AdminPanelGuard(router) {
+        this.router = router;
+    }
+    AdminPanelGuard.prototype.canActivate = function (route, state) {
+        if (localStorage.getItem('currentAdmin') || localStorage.getItem('currentDoctorAdmin')) {
+            return true;
+        }
+        else {
+            this.router.navigate(['/login']);
+            return false;
+        }
+    };
+    AdminPanelGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
+    ], AdminPanelGuard);
+    return AdminPanelGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/guard/auth.guard.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -648,7 +707,7 @@ var AuthGuard = (function () {
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
-        if (sessionStorage.getItem('currentUser')) {
+        if (localStorage.getItem('currentUser')) {
             return true;
         }
         else {
@@ -661,6 +720,48 @@ var AuthGuard = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
     ], AuthGuard);
     return AuthGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/guard/doctorpanel.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorPanelGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DoctorPanelGuard = (function () {
+    function DoctorPanelGuard(router) {
+        this.router = router;
+    }
+    DoctorPanelGuard.prototype.canActivate = function (route, state) {
+        if (localStorage.getItem('currentDoctor') || localStorage.getItem('currentDoctorAdmin')) {
+            return true;
+        }
+        else {
+            this.router.navigate(['/login']);
+            return false;
+        }
+    };
+    DoctorPanelGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
+    ], DoctorPanelGuard);
+    return DoctorPanelGuard;
 }());
 
 
@@ -699,7 +800,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div class=\"hero-head\">\r\n        <nav class=\"navbar\">\r\n            <div class=\"container\">\r\n                <div class=\"navbar-brand\">\r\n                    <a class=\"navbar-item\" routerLink=\"\">\r\n                        <img src=\"/assets/logo.png\" alt=\"Logo\">\r\n                    </a>\r\n                </div>\r\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\r\n                    <div class=\"navbar-end\">\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\r\n                            Strona główna\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\r\n                            Specjalizacje\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\r\n                            Zaloguj się\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"\">\r\n                            Zarejestruj się\r\n                        </a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n    <div class=\"hero-body\">\r\n        <div class=\"container has-text-centered\">\r\n            <h1 class=\"title\">\r\n                Nowy standard kliniki Medicare\r\n            </h1>\r\n            <h2>\r\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n            </h2>\r\n        </div>\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div class=\"hero-head\">\r\n        <nav class=\"navbar\">\r\n            <div class=\"container\">\r\n                <div class=\"navbar-brand\">\r\n                    <a class=\"navbar-item\" routerLink=\"\">\r\n                        <img src=\"/assets/logo.png\" alt=\"Logo\">\r\n                    </a>\r\n                </div>\r\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\r\n                    <div class=\"navbar-end\">\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\r\n                            Strona główna\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\r\n                            Specjalizacje\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/userpanel\" routerLinkActive=\"active\" *ngIf=\"isUserLoggedIn$ | async \">\r\n                            Moje konto\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/adminpanel\" routerLinkActive=\"active\" *ngIf=\"(isAdminLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) \">\r\n                            Panel Administratora\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/doctorpanel\" routerLinkActive=\"active\" *ngIf=\"(isDoctorLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) \">\r\n                            Panel Lekarza\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!(isAnyoneLoggedIn$ | async)\">\r\n                            Zaloguj się\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"\" *ngIf=\"!(isAnyoneLoggedIn$ | async)\">\r\n                            Zarejestruj się\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\" (click)=\"onLogout()\" *ngIf=\"isAnyoneLoggedIn$ | async\">\r\n                            Wyloguj się\r\n                        </a>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -708,6 +809,98 @@ module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var HeaderComponent = (function () {
+    function HeaderComponent(authService) {
+        this.authService = authService;
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+        this.isUserLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
+        this.isAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
+        this.isDoctorLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
+        this.isDoctorAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
+        this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
+        if (localStorage.getItem('currentUser')) {
+            this.isUserLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+        }
+        else if (localStorage.getItem('currentAdmin')) {
+            this.isAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+        }
+        else if (localStorage.getItem('currentDoctor')) {
+            this.isDoctorLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+        }
+        else if (localStorage.getItem('currentDoctorAdmin')) {
+            this.isDoctorAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
+        }
+    };
+    HeaderComponent.prototype.onLogout = function () {
+        this.authService.logout();
+    };
+    HeaderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-header',
+            template: __webpack_require__("../../../../../src/app/header/header.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/header/header.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_index__["b" /* AuthenticationService */]])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeradmin/headeradmin.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeradmin/headeradmin.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  headeradmin works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeradmin/headeradmin.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderadminComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -719,20 +912,142 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var HeaderComponent = (function () {
-    function HeaderComponent() {
+var HeaderadminComponent = (function () {
+    function HeaderadminComponent() {
     }
-    HeaderComponent.prototype.ngOnInit = function () {
+    HeaderadminComponent.prototype.ngOnInit = function () {
     };
-    HeaderComponent = __decorate([
+    HeaderadminComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-header',
-            template: __webpack_require__("../../../../../src/app/header/header.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/header/header.component.css")]
+            selector: 'app-headeradmin',
+            template: __webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.css")]
         }),
         __metadata("design:paramtypes", [])
-    ], HeaderComponent);
-    return HeaderComponent;
+    ], HeaderadminComponent);
+    return HeaderadminComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  headerdoctor works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderdoctorComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HeaderdoctorComponent = (function () {
+    function HeaderdoctorComponent() {
+    }
+    HeaderdoctorComponent.prototype.ngOnInit = function () {
+    };
+    HeaderdoctorComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-headerdoctor',
+            template: __webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderdoctorComponent);
+    return HeaderdoctorComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeruser/headeruser.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeruser/headeruser.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\n  <div class=\"hero-head\">\n    <nav class=\"navbar\">\n      <div class=\"container\">\n        <div class=\"navbar-brand\">\n          <a class=\"navbar-item\" routerLink=\"\">\n            <img src=\"/assets/logo.png\" alt=\"Logo\">\n          </a>\n        </div>\n        <div id=\"navbarMenu\" class=\"navbar-menu\">\n          <div class=\"navbar-end\">\n            <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n              Strona główna\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\n              Specjalizacje\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/userpanel\" routerLinkActive=\"active\">\n              Moje Konto\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\n              Zaloguj się\n            </a>\n            <a class=\"navbar-item\" routerLink=\"\">\n              Zarejestruj się\n            </a>\n          </div>\n        </div>\n      </div>\n    </nav>\n  </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/headeruser/headeruser.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderuserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HeaderuserComponent = (function () {
+    function HeaderuserComponent() {
+    }
+    HeaderuserComponent.prototype.ngOnInit = function () {
+    };
+    HeaderuserComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-headeruser',
+            template: __webpack_require__("../../../../../src/app/headeruser/headeruser.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/headeruser/headeruser.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderuserComponent);
+    return HeaderuserComponent;
 }());
 
 
@@ -821,7 +1136,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box cta\">\r\n    <p class=\"has-text-centered\">\r\n    </p>\r\n</div>\r\n\r\n<section class=\"container\">\r\n    <div class=\"columns features\">\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-user-circle\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4></h4>\r\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\r\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\r\n                            viverra nam.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n                    <i class=\"fa fa-address-card-o\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4>Tempor orci dapibus ultrices in.</h4>\r\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\r\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\r\n                            Phasellus vestibulum lorem sed risus.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-medkit\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\r\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\r\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\r\n                            vel facilisis.</p>\r\n                        <p>\r\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n<section class=\"hero is-dark is-bold\">\r\n    <div class=\"hero-body\">\r\n        <div class=\"container\">\r\n\r\n        </div>\r\n    </div>\r\n</section>\r\n"
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n\r\n        <div class=\"hero-body\">\r\n                <div class=\"container has-text-centered\">\r\n                    <h1 class=\"title\">\r\n                        Nowy standard kliniki Medicare\r\n                    </h1>\r\n                    <h2>\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n                    </h2>\r\n                </div>\r\n            </div>\r\n</section>\r\n\r\n<section class=\"container\">\r\n    \r\n    <div class=\"columns features\">\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-user-circle\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4></h4>\r\n                        <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer\r\n                            enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper\r\n                            viverra nam.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n                    <i class=\"fa fa-address-card-o\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4>Tempor orci dapibus ultrices in.</h4>\r\n                        <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non\r\n                            odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue.\r\n                            Phasellus vestibulum lorem sed risus.</p>\r\n                        <p>\r\n                            <a href=\"#\">Learn more</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"column is-4\">\r\n            <div class=\"card\">\r\n                <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #209cee;\">\r\n                    <i class=\"fa fa-medkit\"></i>\r\n                </div>\r\n                <div class=\"card-content\">\r\n                    <div class=\"content\">\r\n                        <h4> Leo integer malesuada nunc vel risus. </h4>\r\n                        <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim\r\n                            enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus\r\n                            vel facilisis.</p>\r\n                        <p>\r\n                            <a href=\"../\" class=\"button is-primary\">Dowiedz się więcej</a>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n<section class=\"hero is-dark is-bold\">\r\n    <div class=\"hero-body\">\r\n        <div class=\"container\">\r\n\r\n        </div>\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -846,9 +1161,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HomeComponent = (function () {
     function HomeComponent(userService) {
         this.userService = userService;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     };
     HomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -887,7 +1202,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" integrity=\"sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=\"\r\n        crossorigin=\"anonymous\" />\r\n    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,400,700\" rel=\"stylesheet\">\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css\" integrity=\"sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=\"\r\n        crossorigin=\"anonymous\" />\r\n\r\n</head>\r\n\r\n<body>\r\n    <section class=\"hero is-success is-fullheight\">\r\n    <div class=\"hero-body\">\r\n        <div class=\"container has-text-centered\">\r\n            <div class=\"column is-4 is-offset-4\">\r\n                <h3 class=\"title has-text-grey\">Logowanie</h3>\r\n                <p class=\"subtitle has-text-grey\">Zaloguj się aby kontynuować</p>\r\n                <div class=\"box\">\r\n                    <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\r\n                        <i class=\"fa fa-user-circle\"></i>\r\n                    </div>\r\n                    <form (ngSubmit)=\"login()\" novalidate>\r\n                        <div class=\"field\">\r\n                            <div class=\"control\">\r\n                                <input class=\"input is-large\" type=\"email\" id=\"email\" placeholder=\"Your Email\" autofocus=\"\" [(ngModel)]=\"model.email\" name=\"email\" required>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"field\">\r\n                            <div class=\"control\">\r\n                                <input class=\"input is-large\" type=\"password\" id=\"password\" placeholder=\"Your Password\" [(ngModel)]=\"model.token\" name=\"token\" required>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                                <button [disabled]=\"loading\" class=\"btn btn-primary\">Zaloguj</button>\r\n                                <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\r\n                                <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\r\n                            </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    </section>\r\n    <script async type=\"text/javascript\" src=\"../js/bulma.js\"></script>\r\n</body>\r\n\r\n</html>"
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" integrity=\"sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=\"\r\n        crossorigin=\"anonymous\" />\r\n    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,400,700\" rel=\"stylesheet\">\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css\" integrity=\"sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=\"\r\n        crossorigin=\"anonymous\" />\r\n\r\n</head>\r\n\r\n<body>\r\n    <section class=\"hero is-success is-fullheight\">\r\n        <div class=\"hero-body\">\r\n            <div class=\"container has-text-centered\">\r\n                <div class=\"column is-4 is-offset-4\">\r\n                    <h3 class=\"title has-text-grey\">Logowanie</h3>\r\n                    <p class=\"subtitle has-text-grey\">Zaloguj się aby kontynuować</p>\r\n                    <div class=\"box\">\r\n                        <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\r\n                            <i class=\"fa fa-user-circle\"></i>\r\n                        </div>\r\n                        <form (ngSubmit)=\"onLogin()\" novalidate>\r\n                            <div class=\"field\">\r\n                                <div class=\"control\">\r\n                                    <input class=\"input is-large\" type=\"email\" id=\"email\" placeholder=\"Your Email\" autofocus=\"\" [(ngModel)]=\"model.email\" name=\"email\"\r\n                                        required>\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"field\">\r\n                                <div class=\"control\">\r\n                                    <input class=\"input is-large\" type=\"password\" id=\"password\" placeholder=\"Your Password\" [(ngModel)]=\"model.token\" name=\"token\"\r\n                                        required>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <button [disabled]=\"loading\" class=\"btn btn-primary\">Zaloguj</button>\r\n                                <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\r\n                                />\r\n                                <!-- <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a> -->\r\n                            </div>\r\n                            <div class=\"field\">\r\n                                <!--\r\n                                <label class=\"checkbox\">\r\n                                    <input type=\"checkbox\" [(ngModel)]=\"checkboxValue\" [ngModelOptions]=\"{standalone: true}\" (change)=\"function()\"> Zaloguj jako Lekarz\r\n                                </label>\r\n\r\n                                <label [class.selected]=\"cb1.checked\">\r\n                                        <input #cb1 type=\"checkbox\" value=\"one\" (change)=\"logCheckbox(cb1)\"> One\r\n                                    </label>\r\n                                -->\r\n                                    <input type=\"checkbox\" (click)=\"clicked()\" [checked]=\"checkbox\" (change)=\"changed($event)\"/> Zaloguj jako Lekarz\r\n\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n    <script async type=\"text/javascript\" src=\"../js/bulma.js\"></script>\r\n</body>\r\n\r\n</html>"
 
 /***/ }),
 
@@ -922,11 +1237,35 @@ var LoginComponent = (function () {
         this.alertService = alertService;
         this.model = {};
         this.loading = false;
+        this.checkboxValue = false;
         this.error = '';
+        this.log = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
+        //this.checkboxValue = false;
         this.authenticationService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    };
+    LoginComponent.prototype.logCheckbox = function (element) {
+        this.log += "Checkbox " + element.value + " was " + (element.checked ? '' : 'un') + "checked\n";
+        console.log(this.log);
+    };
+    LoginComponent.prototype.clicked = function () {
+        console.log('click');
+    };
+    LoginComponent.prototype.changed = function (evt) {
+        this.checkbox = evt.target.checked;
+        console.log(evt.target.checked);
+    };
+    LoginComponent.prototype.function = function () {
+        if (this.checkboxValue === false) {
+            this.checkboxValue = true;
+            console.log('zmieniam z false na true');
+        }
+        else {
+            this.checkboxValue = false;
+            console.log('zmieniam z true na false');
+        }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -948,6 +1287,38 @@ var LoginComponent = (function () {
             _this.error = 'Cannot connect';
             _this.toastr.error('Cannot connect');
         }, function () { return console.log('done!'); });
+    };
+    LoginComponent.prototype.doctorLogin = function () {
+        var _this = this;
+        this.error = '';
+        this.loading = true;
+        this.authenticationService.doctorLogin(this.model.email, this.model.token)
+            .subscribe(function (result) {
+            if (result === true) {
+                _this.toastr.success('Logged in');
+                _this.router.navigate([_this.returnUrl]);
+            }
+            else {
+                _this.error = 'Username or password is incorrect';
+                _this.loading = false;
+                _this.toastr.error('Username or password is incorrect');
+            }
+        }, function () {
+            _this.loading = false;
+            _this.error = 'Cannot connect';
+            _this.toastr.error('Cannot connect');
+        }, function () { return console.log('done!'); });
+    };
+    LoginComponent.prototype.onLogin = function () {
+        console.log('wartosc checka to' + this.checkbox);
+        if (this.checkbox) {
+            console.log('Loguje jako lekarz.');
+            this.doctorLogin();
+        }
+        else {
+            console.log('Loguje jako pacjent/pani recepcjonistka.');
+            this.login();
+        }
     };
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1141,15 +1512,48 @@ var AuthenticationService = (function () {
     }
     AuthenticationService_1 = AuthenticationService;
     AuthenticationService.prototype.login = function (email, password) {
-        return this.http.post(AuthenticationService_1.API_URL + '?email=' + email + '&token=' + password, null)
+        return this.http.post(AuthenticationService_1.API_LOGIN + '?email=' + email + '&token=' + password, null)
             .map(function (response) {
-            console.log(response);
-            if (response.toString() === 'true') {
-                console.log('jestem przy storage');
-                sessionStorage.setItem('currentUser', JSON.stringify({
-                    email: email,
-                    token: password
-                }));
+            console.log(response['canLogin']);
+            if (response['canLogin'].toString() === 'true') {
+                console.log(response['admin']);
+                if (response['admin'].toString() === 'true') {
+                    localStorage.setItem('currentAdmin', JSON.stringify({
+                        email: email,
+                        token: password
+                    }));
+                }
+                else {
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        email: email,
+                        token: password
+                    }));
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    };
+    AuthenticationService.prototype.doctorLogin = function (email, password) {
+        return this.http.post(AuthenticationService_1.API_DOCTORLOGIN + '?email=' + email + '&token=' + password, null)
+            .map(function (response) {
+            console.log(response['canLogin']);
+            if (response['canLogin'].toString() === 'true') {
+                console.log(response['admin']);
+                if (response['admin'].toString() === 'true') {
+                    localStorage.setItem('currentDoctorAdmin', JSON.stringify({
+                        email: email,
+                        token: password
+                    }));
+                }
+                else {
+                    localStorage.setItem('currentDoctor', JSON.stringify({
+                        email: email,
+                        token: password
+                    }));
+                }
                 return true;
             }
             else {
@@ -1158,9 +1562,13 @@ var AuthenticationService = (function () {
         });
     };
     AuthenticationService.prototype.logout = function () {
-        sessionStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentAdmin');
+        localStorage.removeItem('currentDoctor');
+        localStorage.removeItem('currentDoctorAdmin');
     };
-    AuthenticationService.API_URL = '//localhost:9080/login';
+    AuthenticationService.API_LOGIN = '//localhost:9080/login';
+    AuthenticationService.API_DOCTORLOGIN = '//localhost:9080/doctorlogin';
     AuthenticationService = AuthenticationService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
@@ -1350,7 +1758,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specs/specs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box cta\">\r\n  <div class=\"has-text-centered\">\r\n  </div>\r\n</div>\r\n<section class=\"section\">\r\n  <div class=\"container\">\r\n    <h1 class=\"title\"></h1>\r\n    <h2 class=\"subtitle\">\r\n    </h2>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"hero is-medium is-dark is-bold\">\r\n  <div class=\"hero-body\">\r\n    <div class=\"container\">\r\n      <h1 class=\"title\" align=\"center\">\r\n        Specjalizacje Kliniki\r\n      </h1>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"container\">\r\n  <div class=\"column\" align=\"center\" *ngFor=\"let spec of specs\">\r\n    <div class=\"card\">\r\n      <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n        <img src=\"/assets/{{spec.name}}.jpg\">\r\n      </div>\r\n      <div class=\"card-content\">\r\n        <div class=\"content\">\r\n          <h4>{{spec.name}}</h4>\r\n          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\r\n            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\r\n          <p>\r\n            <a routerLink=\"/specs/{{spec.id}}\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = "\r\n\r\n<section class=\"hero is-medium is-dark is-bold\">\r\n  <div class=\"hero-body\">\r\n    <div class=\"container\">\r\n      <h1 class=\"title\" align=\"center\">\r\n        Specjalizacje Kliniki\r\n      </h1>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n<section class=\"container\">\r\n  <div class=\"column\" align=\"center\" *ngFor=\"let spec of specs\">\r\n    <div class=\"card\">\r\n      <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #6f767a;\">\r\n        <img src=\"/assets/{{spec.name}}.jpg\">\r\n      </div>\r\n      <div class=\"card-content\">\r\n        <div class=\"content\">\r\n          <h4>{{spec.name}}</h4>\r\n          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.\r\n            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>\r\n          <p>\r\n            <a routerLink=\"/specs/{{spec.id}}\" class=\"button is-danger is-hovered is-fullwidth\">Sprawdź naszych specjalistów</a>\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
 
 /***/ }),
 
