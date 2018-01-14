@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ToastrService } from 'ngx-toastr';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -8,7 +9,7 @@ export class AuthenticationService {
 
   private static readonly API_LOGIN: string = '//localhost:9080/login'
   private static readonly API_DOCTORLOGIN: string = '//localhost:9080/doctorlogin'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService,) { }
 
   login(email: string, password: string): Observable<any> {
 
@@ -67,6 +68,7 @@ export class AuthenticationService {
     localStorage.removeItem('currentAdmin');
     localStorage.removeItem('currentDoctor');
     localStorage.removeItem('currentDoctorAdmin');
+    this.toastr.success('Wylogowano pomyślnie!');
 
   }
 }
