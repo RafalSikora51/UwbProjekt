@@ -17,14 +17,21 @@ import { Doctor } from '../shared/model/doctor';
 export class AdminPanelService {
 
   specs: Spec;
+  //specName: String;
   private API_URL: any = '//localhost:9080/doctors'
-
+  private CREATE_API_URL: any = '//localhost:9080/doctors?specName='
   constructor(private http: HttpClient) { }
 
-  createDoctor(doctor: Doctor): Observable<Doctor> {
-    return this.http.post(this.API_URL,doctor,{params:new HttpParams().set('specName',this.specs.specName)})
-     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-  }
+  // createDoctor(doctor: Doctor): Observable<Doctor> {
+  //   return this.http.post(this.API_URL,doctor,{params:new HttpParams().set('specName',this.specs.specName)})
+  //    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  // }
+
+  createDoctor(doctor: Doctor, specName: String) {
+    return this.http.post(this.CREATE_API_URL + specName, doctor);
+}
+
+
 
 
 }
