@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
-  checkboxValue: boolean = false;
   checkbox: boolean;
 
   error = '';
@@ -28,16 +27,8 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-    //this.checkboxValue = false;
     this.authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-  log = '';
-
-  logCheckbox(element: HTMLInputElement): void {
-    this.log += `Checkbox ${element.value} was ${element.checked ? '' : 'un'}checked\n`;
-    console.log(this.log);
   }
 
   clicked() {
@@ -49,19 +40,6 @@ export class LoginComponent implements OnInit {
     console.log(evt.target.checked)
   }
 
-  function() {
-    if (this.checkboxValue === false) {
-      this.checkboxValue = true;
-      console.log('zmieniam z false na true');
-    }
-    else {
-      this.checkboxValue = false;
-      console.log('zmieniam z true na false');
-    }
-  }
-
-
-
   login() {
     this.error = '';
     this.loading = true;
@@ -69,18 +47,18 @@ export class LoginComponent implements OnInit {
       .subscribe(
       result => {
         if (result === true) {
-          this.toastr.success('Logged in');
+          this.toastr.success('Zalogowano pomyślnie!');
           this.router.navigate([this.returnUrl]);
         } else {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Nieprawidłowy email bądź hasło!';
           this.loading = false;
-          this.toastr.error('Username or password is incorrect');
+          this.toastr.error('Nieprawidłowy email bądź hasło!');
         }
       },
       () => {
         this.loading = false;
-        this.error = 'Cannot connect'
-        this.toastr.error('Cannot connect');
+        this.error = 'Błąd połączenia z serwerem.'
+        this.toastr.error('Błąd połączenia z serwerem.');
       },
       () => console.log('done!'));
   }
@@ -92,24 +70,23 @@ export class LoginComponent implements OnInit {
       .subscribe(
       result => {
         if (result === true) {
-          this.toastr.success('Logged in');
+          this.toastr.success('Zalogowano pomyślnie!');
           this.router.navigate([this.returnUrl]);
         } else {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Nieprawidłowy email bądź hasło!';
           this.loading = false;
-          this.toastr.error('Username or password is incorrect');
+          this.toastr.error('Nieprawidłowy email bądź hasło!');
         }
       },
       () => {
         this.loading = false;
-        this.error = 'Cannot connect'
-        this.toastr.error('Cannot connect');
+        this.error = 'Błąd połączenia z serwerem.'
+        this.toastr.error('Błąd połączenia z serwerem.');
       },
       () => console.log('done!'));
   }
 
   onLogin() {
-    console.log('wartosc checka to' + this.checkbox);
     if (this.checkbox) {
       console.log('Loguje jako lekarz.')
       this.doctorLogin();

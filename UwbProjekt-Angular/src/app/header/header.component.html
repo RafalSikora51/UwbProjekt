@@ -16,25 +16,25 @@
                             Specjalizacje
                         </a>
 
-                        <a class="navbar-item" routerLink="/userpanel" routerLinkActive="active" *ngIf="isUserLoggedIn$ | async ">
+                        <a class="navbar-item" routerLink="/userpanel" routerLinkActive="active" *ngIf="isUserLoggedIn()">
                             Moje konto
                         </a>
 
-                        <a class="navbar-item" routerLink="/adminpanel" routerLinkActive="active" *ngIf="(isAdminLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) ">
+                        <a class="navbar-item" routerLink="/adminpanel" routerLinkActive="active" *ngIf="(isAdminLoggedIn() || isDoctorAdminLoggedIn())">
                             Panel Administratora
                         </a>
-                        <a class="navbar-item" routerLink="/doctorpanel" routerLinkActive="active" *ngIf="(isDoctorLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) ">
+                        <a class="navbar-item" routerLink="/doctorpanel" routerLinkActive="active" *ngIf="(isDoctorLoggedIn() || isDoctorAdminLoggedIn()) ">
                             Panel Lekarza
                         </a>
 
-                        <a class="navbar-item" routerLink="/login" routerLinkActive="active" *ngIf="!(isAnyoneLoggedIn$ | async)">
+                        <a class="navbar-item" routerLink="/login" routerLinkActive="active" *ngIf="!isAnyoneLoggedIn()">
                             Zaloguj się
                         </a>
-                        <a class="navbar-item" routerLink="" *ngIf="!(isAnyoneLoggedIn$ | async)">
+                        <a class="navbar-item" routerLink="" *ngIf="!isAnyoneLoggedIn()">
                             Zarejestruj się
                         </a>
 
-                        <a class="navbar-item" routerLink="" routerLinkActive="active" (click)="onLogout()" *ngIf="isAnyoneLoggedIn$ | async">
+                        <a class="navbar-item" routerLink="" routerLinkActive="active" (click)="onLogout()" *ngIf="isAnyoneLoggedIn()">
                             Wyloguj się
                         </a>
 

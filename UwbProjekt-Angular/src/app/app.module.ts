@@ -33,9 +33,6 @@ import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
 
 import { AlertService, AuthenticationService, } from './services/index';
-import { HeaderuserComponent } from './headeruser/headeruser.component';
-import { HeaderdoctorComponent } from './headerdoctor/headerdoctor.component';
-import { HeaderadminComponent } from './headeradmin/headeradmin.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +50,6 @@ import { HeaderadminComponent } from './headeradmin/headeradmin.component';
     DoctorPanelComponent,
     AlertComponent,
     RegisterComponent,
-    HeaderuserComponent,
-    HeaderdoctorComponent,
-    HeaderadminComponent,
   ],
   imports: [
     BrowserModule,

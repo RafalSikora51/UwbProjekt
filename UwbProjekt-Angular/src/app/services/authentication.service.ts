@@ -3,11 +3,6 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
-interface LoginResponse {
-  canLogin: boolean;
-  type: String;
-}
-
 @Injectable()
 export class AuthenticationService {
 
@@ -19,20 +14,15 @@ export class AuthenticationService {
 
     return this.http.post(AuthenticationService.API_LOGIN + '?email=' + email + '&token=' + password, null)
       .map((response: HttpResponse<any>) => {
-        console.log(response['canLogin']);
-    
         if (response['canLogin'].toString() === 'true') {
-          console.log(response['admin']);
-          if(response['admin'].toString() === 'true')
-          {
+          if (response['admin'].toString() === 'true') {
             localStorage.setItem('currentAdmin', JSON.stringify({
               email: email,
               token: password
             }));
           }
 
-          else 
-          {
+          else {
             localStorage.setItem('currentUser', JSON.stringify({
               email: email,
               token: password
@@ -50,21 +40,15 @@ export class AuthenticationService {
 
     return this.http.post(AuthenticationService.API_DOCTORLOGIN + '?email=' + email + '&token=' + password, null)
       .map((response: HttpResponse<any>) => {
-        console.log(response['canLogin']);
-
         if (response['canLogin'].toString() === 'true') {
-
-          console.log(response['admin']);
-          if(response['admin'].toString() === 'true')
-          {
+          if (response['admin'].toString() === 'true') {
             localStorage.setItem('currentDoctorAdmin', JSON.stringify({
               email: email,
               token: password
             }));
           }
 
-          else 
-          {
+          else {
             localStorage.setItem('currentDoctor', JSON.stringify({
               email: email,
               token: password
@@ -77,9 +61,6 @@ export class AuthenticationService {
         }
       });
   }
-
-
-
 
   logout() {
     localStorage.removeItem('currentUser');

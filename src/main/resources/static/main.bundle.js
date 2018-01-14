@@ -205,6 +205,7 @@ var routes = [
             { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
             { path: 'doctors', redirectTo: 'specs' },
             { path: 'specs', component: __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__["a" /* SpecsComponent */], pathMatch: 'full' },
+            { path: 'specs/:id', component: __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], },
             { path: 'userpanel', component: __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__["a" /* UserPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_11__guard_index__["a" /* AuthGuard */]] },
             { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__guard_adminpanel_guard__["a" /* AdminPanelGuard */]] },
             { path: 'doctorpanel', component: __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */]] },
@@ -324,18 +325,12 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__guard_doctorpanel_guard__ = __webpack_require__("../../../../../src/app/guard/doctorpanel.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__ = __webpack_require__("../../../../../src/app/guard/adminpanel.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__headeruser_headeruser_component__ = __webpack_require__("../../../../../src/app/headeruser/headeruser.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__headerdoctor_headerdoctor_component__ = __webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__headeradmin_headeradmin_component__ = __webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
-
 
 
 
@@ -388,9 +383,6 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_24__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__alert_alert_component__["a" /* AlertComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__register_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_32__headeruser_headeruser_component__["a" /* HeaderuserComponent */],
-                __WEBPACK_IMPORTED_MODULE_33__headerdoctor_headerdoctor_component__["a" /* HeaderdoctorComponent */],
-                __WEBPACK_IMPORTED_MODULE_34__headeradmin_headeradmin_component__["a" /* HeaderadminComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -800,7 +792,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div class=\"hero-head\">\r\n        <nav class=\"navbar\">\r\n            <div class=\"container\">\r\n                <div class=\"navbar-brand\">\r\n                    <a class=\"navbar-item\" routerLink=\"\">\r\n                        <img src=\"/assets/logo.png\" alt=\"Logo\">\r\n                    </a>\r\n                </div>\r\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\r\n                    <div class=\"navbar-end\">\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\r\n                            Strona główna\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\r\n                            Specjalizacje\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/userpanel\" routerLinkActive=\"active\" *ngIf=\"isUserLoggedIn$ | async \">\r\n                            Moje konto\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/adminpanel\" routerLinkActive=\"active\" *ngIf=\"(isAdminLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) \">\r\n                            Panel Administratora\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/doctorpanel\" routerLinkActive=\"active\" *ngIf=\"(isDoctorLoggedIn$ | async) || (isDoctorAdminLoggedIn$ | async) \">\r\n                            Panel Lekarza\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!(isAnyoneLoggedIn$ | async)\">\r\n                            Zaloguj się\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"\" *ngIf=\"!(isAnyoneLoggedIn$ | async)\">\r\n                            Zarejestruj się\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\" (click)=\"onLogout()\" *ngIf=\"isAnyoneLoggedIn$ | async\">\r\n                            Wyloguj się\r\n                        </a>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div class=\"hero-head\">\r\n        <nav class=\"navbar\">\r\n            <div class=\"container\">\r\n                <div class=\"navbar-brand\">\r\n                    <a class=\"navbar-item\" routerLink=\"\">\r\n                        <img src=\"/assets/logo.png\" alt=\"Logo\">\r\n                    </a>\r\n                </div>\r\n                <div id=\"navbarMenu\" class=\"navbar-menu\">\r\n                    <div class=\"navbar-end\">\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\r\n                            Strona główna\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\r\n                            Specjalizacje\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/userpanel\" routerLinkActive=\"active\" *ngIf=\"isUserLoggedIn()\">\r\n                            Moje konto\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/adminpanel\" routerLinkActive=\"active\" *ngIf=\"(isAdminLoggedIn() || isDoctorAdminLoggedIn())\">\r\n                            Panel Administratora\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"/doctorpanel\" routerLinkActive=\"active\" *ngIf=\"(isDoctorLoggedIn() || isDoctorAdminLoggedIn()) \">\r\n                            Panel Lekarza\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!isAnyoneLoggedIn()\">\r\n                            Zaloguj się\r\n                        </a>\r\n                        <a class=\"navbar-item\" routerLink=\"\" *ngIf=\"!isAnyoneLoggedIn()\">\r\n                            Zarejestruj się\r\n                        </a>\r\n\r\n                        <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\" (click)=\"onLogout()\" *ngIf=\"isAnyoneLoggedIn()\">\r\n                            Wyloguj się\r\n                        </a>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -810,9 +802,8 @@ module.exports = "<section class=\"hero is-medium is-dark is-bold\">\r\n    <div
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -825,33 +816,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var HeaderComponent = (function () {
     function HeaderComponent(authService) {
         this.authService = authService;
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.isUserLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
-        this.isAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
-        this.isDoctorLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
-        this.isDoctorAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
-        this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(false);
-        if (localStorage.getItem('currentUser')) {
-            this.isUserLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-        }
-        else if (localStorage.getItem('currentAdmin')) {
-            this.isAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-        }
-        else if (localStorage.getItem('currentDoctor')) {
-            this.isDoctorLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-        }
-        else if (localStorage.getItem('currentDoctorAdmin')) {
-            this.isDoctorAdminLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-            this.isAnyoneLoggedIn$ = __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].of(true);
-        }
+    };
+    HeaderComponent.prototype.isUserLoggedIn = function () { return JSON.parse(localStorage.getItem('currentUser')); };
+    ;
+    HeaderComponent.prototype.isAdminLoggedIn = function () { return JSON.parse(localStorage.getItem('currentAdmin')); };
+    ;
+    HeaderComponent.prototype.isDoctorLoggedIn = function () { return JSON.parse(localStorage.getItem('currentDoctor')); };
+    ;
+    HeaderComponent.prototype.isDoctorAdminLoggedIn = function () { return JSON.parse(localStorage.getItem('currentDoctorAdmin')); };
+    ;
+    HeaderComponent.prototype.isAnyoneLoggedIn = function () {
+        return (this.isUserLoggedIn() || this.isAdminLoggedIn() || this.isDoctorLoggedIn() || this.isDoctorAdminLoggedIn());
     };
     HeaderComponent.prototype.onLogout = function () {
         this.authService.logout();
@@ -862,192 +842,9 @@ var HeaderComponent = (function () {
             template: __webpack_require__("../../../../../src/app/header/header.component.html"),
             styles: [__webpack_require__("../../../../../src/app/header/header.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_index__["b" /* AuthenticationService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_index__["b" /* AuthenticationService */]])
     ], HeaderComponent);
     return HeaderComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeradmin/headeradmin.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeradmin/headeradmin.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  headeradmin works!\n</p>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeradmin/headeradmin.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderadminComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var HeaderadminComponent = (function () {
-    function HeaderadminComponent() {
-    }
-    HeaderadminComponent.prototype.ngOnInit = function () {
-    };
-    HeaderadminComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-headeradmin',
-            template: __webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/headeradmin/headeradmin.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], HeaderadminComponent);
-    return HeaderadminComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  headerdoctor works!\n</p>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/headerdoctor/headerdoctor.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderdoctorComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var HeaderdoctorComponent = (function () {
-    function HeaderdoctorComponent() {
-    }
-    HeaderdoctorComponent.prototype.ngOnInit = function () {
-    };
-    HeaderdoctorComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-headerdoctor',
-            template: __webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/headerdoctor/headerdoctor.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], HeaderdoctorComponent);
-    return HeaderdoctorComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeruser/headeruser.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeruser/headeruser.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<section class=\"hero is-medium is-dark is-bold\">\n  <div class=\"hero-head\">\n    <nav class=\"navbar\">\n      <div class=\"container\">\n        <div class=\"navbar-brand\">\n          <a class=\"navbar-item\" routerLink=\"\">\n            <img src=\"/assets/logo.png\" alt=\"Logo\">\n          </a>\n        </div>\n        <div id=\"navbarMenu\" class=\"navbar-menu\">\n          <div class=\"navbar-end\">\n            <a class=\"navbar-item\" routerLink=\"\" routerLinkActive=\"active\">\n              Strona główna\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/specs\" routerLinkActive=\"active\">\n              Specjalizacje\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/userpanel\" routerLinkActive=\"active\">\n              Moje Konto\n            </a>\n            <a class=\"navbar-item\" routerLink=\"/login\" routerLinkActive=\"active\">\n              Zaloguj się\n            </a>\n            <a class=\"navbar-item\" routerLink=\"\">\n              Zarejestruj się\n            </a>\n          </div>\n        </div>\n      </div>\n    </nav>\n  </div>\n</section>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/headeruser/headeruser.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderuserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var HeaderuserComponent = (function () {
-    function HeaderuserComponent() {
-    }
-    HeaderuserComponent.prototype.ngOnInit = function () {
-    };
-    HeaderuserComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-headeruser',
-            template: __webpack_require__("../../../../../src/app/headeruser/headeruser.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/headeruser/headeruser.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], HeaderuserComponent);
-    return HeaderuserComponent;
 }());
 
 
@@ -1237,18 +1034,11 @@ var LoginComponent = (function () {
         this.alertService = alertService;
         this.model = {};
         this.loading = false;
-        this.checkboxValue = false;
         this.error = '';
-        this.log = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
-        //this.checkboxValue = false;
         this.authenticationService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    };
-    LoginComponent.prototype.logCheckbox = function (element) {
-        this.log += "Checkbox " + element.value + " was " + (element.checked ? '' : 'un') + "checked\n";
-        console.log(this.log);
     };
     LoginComponent.prototype.clicked = function () {
         console.log('click');
@@ -1257,16 +1047,6 @@ var LoginComponent = (function () {
         this.checkbox = evt.target.checked;
         console.log(evt.target.checked);
     };
-    LoginComponent.prototype.function = function () {
-        if (this.checkboxValue === false) {
-            this.checkboxValue = true;
-            console.log('zmieniam z false na true');
-        }
-        else {
-            this.checkboxValue = false;
-            console.log('zmieniam z true na false');
-        }
-    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.error = '';
@@ -1274,18 +1054,18 @@ var LoginComponent = (function () {
         this.authenticationService.login(this.model.email, this.model.token)
             .subscribe(function (result) {
             if (result === true) {
-                _this.toastr.success('Logged in');
+                _this.toastr.success('Zalogowano pomyślnie!');
                 _this.router.navigate([_this.returnUrl]);
             }
             else {
-                _this.error = 'Username or password is incorrect';
+                _this.error = 'Nieprawidłowy email bądź hasło!';
                 _this.loading = false;
-                _this.toastr.error('Username or password is incorrect');
+                _this.toastr.error('Nieprawidłowy email bądź hasło!');
             }
         }, function () {
             _this.loading = false;
-            _this.error = 'Cannot connect';
-            _this.toastr.error('Cannot connect');
+            _this.error = 'Błąd połączenia z serwerem.';
+            _this.toastr.error('Błąd połączenia z serwerem.');
         }, function () { return console.log('done!'); });
     };
     LoginComponent.prototype.doctorLogin = function () {
@@ -1295,22 +1075,21 @@ var LoginComponent = (function () {
         this.authenticationService.doctorLogin(this.model.email, this.model.token)
             .subscribe(function (result) {
             if (result === true) {
-                _this.toastr.success('Logged in');
+                _this.toastr.success('Zalogowano pomyślnie!');
                 _this.router.navigate([_this.returnUrl]);
             }
             else {
-                _this.error = 'Username or password is incorrect';
+                _this.error = 'Nieprawidłowy email bądź hasło!';
                 _this.loading = false;
-                _this.toastr.error('Username or password is incorrect');
+                _this.toastr.error('Nieprawidłowy email bądź hasło!');
             }
         }, function () {
             _this.loading = false;
-            _this.error = 'Cannot connect';
-            _this.toastr.error('Cannot connect');
+            _this.error = 'Błąd połączenia z serwerem.';
+            _this.toastr.error('Błąd połączenia z serwerem.');
         }, function () { return console.log('done!'); });
     };
     LoginComponent.prototype.onLogin = function () {
-        console.log('wartosc checka to' + this.checkbox);
         if (this.checkbox) {
             console.log('Loguje jako lekarz.');
             this.doctorLogin();
@@ -1514,9 +1293,7 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.login = function (email, password) {
         return this.http.post(AuthenticationService_1.API_LOGIN + '?email=' + email + '&token=' + password, null)
             .map(function (response) {
-            console.log(response['canLogin']);
             if (response['canLogin'].toString() === 'true') {
-                console.log(response['admin']);
                 if (response['admin'].toString() === 'true') {
                     localStorage.setItem('currentAdmin', JSON.stringify({
                         email: email,
@@ -1539,9 +1316,7 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.doctorLogin = function (email, password) {
         return this.http.post(AuthenticationService_1.API_DOCTORLOGIN + '?email=' + email + '&token=' + password, null)
             .map(function (response) {
-            console.log(response['canLogin']);
             if (response['canLogin'].toString() === 'true') {
-                console.log(response['admin']);
                 if (response['admin'].toString() === 'true') {
                     localStorage.setItem('currentDoctorAdmin', JSON.stringify({
                         email: email,

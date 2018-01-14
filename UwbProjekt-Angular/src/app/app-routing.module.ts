@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'doctors', redirectTo: 'specs' },
       { path: 'specs', component: SpecsComponent, pathMatch: 'full' },
+      { path: 'specs/:id', component: SpecdetailsComponent, },
       { path: 'userpanel', component: UserPanelComponent, canActivate: [AuthGuard] },
       { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
       { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },

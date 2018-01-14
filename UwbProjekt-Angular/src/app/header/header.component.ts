@@ -11,41 +11,19 @@ import { AuthenticationService } from '../services/index';
 })
 export class HeaderComponent implements OnInit {
 
-  isUserLoggedIn$: Observable<boolean>;
-  isAdminLoggedIn$: Observable<boolean>;
-  isDoctorLoggedIn$: Observable<boolean>;
-  isDoctorAdminLoggedIn$: Observable<boolean>;
-  isAnyoneLoggedIn$: Observable<boolean>;
-
   constructor(private authService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.isUserLoggedIn$ = Observable.of(false);
-    this.isAdminLoggedIn$ = Observable.of(false);
-    this.isDoctorLoggedIn$ = Observable.of(false);
-    this.isDoctorAdminLoggedIn$ = Observable.of(false);
-    this.isAnyoneLoggedIn$ = Observable.of(false);
+  }
 
+  isUserLoggedIn() { return JSON.parse(localStorage.getItem('currentUser')) };
+  isAdminLoggedIn() { return JSON.parse(localStorage.getItem('currentAdmin')) };
+  isDoctorLoggedIn() { return JSON.parse(localStorage.getItem('currentDoctor')) };
+  isDoctorAdminLoggedIn() { return JSON.parse(localStorage.getItem('currentDoctorAdmin')) };
 
-    if (localStorage.getItem('currentUser')) {
-      this.isUserLoggedIn$ = Observable.of(true);
-      this.isAnyoneLoggedIn$ = Observable.of(true);
-    }
-    else if (localStorage.getItem('currentAdmin')) {
-      this.isAdminLoggedIn$ = Observable.of(true);
-      this.isAnyoneLoggedIn$ = Observable.of(true);
-    }
-    else if (localStorage.getItem('currentDoctor')) {
-      this.isDoctorLoggedIn$ = Observable.of(true);
-      this.isAnyoneLoggedIn$ = Observable.of(true);
-    }
-    else if (localStorage.getItem('currentDoctorAdmin')) {
-      this.isDoctorAdminLoggedIn$ = Observable.of(true);
-      this.isAnyoneLoggedIn$ = Observable.of(true);
-    }
-
-
+  isAnyoneLoggedIn() {
+    return (this.isUserLoggedIn() || this.isAdminLoggedIn() || this.isDoctorLoggedIn() || this.isDoctorAdminLoggedIn());
   }
 
   onLogout() {
