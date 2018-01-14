@@ -1,5 +1,4 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { AdminPanelService } from './admin-panel.service';
 
 describe('AdminPanelService', () => {
