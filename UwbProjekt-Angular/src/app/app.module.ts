@@ -25,15 +25,15 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelService } from './admin-panel/admin-panel.service';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { DoctorPanelService } from './doctor-panel/doctor-panel.service';
-
 import { AlertComponent } from './alert/alert.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/index';
 import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
-
 import { AlertService, AuthenticationService, } from './services/index';
 import { RegisterService } from './register/register.service';
+import { DoctorDetailsService} from './doctors/doctor-details/doctor-details.service';
+import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +51,7 @@ import { RegisterService } from './register/register.service';
     DoctorPanelComponent,
     AlertComponent,
     RegisterComponent,
+    DoctorDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +62,12 @@ import { RegisterService } from './register/register.service';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [UsersService, SpecsService, DoctorsService, SpecdetailsService, UserPanelService, AdminPanelService,
-    DoctorPanelService, AuthGuard, DoctorPanelGuard, AdminPanelGuard, AlertService, AuthenticationService, RegisterService],
+  providers: [UsersService, SpecsService, DoctorsService, 
+              SpecdetailsService, UserPanelService, AdminPanelService,
+              DoctorPanelService, AuthGuard, DoctorPanelGuard, 
+              AdminPanelGuard, AlertService, AuthenticationService, 
+              RegisterService, DoctorDetailsService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../admin-panel/admin-panel.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
+import { Input } from '@angular/core';
 // chyba do usuniecia import { FormArray } from '@angular/forms/src/model';
 
 import { ToastrService } from 'ngx-toastr';
@@ -11,22 +12,23 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-  
+  showComponent: boolean;
   model: any = {};
   specModel: any = {};
   loading = false;
   checkbox: boolean;
   returnUrl: string;
-
+  showSelected: boolean;
   constructor(private route: ActivatedRoute,
-              private router: Router, 
-              private adminPanelService: AdminPanelService, 
-              private toastr: ToastrService) { }
+    private router: Router,
+    private adminPanelService: AdminPanelService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.showSelected = false;
   }
-
   createDoctor() {
     this.loading = true;
     this.adminPanelService.createDoctor(this.model, this.specModel.specName)
@@ -63,5 +65,10 @@ export class AdminPanelComponent implements OnInit {
       this.createDoctor();
     }
   }
+
+  ShowButton() {
+    this.showComponent = true;
+  }
+
 
 }

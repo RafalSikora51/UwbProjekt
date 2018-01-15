@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/admin-panel/admin-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar is-dark\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-brand\">\r\n      <a class=\"navbar-item brand-text\" href=\"../\">\r\n        Powrót\r\n      </a>\r\n      <div class=\"navbar-burger burger\" data-target=\"navMenu\">\r\n        <span></span>\r\n        <span></span>\r\n        <span></span>\r\n      </div>\r\n    </div>\r\n    <div id=\"navMenu\" class=\"navbar-menu\">\r\n      <div class=\"navbar-start\">\r\n        <a class=\"navbar-item\" routerLink=\"\">\r\n          Strona główna\r\n        </a>\r\n        <a class=\"navbar-item\" href=\"admin.html\">\r\n          Użytkownicy\r\n        </a>\r\n        <a class=\"navbar-item\" href=\"admin.html\">\r\n          Lekarze\r\n        </a>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</nav>\r\n<!-- END NAV -->\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          General\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"is-active\">Dashboard</a>\r\n          </li>\r\n          <li>\r\n            <a>Customers</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Administration\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a>Team Settings</a>\r\n          </li>\r\n          <li>\r\n            <a>Invitations</a>\r\n          </li>\r\n          <li>\r\n            <a>Cloud</a>\r\n          </li>\r\n          <li>\r\n            <a>Authentication</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Transactions\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a>Payments</a>\r\n          </li>\r\n          <li>\r\n            <a>Transfers</a>\r\n          </li>\r\n          <li>\r\n            <a>Balance</a>\r\n          </li>\r\n        </ul>\r\n      </aside>\r\n    </div>\r\n    <div class=\"column is-9\">\r\n      <nav class=\"breadcrumb has-arrow-separator\" aria-label=\"breadcrumbs\">\r\n        <ul>\r\n          <li>\r\n            <a href=\"../\">Link1</a>\r\n          </li>\r\n          <li>\r\n            <a href=\"../\">Link2</a>\r\n          </li>\r\n          <li>\r\n            <a href=\"../\">Link3</a>\r\n          </li>\r\n        </ul>\r\n      </nav>\r\n      <section class=\"hero is-info welcome is-small\">\r\n        <div class=\"hero-body\">\r\n          <div class=\"container\">\r\n            <h1 class=\"title\">\r\n              Panel Administratora\r\n            </h1>\r\n            <h2 class=\"subtitle\">\r\n            </h2>\r\n          </div>\r\n        </div>\r\n      </section>\r\n      <section class=\"info-tiles\">\r\n        <div class=\"tile is-ancestor has-text-centered\">\r\n          <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child box\">\r\n              <p class=\"title\">439k</p>\r\n              <p class=\"subtitle\">Users</p>\r\n            </article>\r\n          </div>\r\n          <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child box\">\r\n              <p class=\"title\">59k</p>\r\n              <p class=\"subtitle\">Products</p>\r\n            </article>\r\n          </div>\r\n          <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child box\">\r\n              <p class=\"title\">3.4k</p>\r\n              <p class=\"subtitle\">Open Orders</p>\r\n            </article>\r\n          </div>\r\n          <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child box\">\r\n              <p class=\"title\">19</p>\r\n              <p class=\"subtitle\">Exceptions</p>\r\n            </article>\r\n          </div>\r\n        </div>\r\n      </section>\r\n      <div class=\"column\">\r\n        <div class=\"card events-card\">\r\n          <header class=\"card-header\">\r\n            <p class=\"card-header-title\">\r\n              Działania\r\n            </p>\r\n          </header>\r\n          <div class=\"card-table\">\r\n            <div class=\"content\">\r\n              <h2> Content tutaj</h2>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"container\">\r\n  <form (ngSubmit)=\"onSubmit()\">\r\n    <div class=\"column is-4\">\r\n      <div class=\"field\">\r\n        <label class=\"label\">Pesel</label>\r\n        <div class=\"control has-icons-left has-icons-right\">\r\n          <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Pesel Lekarza\" name=\"Pesel\">\r\n\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"field\">\r\n        <label class=\"label\">E-mail</label>\r\n        <div class=\"control has-icons-left has-icons-right\">\r\n          <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <label class=\"label\">Nazwisko</label>\r\n        <div class=\"control has-icons-left has-icons-right\">\r\n          <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n        </div>\r\n      </div>\r\n      <div class=\"field\">\r\n        <label class=\"label\">Imię</label>\r\n        <div class=\"control has-icons-left has-icons-right\">\r\n          <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"field\">\r\n        <label class=\"label\">Specjalizacja</label>\r\n        <div class=\"control has-icons-left has-icons-right\">\r\n          <input class=\"input\" type=\"text\" [(ngModel)]=\"specModel.specName\" placeholder=\"Wpisz specjalizacje\" name=\"Specjalizacja\">\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <div class=\"control\">\r\n          <label class=\"checkbox\">\r\n            <input type=\"checkbox\" (click)=\"clicked()\" [checked]=\"checkbox\" (change)=\"changed($event)\" /> Nadać uprawnienia administratora?\r\n\r\n          </label>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <div class=\"field is-grouped\">\r\n        <div class=\"control\">\r\n          <button class=\"button is-primary\">Dodaj</button>\r\n        </div>\r\n        <div class=\"control\">\r\n          <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </form>\r\n</div>"
+module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a href=\"/adminpanel\" routerLinkActive=\"active\" class=\"button is-danger is-medium\">Panel Główny</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Lekarze\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"ShowButton()\">Dodaj Lekarza</a>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <a class=\"button is-dark is-medium\">Lista Lekarzy</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Użytkownicy\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\">Lista Użytkowników</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Specjalizacje\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\">Dodaj Specjalizacje</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <a class=\"button is-danger\">Wyloguj</a>\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                  Panel Administratora\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <br>\r\n          <br>\r\n          <!-- DODAWANIE LEKARZA -->\r\n          <div *ngIf=\"showComponent\">\r\n            <form (ngSubmit)=\"onSubmit()\">\r\n              <div class=\"column is-4\">\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Pesel</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Pesel Lekarza\" name=\"Pesel\">\r\n\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">E-mail</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Nazwisko</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Imię</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Specjalizacja</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"specModel.specName\" placeholder=\"Wpisz specjalizacje\" name=\"Specjalizacja\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <div class=\"control\">\r\n                    <label class=\"checkbox\">\r\n                      <input type=\"checkbox\" (click)=\"clicked()\" [checked]=\"checkbox\" (change)=\"changed($event)\" /> Nadać uprawnienia administratora?\r\n                    </label>\r\n                  </div>\r\n                </div>\r\n                <div class=\"field is-grouped\">\r\n                  <div class=\"control\">\r\n                    <button class=\"button is-primary\">Dodaj</button>\r\n                  </div>\r\n                  <div class=\"control\">\r\n                    <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -77,6 +77,7 @@ var AdminPanelComponent = (function () {
     }
     AdminPanelComponent.prototype.ngOnInit = function () {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.showSelected = false;
     };
     AdminPanelComponent.prototype.createDoctor = function () {
         var _this = this;
@@ -109,6 +110,9 @@ var AdminPanelComponent = (function () {
             console.log('Tworze bez praw admina.');
             this.createDoctor();
         }
+    };
+    AdminPanelComponent.prototype.ShowButton = function () {
+        this.showComponent = true;
     };
     AdminPanelComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -267,8 +271,8 @@ var routes = [
             { path: 'specs', component: __WEBPACK_IMPORTED_MODULE_3__specs_specs_component__["a" /* SpecsComponent */], pathMatch: 'full' },
             { path: 'specs/:id', component: __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], },
             { path: 'userpanel', component: __WEBPACK_IMPORTED_MODULE_8__user_panel_user_panel_component__["a" /* UserPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_11__guard_index__["a" /* AuthGuard */]] },
-            { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__guard_adminpanel_guard__["a" /* AdminPanelGuard */]] },
             { path: 'doctorpanel', component: __WEBPACK_IMPORTED_MODULE_10__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */]] },
+            { path: 'adminpanel', component: __WEBPACK_IMPORTED_MODULE_9__admin_panel_admin_panel_component__["a" /* AdminPanelComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_13__guard_adminpanel_guard__["a" /* AdminPanelGuard */]] },
         ]
     },
     { path: 'specs/:id', component: __WEBPACK_IMPORTED_MODULE_6__specdetails_specdetails_component__["a" /* SpecdetailsComponent */], },
@@ -312,7 +316,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\">\r\n        <div class=\"container\">\r\n            <div class=\"col-sm-8 col-sm-offset-2\">\r\n                <alert></alert>\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n    </div>\r\n"
+module.exports = "<alert></alert>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -386,12 +390,16 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__ = __webpack_require__("../../../../../src/app/guard/adminpanel.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_index__ = __webpack_require__("../../../../../src/app/services/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__register_register_service__ = __webpack_require__("../../../../../src/app/register/register.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__doctors_doctor_details_doctor_details_service__ = __webpack_require__("../../../../../src/app/doctors/doctor-details/doctor-details.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__doctors_doctor_details_doctor_details_component__ = __webpack_require__("../../../../../src/app/doctors/doctor-details/doctor-details.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -445,6 +453,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_24__doctor_panel_doctor_panel_component__["a" /* DoctorPanelComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__alert_alert_component__["a" /* AlertComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_34__doctors_doctor_details_doctor_details_component__["a" /* DoctorDetailsComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -455,8 +464,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["a" /* ToastrModule */].forRoot(),
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_8__users_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_10__specs_specs_service__["a" /* SpecsService */], __WEBPACK_IMPORTED_MODULE_15__doctors_doctors_service__["a" /* DoctorsService */], __WEBPACK_IMPORTED_MODULE_17__specdetails_specdetails_service__["a" /* SpecdetailsService */], __WEBPACK_IMPORTED_MODULE_21__user_panel_user_panel_service__["a" /* UserPanelService */], __WEBPACK_IMPORTED_MODULE_23__admin_panel_admin_panel_service__["a" /* AdminPanelService */],
-                __WEBPACK_IMPORTED_MODULE_25__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */], __WEBPACK_IMPORTED_MODULE_28__guard_index__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_29__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */], __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__["a" /* AdminPanelGuard */], __WEBPACK_IMPORTED_MODULE_31__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_31__services_index__["b" /* AuthenticationService */], __WEBPACK_IMPORTED_MODULE_32__register_register_service__["a" /* RegisterService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_8__users_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_10__specs_specs_service__["a" /* SpecsService */], __WEBPACK_IMPORTED_MODULE_15__doctors_doctors_service__["a" /* DoctorsService */],
+                __WEBPACK_IMPORTED_MODULE_17__specdetails_specdetails_service__["a" /* SpecdetailsService */], __WEBPACK_IMPORTED_MODULE_21__user_panel_user_panel_service__["a" /* UserPanelService */], __WEBPACK_IMPORTED_MODULE_23__admin_panel_admin_panel_service__["a" /* AdminPanelService */],
+                __WEBPACK_IMPORTED_MODULE_25__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */], __WEBPACK_IMPORTED_MODULE_28__guard_index__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_29__guard_doctorpanel_guard__["a" /* DoctorPanelGuard */],
+                __WEBPACK_IMPORTED_MODULE_30__guard_adminpanel_guard__["a" /* AdminPanelGuard */], __WEBPACK_IMPORTED_MODULE_31__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_31__services_index__["b" /* AuthenticationService */],
+                __WEBPACK_IMPORTED_MODULE_32__register_register_service__["a" /* RegisterService */], __WEBPACK_IMPORTED_MODULE_33__doctors_doctor_details_doctor_details_service__["a" /* DoctorDetailsService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -552,6 +564,97 @@ var DoctorPanelService = (function () {
         __metadata("design:paramtypes", [])
     ], DoctorPanelService);
     return DoctorPanelService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctors/doctor-details/doctor-details.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctors/doctor-details/doctor-details.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  doctor-details works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctors/doctor-details/doctor-details.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorDetailsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DoctorDetailsComponent = (function () {
+    function DoctorDetailsComponent() {
+    }
+    DoctorDetailsComponent.prototype.ngOnInit = function () {
+    };
+    DoctorDetailsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-doctor-details',
+            template: __webpack_require__("../../../../../src/app/doctors/doctor-details/doctor-details.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/doctors/doctor-details/doctor-details.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DoctorDetailsComponent);
+    return DoctorDetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctors/doctor-details/doctor-details.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorDetailsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DoctorDetailsService = (function () {
+    function DoctorDetailsService() {
+    }
+    DoctorDetailsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], DoctorDetailsService);
+    return DoctorDetailsService;
 }());
 
 
