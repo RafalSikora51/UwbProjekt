@@ -25,7 +25,7 @@ public class User {
 	@Column(name = "ID", insertable = false, updatable = false)
 	private Integer id;
 
-	@Column(name = "PESEL", nullable = false, unique=true)
+	@Column(name = "PESEL", nullable = false, unique = true)
 	private String countryId;
 
 	@Column(name = "FIRSTNAME", nullable = false)
@@ -35,12 +35,12 @@ public class User {
 	private String lastName;
 
 	@NaturalId
-	@Column(name = "EMAIL", nullable = false, unique=true)
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "CREATEDON", nullable = false)
 	private Timestamp createdOn;
-	
+
 	@Column(name = "ADMIN", nullable = false)
 	private boolean isAdmin;
 
@@ -52,7 +52,7 @@ public class User {
 	{
 		tokenSet = new HashSet<Token>();
 	}
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "IDUSER")
 	@JsonIgnore
@@ -61,7 +61,7 @@ public class User {
 	{
 		appointmentSet = new HashSet<Appointment>();
 	}
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "IDUSER")
 	@JsonIgnore
@@ -75,7 +75,7 @@ public class User {
 
 	}
 
-	public User(String countryId, String firstName, String lastName, String email, boolean isAdmin) {
+	public User(String countryId, String firstName, String lastName, String email) {
 		this.countryId = countryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -164,7 +164,4 @@ public class User {
 		this.medicalHistorySet = medicalHistorySet;
 	}
 
-	
-	
-	
 }

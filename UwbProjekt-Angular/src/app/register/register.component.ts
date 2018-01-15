@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { RegisterService } from '../register/register.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RegisterComponent {
     model: any = {};
+    loading = false;
+    error: String = '';
 
     constructor(
         private router: Router,
@@ -19,23 +20,29 @@ export class RegisterComponent {
         private toastr: ToastrService) { }
 
     createUser() {
+        this.loading = true;
         this.registerService.createUser(this.model)
             .subscribe(
-            data => {
-                if (this.model.countryId >= 9) {
-                    this.toastr.success('Rejestracja przebiegła pomyślnie! Sprawdź e-mail aby otrzymać hasło');
+            result => {
+                if (result === true) {
+                    this.toastr.success('Rejestracja przebiegła pomyślnie! Sprawdź e-mail aby otrzymać hasło.');
                     this.router.navigate(['/login']);
+                } else {
+                    this.error = 'Nieprawidłowe dane podczas rejestracji!';
+                    this.loading = false;
+                    this.toastr.error('Nieprawidłowe dane podczas rejestracji!');
                 }
             },
-            error => {
-                this.toastr.error('Błąd podczas rejestracji');
-            });
+            () => {
+                this.loading = false;
+                this.error = 'Błąd połączenia z serwerem.'
+                this.toastr.error('Błąd połączenia z serwerem.');
+            },
+            () => console.log('done!'));
     }
 
     onSubmit() {
         this.createUser();
     }
-
-
 
 }

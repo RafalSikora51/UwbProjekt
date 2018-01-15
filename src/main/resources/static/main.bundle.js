@@ -500,7 +500,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctor-panel/doctor-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  doctor-panel works!\n</p>\n"
+module.exports = "<p>\r\n  doctor-panel works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -591,7 +591,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctors/doctor-details/doctor-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  doctor-details works!\n</p>\n"
+module.exports = "<p>\r\n  doctor-details works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1304,7 +1304,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hero-body\">\r\n    <div class=\"container has-text-centered\">\r\n        <div class=\"column is-4 is-offset-4\">\r\n            <h3 class=\"title has-text-grey\">Rejestracja</h3>\r\n            <p class=\"subtitle has-text-grey\">Podaj dane do rejestracji</p>\r\n            <form (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"box\">\r\n                    <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\r\n                        <i class=\"fa fa-user-plus\"></i>\r\n                    </div>\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Pesel</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Wprowadź PESEL\" name=\"Pesel\">\r\n                        </div>\r\n                    </div>\r\n\r\n\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">E-mail</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Nazwisko</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Imię</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"field is-grouped \">\r\n                        <div class=\"control\">\r\n                            <button class=\"button is-block  is-primary is-large\">Zarejestruj</button>\r\n                        </div>\r\n                        <div class=\"control\">\r\n                            <button routerLink='./' class=\"button is-black is-danger is-large\">Anuluj</button>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"hero-body\">\r\n    <div class=\"container has-text-centered\">\r\n        <div class=\"column is-4 is-offset-4\">\r\n            <h3 class=\"title has-text-grey\">Rejestracja</h3>\r\n            <p class=\"subtitle has-text-grey\">Podaj dane do rejestracji</p>\r\n            <form (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"box\">\r\n                    <div class=\"card-image has-text-centered\" style=\"font-size:120px; color: #4f5355;\">\r\n                        <i class=\"fa fa-user-plus\"></i>\r\n                    </div>\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Pesel</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Wprowadź PESEL\" name=\"Pesel\">\r\n                        </div>\r\n                    </div>\r\n\r\n\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">E-mail</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Nazwisko</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"field\">\r\n                        <label class=\"label\">Imię</label>\r\n                        <div class=\"control has-icons-left has-icons-right\">\r\n                            <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"field is-grouped \">\r\n                        <div class=\"control\">\r\n                            <button [disabled]=\"loading\" class=\"button is-block  is-primary is-large\">Zarejestruj</button>\r\n                            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\r\n                            />\r\n                        </div>\r\n                        <div class=\"control\">\r\n                            <button routerLink='./' class=\"button is-black is-danger is-large\">Anuluj</button>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -1336,18 +1336,28 @@ var RegisterComponent = (function () {
         this.registerService = registerService;
         this.toastr = toastr;
         this.model = {};
+        this.loading = false;
+        this.error = '';
     }
     RegisterComponent.prototype.createUser = function () {
         var _this = this;
+        this.loading = true;
         this.registerService.createUser(this.model)
-            .subscribe(function (data) {
-            if (_this.model.countryId >= 9) {
-                _this.toastr.success('Rejestracja przebiegła pomyślnie! Sprawdź e-mail aby otrzymać hasło');
+            .subscribe(function (result) {
+            if (result === true) {
+                _this.toastr.success('Rejestracja przebiegła pomyślnie! Sprawdź e-mail aby otrzymać hasło.');
                 _this.router.navigate(['/login']);
             }
-        }, function (error) {
-            _this.toastr.error('Błąd podczas rejestracji');
-        });
+            else {
+                _this.error = 'Nieprawidłowe dane podczas rejestracji!';
+                _this.loading = false;
+                _this.toastr.error('Nieprawidłowe dane podczas rejestracji!');
+            }
+        }, function () {
+            _this.loading = false;
+            _this.error = 'Błąd połączenia z serwerem.';
+            _this.toastr.error('Błąd połączenia z serwerem.');
+        }, function () { return console.log('done!'); });
     };
     RegisterComponent.prototype.onSubmit = function () {
         this.createUser();
@@ -1376,6 +1386,8 @@ var RegisterComponent = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1387,17 +1399,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var RegisterService = (function () {
-    function RegisterService(http) {
+    function RegisterService(http, toastr) {
         this.http = http;
+        this.toastr = toastr;
         this.API_URL = '//localhost:9080/users';
     }
     RegisterService.prototype.createUser = function (user) {
-        return this.http.post(this.API_URL, user);
+        var _this = this;
+        return this.http.post(this.API_URL, user)
+            .map(function (response) {
+            if (response['created'] === true) {
+                return true;
+            }
+            else if (response['created'] === false && response['status'].toString() === 'CONFLICT') {
+                _this.toastr.error('Użytkownik o takim peselu bądź adresie e-mail już istnieje!');
+                return false;
+            }
+            else {
+                return false;
+            }
+        });
     };
     RegisterService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]])
     ], RegisterService);
     return RegisterService;
 }());
@@ -1597,7 +1625,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specdetails/specdetails.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"section\">\n  <div class=\"container\">\n  </div>\n</section>\n<div class=\"hero-body\">\n  <div class=\"container has-text-centered\" *ngFor=\"let doctor of doctors\">\n    <div class=\"columns is-vcentered\">\n      <div class=\"column is-4\">\n        <figure>\n          <img src=\"http://placehold.it/800x600\" alt=\"Description\">\n        </figure>\n      </div>\n      <div class=\"column is-half is-offset-2\">\n        <h1 class=\"title is-2\">\n          {{doctor.firstName}} {{doctor.lastName}}\n        </h1>\n        <h2 class=\"subtitle is-4\">\n          {{doctor.email}}\n        </h2>\n        <br>\n        <p class=\"has-text-centered\">\n          <a href='dologinu' class=\"button is-medium is-info is-outlined\">\n            Zarezerwuj wizytę! ( tu ref do loginu/rejestracji może?)\n          </a>\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<section class=\"section\">\r\n  <div class=\"container\">\r\n  </div>\r\n</section>\r\n<div class=\"hero-body\">\r\n  <div class=\"container has-text-centered\" *ngFor=\"let doctor of doctors\">\r\n    <div class=\"columns is-vcentered\">\r\n      <div class=\"column is-4\">\r\n        <figure>\r\n          <img src=\"http://placehold.it/800x600\" alt=\"Description\">\r\n        </figure>\r\n      </div>\r\n      <div class=\"column is-half is-offset-2\">\r\n        <h1 class=\"title is-2\">\r\n          {{doctor.firstName}} {{doctor.lastName}}\r\n        </h1>\r\n        <h2 class=\"subtitle is-4\">\r\n          {{doctor.email}}\r\n        </h2>\r\n        <br>\r\n        <p class=\"has-text-centered\">\r\n          <a href='dologinu' class=\"button is-medium is-info is-outlined\">\r\n            Zarezerwuj wizytę! ( tu ref do loginu/rejestracji może?)\r\n          </a>\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1877,7 +1905,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user-panel/user-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  user-panel works!\n</p>\n"
+module.exports = "<p>\r\n  user-panel works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1968,7 +1996,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\n  <thead class=\"thead\">\n    <tr>\n      <th>Id</th>\n      <th>First name</th>\n      <th>Last name</th>\n      <th>Email</th>\n      <th>Admin</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users\">\n      <td>{{user.id}}</td>\n      <td>{{user.firstName}}</td>\n      <td>{{user.lastName}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\n    </tr>\n  </tbody>\n</table>"
+module.exports = "<table>\r\n  <thead class=\"thead\">\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>First name</th>\r\n      <th>Last name</th>\r\n      <th>Email</th>\r\n      <th>Admin</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let user of users\">\r\n      <td>{{user.id}}</td>\r\n      <td>{{user.firstName}}</td>\r\n      <td>{{user.lastName}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 

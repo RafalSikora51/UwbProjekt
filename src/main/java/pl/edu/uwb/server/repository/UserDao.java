@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import pl.edu.uwb.server.entity.MedicalHistory;
 import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.entity.User;
+import pl.edu.uwb.server.util.MailService;
 import pl.edu.uwb.server.util.SessionConnection;
 import pl.edu.uwb.server.util.TokenGenerator;
 
@@ -80,18 +81,37 @@ public class UserDao {
 		}
 	}
 
-	public void createUser(User user) {
-		Session session = SessionConnection.getSessionFactory().openSession();
-		session.beginTransaction();
-		user.setCreatedOn(new Timestamp(System.currentTimeMillis()));
-		session.save(user);
-		String token = TokenGenerator.randomStringGenerator(10).get("token");
-		Token userToken = new Token(token, user);
-		user.getTokenSet().add(userToken);
-		session.save(userToken);
-		session.getTransaction().commit();
-		SessionConnection.shutdown(session);
-		logger.info("User created correctly.");
+	public boolean validUserDetails(User user) {
+		boolean countryId = user.getCountryId().length() >= 11;
+		boolean names = user.getFirstName().length() >= 3 && user.getLastName().length() >= 3;
+		boolean email = user.getEmail().contains("@") && user.getEmail().contains(".");
+		return countryId && names && email;
+	}
+
+	public boolean createUser(User user) {
+		if (validUserDetails(user)) {
+			Session session = SessionConnection.getSessionFactory().openSession();
+			session.beginTransaction();
+			user.setCreatedOn(new Timestamp(System.currentTimeMillis()));
+			session.save(user);
+			String token = TokenGenerator.randomStringGenerator(10).get("token");
+			Token userToken = new Token(token, user);
+			user.getTokenSet().add(userToken);
+			if (MailService.sendEmail(user.getEmail(), token, user.getFirstName(), user.getLastName())) {
+				session.save(userToken);
+				session.getTransaction().commit();
+				SessionConnection.shutdown(session);
+				logger.info("User created correctly.");
+				return true;
+			} else {
+				session.getTransaction().rollback();
+				SessionConnection.shutdown(session);
+				return false;
+			}
+		} else {
+			return false;
+		}
+
 	}
 
 	public boolean isUserInDataBase(String email, String token) {

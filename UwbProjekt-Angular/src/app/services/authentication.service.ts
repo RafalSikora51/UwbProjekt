@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   private static readonly API_LOGIN: string = '//localhost:9080/login'
   private static readonly API_DOCTORLOGIN: string = '//localhost:9080/doctorlogin'
-  constructor(private http: HttpClient, private toastr: ToastrService,) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   login(email: string, password: string): Observable<any> {
 
