@@ -33,6 +33,7 @@ import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
 
 import { AlertService, AuthenticationService, } from './services/index';
+import { RegisterService } from './register/register.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { AlertService, AuthenticationService, } from './services/index';
     ToastrModule.forRoot(),
   ],
   providers: [UsersService, SpecsService, DoctorsService, SpecdetailsService, UserPanelService, AdminPanelService,
-    DoctorPanelService, AuthGuard, DoctorPanelGuard, AdminPanelGuard, AlertService, AuthenticationService],
+    DoctorPanelService, AuthGuard, DoctorPanelGuard, AdminPanelGuard, AlertService, AuthenticationService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

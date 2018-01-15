@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../admin-panel/admin-panel.service';
-import { Doctor } from './DoctorConstructor';
-import { DoctorsService } from '../doctors/doctors.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray } from '@angular/forms/src/model';
+// chyba do usuniecia import { FormArray } from '@angular/forms/src/model';
 
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -13,48 +11,21 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-
-  id: number;
-  doctor: Doctor;
-  doctorForm: FormGroup;
+  
   model: any = {};
   specModel: any = {};
   loading = false;
   checkbox: boolean;
   returnUrl: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private adminPanelService: AdminPanelService, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router, 
+              private adminPanelService: AdminPanelService, 
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-
-    // this.doctorForm = new FormGroup({
-    //     countryId: new FormControl('', Validators.required),
-    //     email: new FormControl('', [
-    //     Validators.required,
-    //     Validators.pattern("[^ @]*@[^ @]*")
-    //   ]),
-    //   lastName: new FormControl('', Validators.required),
-    //   firstName: new FormControl('', Validators.required),
-    //   admin: new FormControl('', Validators.required),
-    // });
-
   }
-
-  // onSubmit(){
-  //   if(this.doctorForm.valid){
-  //     let doctor:Doctor = new Doctor(
-  //       this.doctorForm.controls['countryId'].value,
-  //       this.doctorForm.controls['email'].value,
-  //       this.doctorForm.controls['lastName'].value,
-  //       this.doctorForm.controls['firstName'].value,
-  //       this.doctorForm.controls['admin'].value);
-
-  //      // this.adminPanelService.createDoctor(doctor).subscribe();
-  //   }
-  // }
-
 
   createDoctor() {
     this.loading = true;
@@ -80,8 +51,6 @@ export class AdminPanelComponent implements OnInit {
     console.log(evt.target.checked)
   }
 
-
-
   onSubmit() {
     if (this.checkbox) {
       this.model.admin = true;
@@ -94,7 +63,5 @@ export class AdminPanelComponent implements OnInit {
       this.createDoctor();
     }
   }
-
-
 
 }

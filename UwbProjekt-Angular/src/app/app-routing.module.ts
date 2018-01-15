@@ -15,6 +15,7 @@ import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { AuthGuard } from './guard/index';
 import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent},
       { path: 'doctors', redirectTo: 'specs' },
       { path: 'specs', component: SpecsComponent, pathMatch: 'full' },
       { path: 'specs/:id', component: SpecdetailsComponent, },
@@ -34,7 +36,8 @@ const routes: Routes = [
 
   { path: 'specs/:id', component: SpecdetailsComponent, },
   { path: 'users', component: UsersComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  
 ];
 
 @NgModule({

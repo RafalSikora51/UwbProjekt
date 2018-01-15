@@ -1,7 +1,6 @@
 <section class="hero is-medium is-dark is-bold">
     <div class="hero-head">
         <nav class="navbar">
-            <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" routerLink="">
                         <img src="/assets/logo.png" alt="Logo">
@@ -30,7 +29,7 @@
                         <a class="navbar-item" routerLink="/login" routerLinkActive="active" *ngIf="!isAnyoneLoggedIn()">
                             Zaloguj się
                         </a>
-                        <a class="navbar-item" routerLink="" *ngIf="!isAnyoneLoggedIn()">
+                        <a class="navbar-item" routerLink="/register" *ngIf="!isAnyoneLoggedIn()">
                             Zarejestruj się
                         </a>
 
@@ -40,7 +39,6 @@
 
                     </div>
                 </div>
-            </div>
         </nav>
     </div>
 </section>
