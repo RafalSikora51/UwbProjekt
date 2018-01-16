@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 
 import pl.edu.uwb.server.entity.Specialization;
@@ -16,15 +17,46 @@ public class SpecializationDao {
 
 	private static Logger logger = LogManager.getLogger(SpecializationDao.class);
 
-	public void createSpecialization(String name) {
+	private static final String NOTACCEPTABLE = "NOTACCEPTABLE";
+	private static final String CONFLICT = "CONFLICT";
+	private static final String CREATED_VALUE = "CREATED";
+	private static final String STATUS = "status";
+	private static final String CREATED_KEY = "created";
+
+	public boolean validSpecDetails(String specName) {
+		return specName.length() >= 2;
+	}
+
+	public boolean createSpecialization(String name) {
 		logger.debug("createSpecialization");
-		Session session = SessionConnection.getSessionFactory().openSession();
-		session.beginTransaction();
-		Specialization specialization = new Specialization(name);
-		session.save(specialization);
-		session.getTransaction().commit();
-		SessionConnection.shutdown(session);
-		logger.info("New specialization added correctly.");
+		if (validSpecDetails(name)) {
+			Session session = SessionConnection.getSessionFactory().openSession();
+			session.beginTransaction();
+			Specialization specialization = new Specialization(name);
+			session.save(specialization);
+			session.getTransaction().commit();
+			SessionConnection.shutdown(session);
+			logger.info("New specialization added correctly.");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public JSONObject createSpecJSON(String specName) {
+		JSONObject jsonResponse = new JSONObject();
+		if (getSpecByName(specName).isPresent()) {
+			logger.debug("Specialization already exists");
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, CONFLICT);
+		} else if (createSpecialization(specName)) {
+			jsonResponse.put(CREATED_KEY, true);
+			jsonResponse.put(STATUS, CREATED_VALUE);
+		} else {
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, NOTACCEPTABLE);
+		}
+		return jsonResponse;
 	}
 
 	@SuppressWarnings("unchecked")
