@@ -19,6 +19,10 @@ export class AdminPanelComponent implements OnInit {
   checkbox: boolean;
   returnUrl: string;
   showSelected: boolean;
+  error: String = '';
+
+
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private adminPanelService: AdminPanelService,
@@ -29,19 +33,27 @@ export class AdminPanelComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.showSelected = false;
   }
+
   createDoctor() {
     this.loading = true;
     this.adminPanelService.createDoctor(this.model, this.specModel.specName)
       .subscribe(
-      data => {
-        this.toastr.success('Lekarz dodany pomyślnie!');
-        this.loading = false;
-        this.router.navigate(['/adminpanel']);
+      result => {
+        if (result === true) {
+          this.toastr.success('Lekarz został dodany pomyślnie! E-mail z wygenerowanym hasłem został wysłany.');
+          this.router.navigate(['/adminpanel']);
+        } else {
+          this.error = 'Nieprawidłowe dane podczas dodawania lekarza!';
+          this.loading = false;
+          this.toastr.error('Nieprawidłowe dane podczas dodawania lekarza!');
+        }
       },
-      error => {
-        this.toastr.error('Nie udało się dodać lekarza!');
+      () => {
         this.loading = false;
-      });
+        this.error = 'Błąd połączenia z serwerem.'
+        this.toastr.error('Błąd połączenia z serwerem.');
+      },
+      () => console.log('done!'));
   }
 
   clicked() {

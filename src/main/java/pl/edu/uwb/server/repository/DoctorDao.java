@@ -20,6 +20,7 @@ import pl.edu.uwb.server.entity.Doctor;
 import pl.edu.uwb.server.entity.Specialization;
 import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.entity.User;
+import pl.edu.uwb.server.util.MailService;
 import pl.edu.uwb.server.util.SessionConnection;
 import pl.edu.uwb.server.util.TokenGenerator;
 
@@ -28,9 +29,15 @@ public class DoctorDao {
 
 	private static Logger logger = LogManager.getLogger(UserDao.class);
 
+	private static final String NOTACCEPTABLE = "NOTACCEPTABLE";
+	private static final String CONFLICT = "CONFLICT";
+	private static final String CREATED_VALUE = "CREATED";
+	private static final String STATUS = "status";
+	private static final String CREATED_KEY = "created";
+
 	@Autowired
 	private SpecializationDao specializationDao;
-	
+
 	@Autowired
 	private TokenDao tokenDao;
 
@@ -98,20 +105,57 @@ public class DoctorDao {
 		return doctors;
 	}
 
-	public void createDoctor(Doctor doctor, String specName) {
-		Session session = SessionConnection.getSessionFactory().openSession();
-		session.beginTransaction();
-		doctor.setCreatedOn(new Timestamp(System.currentTimeMillis()));
-		String token = TokenGenerator.randomStringGenerator(10).get("token");
-		Token userToken = new Token(token, doctor);
-		doctor.getTokenSet().add(userToken);
-		Specialization spec = specializationDao.getSpecByName(specName).get();
-		doctor.setSpecId(spec.getId());
-		session.save(doctor);
-		session.save(userToken);
-		session.getTransaction().commit();
-		SessionConnection.shutdown(session);
-		logger.info("Doctor created correctly.");
+	public boolean validDoctorDetails(Doctor doctor) {
+		boolean countryId = doctor.getCountryId().length() >= 11;
+		boolean names = doctor.getFirstName().length() >= 3 && doctor.getLastName().length() >= 3;
+		boolean email = doctor.getEmail().contains("@") && doctor.getEmail().contains(".");
+		return countryId && names && email;
+	}
+
+	public boolean createDoctor(Doctor doctor, String specName) {
+		if (validDoctorDetails(doctor)) {
+			Session session = SessionConnection.getSessionFactory().openSession();
+			session.beginTransaction();
+			doctor.setCreatedOn(new Timestamp(System.currentTimeMillis()));
+			Specialization spec = specializationDao.getSpecByName(specName).get();
+			doctor.setSpecId(spec.getId());
+			session.save(doctor);
+			String token = TokenGenerator.randomStringGenerator(10).get("token");
+			Token userToken = new Token(token, doctor);
+			doctor.getTokenSet().add(userToken);
+
+			if (MailService.sendEmail(doctor.getEmail(), token, doctor.getFirstName(), doctor.getLastName())) {
+				session.save(userToken);
+				session.getTransaction().commit();
+				SessionConnection.shutdown(session);
+				logger.info("Doctor created correctly.");
+				return true;
+			} else {
+				session.getTransaction().rollback();
+				SessionConnection.shutdown(session);
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	public JSONObject createUserJSON(Doctor doctor, String specName) {
+		JSONObject jsonResponse = new JSONObject();
+
+		if (findDoctorByEmail(doctor.getEmail()).isPresent()
+				|| findDoctorByCountryId(doctor.getCountryId()).isPresent()) {
+			logger.debug("Doctor already exists");
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, CONFLICT);
+		} else if (createDoctor(doctor, specName)) {
+			jsonResponse.put(CREATED_KEY, true);
+			jsonResponse.put(STATUS, CREATED_VALUE);
+		} else {
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, NOTACCEPTABLE);
+		}
+		return jsonResponse;
 	}
 
 	public static Predicate<User> isUserAlreadyInList(List<User> users) {
@@ -143,14 +187,14 @@ public class DoctorDao {
 		}
 
 	}
-	
+
 	public boolean isDoctorInDataBase(String email, String token) {
 		logger.debug("isDoctorInDataBase");
 		if (!findDoctorByEmail(email).isPresent()) {
 			logger.info("No such doctor in data base.");
 			return false;
-		} else if (findDoctorByEmail(email).isPresent()
-				&& !tokenDao.findActiveTokenByDoctorId(findDoctorByEmail(email).get().getId()).getToken().equals(token)) {
+		} else if (findDoctorByEmail(email).isPresent() && !tokenDao
+				.findActiveTokenByDoctorId(findDoctorByEmail(email).get().getId()).getToken().equals(token)) {
 			logger.info("The token is invalid.");
 			return false;
 		} else {

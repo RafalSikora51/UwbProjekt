@@ -66,13 +66,6 @@ public class MailService {
 			log.error(exception.getMessage());
 			return false;
 		}
-
-		// messageBodyPart = new MimeBodyPart();
-		// DataSource source = new FileDataSource(filePath);
-		// messageBodyPart.setDataHandler(new DataHandler(source));
-		// messageBodyPart.setFileName(filePath);
-		// multiPart.addBodyPart(messageBodyPart);
-
 	}
 
 }

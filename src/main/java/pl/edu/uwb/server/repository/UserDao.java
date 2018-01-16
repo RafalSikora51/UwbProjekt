@@ -24,6 +24,12 @@ import pl.edu.uwb.server.util.TokenGenerator;
 @Component
 public class UserDao {
 
+	private static final String NOTACCEPTABLE = "NOTACCEPTABLE";
+	private static final String CONFLICT = "CONFLICT";
+	private static final String CREATED_VALUE = "CREATED";
+	private static final String STATUS = "status";
+	private static final String CREATED_KEY = "created";
+
 	private static Logger logger = LogManager.getLogger(UserDao.class);
 
 	@Autowired
@@ -111,7 +117,22 @@ public class UserDao {
 		} else {
 			return false;
 		}
+	}
 
+	public JSONObject createUserJSON(User user) {
+		JSONObject jsonResponse = new JSONObject();
+		if (findUserByEmail(user.getEmail()).isPresent() || findUserByCountryId(user.getCountryId()).isPresent()) {
+			logger.debug("User already exists");
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, CONFLICT);
+		} else if (createUser(user)) {
+			jsonResponse.put(CREATED_KEY, true);
+			jsonResponse.put(STATUS, CREATED_VALUE);
+		} else {
+			jsonResponse.put(CREATED_KEY, false);
+			jsonResponse.put(STATUS, NOTACCEPTABLE);
+		}
+		return jsonResponse;
 	}
 
 	public boolean isUserInDataBase(String email, String token) {

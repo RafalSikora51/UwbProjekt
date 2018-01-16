@@ -74,6 +74,7 @@ var AdminPanelComponent = (function () {
         this.model = {};
         this.specModel = {};
         this.loading = false;
+        this.error = '';
     }
     AdminPanelComponent.prototype.ngOnInit = function () {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -83,14 +84,21 @@ var AdminPanelComponent = (function () {
         var _this = this;
         this.loading = true;
         this.adminPanelService.createDoctor(this.model, this.specModel.specName)
-            .subscribe(function (data) {
-            _this.toastr.success('Lekarz dodany pomyślnie!');
+            .subscribe(function (result) {
+            if (result === true) {
+                _this.toastr.success('Lekarz został dodany pomyślnie! E-mail z wygenerowanym hasłem został wysłany.');
+                _this.router.navigate(['/adminpanel']);
+            }
+            else {
+                _this.error = 'Nieprawidłowe dane podczas dodawania lekarza!';
+                _this.loading = false;
+                _this.toastr.error('Nieprawidłowe dane podczas dodawania lekarza!');
+            }
+        }, function () {
             _this.loading = false;
-            _this.router.navigate(['/adminpanel']);
-        }, function (error) {
-            _this.toastr.error('Nie udało się dodać lekarza!');
-            _this.loading = false;
-        });
+            _this.error = 'Błąd połączenia z serwerem.';
+            _this.toastr.error('Błąd połączenia z serwerem.');
+        }, function () { return console.log('done!'); });
     };
     AdminPanelComponent.prototype.clicked = function () {
         console.log('click');
@@ -139,6 +147,8 @@ var AdminPanelComponent = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -150,17 +160,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var AdminPanelService = (function () {
-    function AdminPanelService(http) {
+    function AdminPanelService(http, toastr) {
         this.http = http;
+        this.toastr = toastr;
         this.CREATE_API_URL = '//localhost:9080/doctors?specName=';
     }
     AdminPanelService.prototype.createDoctor = function (doctor, specName) {
-        return this.http.post(this.CREATE_API_URL + specName, doctor);
+        var _this = this;
+        return this.http.post(this.CREATE_API_URL + specName, doctor)
+            .map(function (response) {
+            if (response['created'] === true) {
+                return true;
+            }
+            else if (response['created'] === false && response['status'].toString() === 'CONFLICT') {
+                _this.toastr.error('Lekarz o takim peselu bądź adresie e-mail już istnieje!');
+                return false;
+            }
+            else {
+                return false;
+            }
+        });
     };
     AdminPanelService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */]])
     ], AdminPanelService);
     return AdminPanelService;
 }());

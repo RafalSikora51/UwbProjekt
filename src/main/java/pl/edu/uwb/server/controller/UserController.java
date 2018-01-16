@@ -29,12 +29,6 @@ import pl.edu.uwb.server.repository.UserDao;
 @RequestMapping("/users")
 public class UserController {
 
-	private static final String NOTACCEPTABLE = "NOTACCEPTABLE";
-	private static final String CONFLICT = "CONFLICT";
-	private static final String CREATED_VALUE = "CREATED";
-	private static final String STATUS = "status";
-	private static final String CREATED_KEY = "created";
-
 	private static Logger logger = LogManager.getLogger(UserController.class);
 
 	private final UserDao userDao;
@@ -49,20 +43,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public JSONObject createUser(@RequestBody User user) {
 		logger.debug("createUser");
-		JSONObject jsonResponse = new JSONObject();
-		if (userDao.findUserByEmail(user.getEmail()).isPresent()
-				|| userDao.findUserByCountryId(user.getCountryId()).isPresent()) {
-			logger.debug("User already exists");
-			jsonResponse.put(CREATED_KEY, false);
-			jsonResponse.put(STATUS, CONFLICT);
-		} else if (userDao.createUser(user)) {
-			jsonResponse.put(CREATED_KEY, true);
-			jsonResponse.put(STATUS, CREATED_VALUE);
-		} else {
-			jsonResponse.put(CREATED_KEY, false);
-			jsonResponse.put(STATUS, NOTACCEPTABLE);
-		}
-		return jsonResponse;
+		return userDao.createUserJSON(user);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
