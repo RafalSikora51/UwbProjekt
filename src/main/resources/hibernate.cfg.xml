@@ -45,8 +45,9 @@
 		<mapping class="pl.edu.uwb.server.entity.Specialization" />
 		<mapping class="pl.edu.uwb.server.entity.Token" />
 		<mapping class="pl.edu.uwb.server.entity.Appointment" />
+		<mapping class="pl.edu.uwb.server.entity.AppointmentHour" />
 		<mapping class="pl.edu.uwb.server.entity.MedicalHistory" />
-		
+
 
 	</session-factory>
 </hibernate-configuration>

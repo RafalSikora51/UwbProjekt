@@ -42,9 +42,17 @@ public class MedicalHistoryDao {
 	}
 
 	public Optional<MedicalHistory> getMedicalHistoryForUserBySpec(User user, int specId) {
-		List<MedicalHistory> medHistories = user.getMedicalHistorySet().stream().filter(isHistoryFromGivenSpec(specId))
-				.collect(Collectors.toList());
-		return Optional.ofNullable(medHistories.get(0));
+		if (!user.getMedicalHistorySet().isEmpty()) {
+			List<MedicalHistory> medHistories = user.getMedicalHistorySet().stream()
+					.filter(isHistoryFromGivenSpec(specId)).collect(Collectors.toList());
+			if (!medHistories.isEmpty()) {
+				return Optional.ofNullable(medHistories.get(0));
+			} else {
+				return Optional.empty();
+			}
+		} else {
+			return Optional.empty();
+		}
 	}
 
 }

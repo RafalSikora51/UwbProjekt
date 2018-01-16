@@ -32,8 +32,9 @@ public class AppointmentController {
 
 	@PostMapping
 	public ResponseEntity<Void> createAppointment(@RequestParam int userId, @RequestParam int docId,
+			@RequestParam int appHourId, @RequestParam int year, @RequestParam int month, @RequestParam int day,
 			UriComponentsBuilder ucBuilder) {
-		appointmentDao.createAppointment(userId, docId);
+		appointmentDao.createAppointment(userId, docId, appHourId, year, month, day);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 

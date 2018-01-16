@@ -40,7 +40,7 @@ public class SpecializationDao {
 
 	public Optional<Specialization> getSpecByName(String name) {
 		logger.debug("findSpecByName");
-		Specialization specialization;
+		Specialization specialization = null;
 		Session session = SessionConnection.getSessionFactory().openSession();
 		specialization = session.byNaturalId(Specialization.class).using("name", name).load();
 		SessionConnection.shutdown(session);

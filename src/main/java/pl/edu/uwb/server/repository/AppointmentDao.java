@@ -31,7 +31,7 @@ public class AppointmentDao {
 	@Autowired
 	private MedicalHistoryDao medicalHistoryDao;
 
-	public void createAppointment(int userId, int doctorId) {
+	public void createAppointment(int userId, int doctorId, int appHourId, int year, int month, int dayOfMonth) {
 		logger.debug("createAppointment");
 		Session session = SessionConnection.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -47,7 +47,7 @@ public class AppointmentDao {
 			medHistory = new MedicalHistory(user, specId);
 		}
 
-		Appointment appointment = new Appointment(user, doctor, medHistory);
+		Appointment appointment = new Appointment(user, doctor, medHistory, appHourId, year, month, dayOfMonth);
 		medHistory.getAppointmentSet().add(appointment);
 		user.getAppointmentSet().add(appointment);
 		doctor.getAppointmentSet().add(appointment);

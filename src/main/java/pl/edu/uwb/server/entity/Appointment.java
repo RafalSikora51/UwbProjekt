@@ -1,6 +1,7 @@
 package pl.edu.uwb.server.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +20,11 @@ public class Appointment {
 	@Column(name = "ID", insertable = false, updatable = false)
 	private Integer id;
 
-	@Column(name = "APPOINTMENTDATE", nullable = false)
-	private Timestamp date;
+	@Column(name = "APPOINTMENTDAY", nullable = false)
+	private String localDate;
+
+	@Column(name = "APPOINTMENTHOURID", nullable = false)
+	private int appHourId;
 
 	@ManyToOne()
 	@JoinColumn(name = "IDUSER", foreignKey = @ForeignKey(name = "IDUSERAPPOINTMENT"))
@@ -35,18 +39,18 @@ public class Appointment {
 	private MedicalHistory medicalHistory;
 
 	@Column(name = "APPOINTMENTPROCESS")
-	String appointmentProcess; // tutaj zapisane bedzie po co byla wizyta/ co sie na niej dzialo. Moze zrobic
-								// jako obiekt nowy?
+	String appointmentProcess;
 
 	public Appointment() {
-		this.date = new Timestamp(System.currentTimeMillis());
 	}
 
-	public Appointment(User user, Doctor doctor, MedicalHistory medicalHistory) {
+	public Appointment(User user, Doctor doctor, MedicalHistory medicalHistory, int appHourId, int year, int month,
+			int dayOfMonth) {
 		this.user = user;
 		this.doctor = doctor;
 		this.medicalHistory = medicalHistory;
-		this.date = new Timestamp(System.currentTimeMillis());
+		this.localDate = LocalDate.of(year, month, dayOfMonth).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.appHourId = appHourId;
 		this.appointmentProcess = "";
 	}
 
@@ -56,14 +60,6 @@ public class Appointment {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Timestamp getDate() {
-		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
 	}
 
 	public User getUser() {
@@ -96,6 +92,22 @@ public class Appointment {
 
 	public void setMedicalHistory(MedicalHistory medicalHistory) {
 		this.medicalHistory = medicalHistory;
+	}
+
+	public int getAppHourId() {
+		return appHourId;
+	}
+
+	public void setAppHourId(int appHourId) {
+		this.appHourId = appHourId;
+	}
+
+	public String getLocalDate() {
+		return localDate;
+	}
+
+	public void setLocalDate(String localDate) {
+		this.localDate = localDate;
 	}
 
 }
