@@ -15,10 +15,7 @@ export class SpecdetailsService {
   private API_URL: any = '//localhost:9080/specs'
   constructor(private http: HttpClient) { }
 
-
-
   public getDoctorsBySpecId(id:number): Observable<Doctor[]> {
-
     return this.http.get<Doctor[]>(`${this.API_URL}/${id}/doctors`)
       .pipe(
       tap(users => this.log(`fetched doctors`)),

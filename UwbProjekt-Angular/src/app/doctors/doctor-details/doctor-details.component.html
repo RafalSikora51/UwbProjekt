@@ -1,3 +1,16 @@
-<p>
-  doctor-details works!
-</p>
+<section class="container">
+  <div class="column" align="center" *ngFor="let doctor of doctors">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <h4>{{doctor.name}}</h4>
+          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.
+            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
+          <p>
+            <a routerLink="/doctors/{{doctor.id}}" class="button is-danger is-hovered is-fullwidth">Sprawdź doktora</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

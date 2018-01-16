@@ -16,6 +16,7 @@ import { AuthGuard } from './guard/index';
 import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
 import { RegisterComponent } from './register/register.component';
+import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
 
 const routes: Routes = [
   {
@@ -31,9 +32,10 @@ const routes: Routes = [
       { path: 'userpanel', component: UserPanelComponent, canActivate: [AuthGuard] },
       { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },
       { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
+      { path: 'doctorsdetails', component: DoctorDetailsComponent},
     ]
   },
-  
+
   { path: 'specs/:id', component: SpecdetailsComponent, },
   { path: 'users', component: UsersComponent },
   { path: '**', redirectTo: '' },

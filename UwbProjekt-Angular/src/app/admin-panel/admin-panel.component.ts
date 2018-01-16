@@ -3,35 +3,54 @@ import { AdminPanelService } from '../admin-panel/admin-panel.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Input } from '@angular/core';
-// chyba do usuniecia import { FormArray } from '@angular/forms/src/model';
-
 import { ToastrService } from 'ngx-toastr';
+import { Doctor } from '../shared/model/doctor';
+import { Spec } from '../shared/model/spec';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.css']
+  styleUrls: ['./admin-panel.component.css'],
+
 })
 export class AdminPanelComponent implements OnInit {
-  showComponent: boolean;
+
+  showAddDoctor: boolean;
+  showDoctors: boolean;
+  showAddSpec: boolean;
   model: any = {};
+  doctors: Doctor[];
+  specs: Spec[];
+  doctorSpecs: any = {};
   specModel: any = {};
   loading = false;
   checkbox: boolean;
   returnUrl: string;
-  showSelected: boolean;
+
   error: String = '';
-
-
-
   constructor(private route: ActivatedRoute,
     private router: Router,
     private adminPanelService: AdminPanelService,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.showSelected = false;
+    this.showAddDoctor = false;
+    this.showAddSpec = false;
+    this.showDoctors = false;
+    this.getDoctors();
+    this.getSpecs();
+  }
+
+  getDoctors(): void {
+    this.adminPanelService.getDoctors().subscribe(
+      doctors => {
+        this.doctors = doctors;
+      },
+      error => {
+        console.log(error);
+      }
+
+    )
   }
 
   createDoctor() {
@@ -55,6 +74,38 @@ export class AdminPanelComponent implements OnInit {
       },
       () => console.log('done!'));
   }
+  createSpec() {
+    this.loading = true;
+    this.adminPanelService.createSpec(this.specModel.specName)
+      .subscribe(
+      result => {
+        if (result === true) {
+          this.toastr.success('Specjalizacja dodana pomyślnie!');
+          this.router.navigate(['/adminpanel']);
+        } else {
+          this.error = 'Nieprawidłowe dane podczas dodawania specjalizacji!';
+          this.loading = false;
+          this.toastr.error('Nieprawidłowe dane podczas dodawania specjalizacji!');
+        }
+      },
+      () => {
+        this.loading = false;
+        this.error = 'Błąd połączenia z serwerem.'
+        this.toastr.error('Błąd połączenia z serwerem.');
+      },
+      () => console.log('done!'));
+  }
+
+  getSpecs(): void {
+    this.adminPanelService.getSpecs().subscribe(
+      specs => {
+        this.specs = specs;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   clicked() {
     console.log('click')
@@ -77,9 +128,28 @@ export class AdminPanelComponent implements OnInit {
       this.createDoctor();
     }
   }
+  onSpecSubmit() {
+    this.createSpec();
+  }
 
-  ShowButton() {
-    this.showComponent = true;
+  addDoctorEnable() {
+    if (this.showAddDoctor == false)
+      this.showAddDoctor = true;
+    else
+      this.showAddDoctor = false;
+  }
+
+  showDoctorsEnable() {
+    if (this.showDoctors == false)
+      this.showDoctors = true;
+    else
+      this.showDoctors = false;
+  }
+  addSpecEnable() {
+    if (this.showAddSpec == false)
+      this.showAddSpec = true;
+    else
+      this.showAddSpec = false;
   }
 
 
