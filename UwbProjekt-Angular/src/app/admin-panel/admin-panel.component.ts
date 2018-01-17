@@ -26,6 +26,9 @@ export class AdminPanelComponent implements OnInit {
   checkbox: boolean;
   returnUrl: string;
 
+  createDocForm: any;
+  createSpecForm: any;
+
   error: String = '';
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -60,7 +63,8 @@ export class AdminPanelComponent implements OnInit {
       result => {
         if (result === true) {
           this.toastr.success('Lekarz został dodany pomyślnie! E-mail z wygenerowanym hasłem został wysłany.');
-          this.router.navigate(['/adminpanel']);
+          this.createDocForm = document.getElementById("doctorForm");
+          this.createDocForm.reset();
         } else {
           this.error = 'Nieprawidłowe dane podczas dodawania lekarza!';
           this.loading = false;
@@ -81,7 +85,8 @@ export class AdminPanelComponent implements OnInit {
       result => {
         if (result === true) {
           this.toastr.success('Specjalizacja dodana pomyślnie!');
-          this.router.navigate(['/adminpanel']);
+          this.createSpecForm = document.getElementById("specForm");
+          this.createSpecForm.reset();
         } else {
           this.error = 'Nieprawidłowe dane podczas dodawania specjalizacji!';
           this.loading = false;
@@ -100,6 +105,7 @@ export class AdminPanelComponent implements OnInit {
     this.adminPanelService.getSpecs().subscribe(
       specs => {
         this.specs = specs;
+        console.table(this.specs);
       },
       error => {
         console.log(error);
@@ -121,6 +127,7 @@ export class AdminPanelComponent implements OnInit {
       this.model.admin = true;
       console.log('Tworze z prawami admina.')
       this.createDoctor();
+      this
     }
     else {
       this.model.admin = false;
@@ -135,21 +142,31 @@ export class AdminPanelComponent implements OnInit {
   addDoctorEnable() {
     if (this.showAddDoctor == false)
       this.showAddDoctor = true;
-    else
+    else {
       this.showAddDoctor = false;
+      this.createDocForm = document.getElementById("doctorForm");
+      this.createDocForm.reset();
+    }
+
   }
 
   showDoctorsEnable() {
     if (this.showDoctors == false)
       this.showDoctors = true;
-    else
+    else {
       this.showDoctors = false;
+    }
+
   }
   addSpecEnable() {
     if (this.showAddSpec == false)
       this.showAddSpec = true;
-    else
+    else {
       this.showAddSpec = false;
+      this.createSpecForm = document.getElementById("specForm");
+      this.createSpecForm.reset();
+    }
+
   }
 
 

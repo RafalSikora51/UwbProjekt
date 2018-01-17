@@ -65,7 +65,7 @@
           <br>
           <!-- DODAWANIE LEKARZA -->
           <div *ngIf="showAddDoctor">
-            <form (ngSubmit)="onSubmit()">
+            <form id="doctorForm" (ngSubmit)="onSubmit()">
               <div class="column is-4">
                 <div class="field">
                   <label class="label">Pesel</label>
@@ -92,12 +92,24 @@
                     <input class="input" type="text" [(ngModel)]="model.firstName" placeholder="Imię" name="Imie">
                   </div>
                 </div>
-                <div class="field">
-                  <label class="label">Specjalizacja</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" [(ngModel)]="specModel.specName" placeholder="Wpisz specjalizacje" name="Specjalizacja">
+
+
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <label class="label">Specjalizacja</label>
+                    <div class="control">
+                      <div class="select">
+                        <select [(ngModel)]="specModel.specName" placeholder="Wybierz specjalizacje" name="Specjalizacja">
+                          <option value={{spec.name}} *ngFor="let spec of specs">{{spec.name}}</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+
+
+
                 <div class="field">
                   <div class="control">
                     <label class="checkbox">
@@ -119,7 +131,7 @@
           <!-- CREATE SPEC -->
 
           <div *ngIf="showAddSpec">
-            <form (ngSubmit)="onSpecSubmit()">
+            <form id="specForm" (ngSubmit)="onSpecSubmit()">
               <div class="column is-4">
                 <div class="field">
                   <label class="label">Specjalizacja</label>
@@ -136,6 +148,9 @@
                   </div>
                 </div>
               </div>
+
+
+
             </form>
           </div>
           <!--  GET DOCTORS   -->

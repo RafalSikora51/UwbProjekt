@@ -16,6 +16,7 @@ export class AdminPanelService {
   private CREATE_API_URL: any = '//localhost:9080/doctors?specName='
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   private SPEC_API_URL: string = '//localhost:9080/specs/'
+  private ADD_SPEC_API_URL: string = '//localhost:9080/specs?specName='
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   createDoctor(doctor: Doctor, specName: String): Observable<any> {
@@ -35,13 +36,13 @@ export class AdminPanelService {
   }
 
   createSpec(specName: String): Observable<any> {
-    return this.http.post(this.SPEC_API_URL, specName)
+    return this.http.post(this.ADD_SPEC_API_URL + specName, null)
       .map((response: HttpResponse<any>) => {
         if (response['created'] === true) {
           return true;
         }
         else if (response['created'] === false && response['status'].toString() === 'CONFLICT') {
-          this.toastr.error('Lekarz o takim peselu bądź adresie e-mail już istnieje!');
+          this.toastr.error('Specjalizacja o takiej nazwie już istnieje!');
           return false;
         }
         else {
