@@ -26,17 +26,16 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'doctors', redirectTo: 'specs' },
       { path: 'specs', component: SpecsComponent, pathMatch: 'full' },
       { path: 'specs/:id', component: SpecdetailsComponent, },
       { path: 'userpanel', component: UserPanelComponent, canActivate: [AuthGuard] },
       { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },
       { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
-      { path: 'doctorsdetails', component: DoctorDetailsComponent},
+      { path: 'doctors/:id', component: DoctorDetailsComponent},
+
     ]
   },
 
-  { path: 'specs/:id', component: SpecdetailsComponent, },
   { path: 'users', component: UsersComponent },
   { path: '**', redirectTo: '' },
 

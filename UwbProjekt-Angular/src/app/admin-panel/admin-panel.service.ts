@@ -59,6 +59,7 @@ export class AdminPanelService {
       );
   }
 
+
   public getSpecs(): Observable<Spec[]> {
     return this.http.get<Spec[]>(this.SPEC_API_URL)
       .pipe(

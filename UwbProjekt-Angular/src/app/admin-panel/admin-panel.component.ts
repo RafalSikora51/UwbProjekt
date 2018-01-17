@@ -25,7 +25,6 @@ export class AdminPanelComponent implements OnInit {
   loading = false;
   checkbox: boolean;
   returnUrl: string;
-
   createDocForm: any;
   createSpecForm: any;
 
@@ -112,6 +111,7 @@ export class AdminPanelComponent implements OnInit {
       }
     );
   }
+
 
   clicked() {
     console.log('click')

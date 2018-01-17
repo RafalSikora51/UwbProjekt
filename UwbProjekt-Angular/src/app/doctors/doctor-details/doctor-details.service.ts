@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -7,23 +8,22 @@ import 'rxjs/add/observable/throw';
 import { Doctor } from './doctor';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { DoctorsService } from '../doctors.service';
 
 @Injectable()
 export class DoctorDetailsService {
 
   API_URL: string = '//localhost:9080/doctors'
-  constructor(private http: HttpClient,
-            doctorsService: DoctorsService) { }
+  doctor: Doctor;
+  constructor(private http: HttpClient) { }
 
-  public getDoctors(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.API_URL)
-      .pipe(
-      tap(users => this.log(`fetched doctors`)),
-      catchError(this.handleError('getDoctors', []))
-      );
+
+  public getDoctorById(id: number): Observable<Doctor> {
+    return this.http.get<Doctor>(`${this.API_URL}/${id}`).pipe(
+      tap(_ => this.log(`fetched doctor id = ${id}`)),
+      catchError(this.handleError<Doctor>(`getDoctorById id=${id}`))
+    );
   }
-  
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
