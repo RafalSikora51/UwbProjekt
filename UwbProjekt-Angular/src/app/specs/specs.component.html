@@ -1,5 +1,3 @@
-
-
 <section class="hero is-medium is-dark is-bold">
   <div class="hero-body">
     <div class="container">
@@ -10,20 +8,23 @@
   </div>
 </section>
 
+
 <section class="container">
   <div class="column" align="center" *ngFor="let spec of specs">
-    <div class="card">
-      <div class="card-image has-text-centered" style="font-size:120px; color: #6f767a;">
-        <img src="/assets/{{spec.name}}.jpg">
-      </div>
-      <div class="card-content">
-        <div class="content">
-          <h4>{{spec.name}}</h4>
-          <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.
-            Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
-          <p>
-            <a routerLink="/specs/{{spec.id}}" class="button is-danger is-hovered is-fullwidth">Sprawdź naszych specjalistów</a>
-          </p>
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-image has-text-centered" style="font-size:120px; color: #6f767a;">
+          <img src="/assets/{{spec.name}}.jpg">
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <h4>{{spec.name}}</h4>
+            <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim.
+              Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
+            <p>
+              <a routerLink="/specs/{{spec.id}}" class="button is-danger is-hovered is-fullwidth">Sprawdź naszych specjalistów</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

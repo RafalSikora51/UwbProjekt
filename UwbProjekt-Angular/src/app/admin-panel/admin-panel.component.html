@@ -30,7 +30,7 @@
         </p>
         <ul class="menu-list">
           <li>
-            <a class="button is-dark is-medium">Lista Użytkowników</a>
+            <a class="button is-dark is-medium" (click)="showUsersEnable()">Lista Użytkowników</a>
             <br>
           </li>
         </ul>
@@ -53,6 +53,7 @@
             <div class="hero-body">
               <div class="container">
                 <h1 class="title">
+                    <i class="fa fa-user-secret"></i>
                   Panel Administratora
                 </h1>
                 <h2 class="subtitle" s>
@@ -66,6 +67,19 @@
           <!-- DODAWANIE LEKARZA -->
           <div *ngIf="showAddDoctor">
             <form id="doctorForm" (ngSubmit)="onSubmit()">
+              <section class="hero is-dark is-bold is-small promo-block">
+                <div class="hero-body">
+                  <div class="container">
+                    <h1 class="title">
+                      <i class="fa fa-user-md"></i>
+                      Dodaj Lekarza
+                    </h1>
+                    <h2 class="subtitle">
+                    </h2>
+                  </div>
+                </div>
+              </section>
+              <br>
               <div class="column is-4">
                 <div class="field">
                   <label class="label">Pesel</label>
@@ -93,7 +107,6 @@
                   </div>
                 </div>
 
-
                 <div class="field-body">
                   <div class="field is-narrow">
                     <label class="label">Specjalizacja</label>
@@ -106,9 +119,6 @@
                     </div>
                   </div>
                 </div>
-
-
-
 
                 <div class="field">
                   <div class="control">
@@ -128,9 +138,22 @@
               </div>
             </form>
           </div>
-          <!-- CREATE SPEC -->
 
+          <!-- CREATE SPEC -->
           <div *ngIf="showAddSpec">
+              <section class="hero is-dark is-bold is-small promo-block">
+                  <div class="hero-body">
+                    <div class="container">
+                      <h1 class="title">
+                        <i class="fa fa-briefcase"></i>
+                        Dodaj Specjalizację
+                      </h1>
+                      <h2 class="subtitle">
+                      </h2>
+                    </div>
+                  </div>
+                </section>
+                <br>
             <form id="specForm" (ngSubmit)="onSpecSubmit()">
               <div class="column is-4">
                 <div class="field">
@@ -148,14 +171,23 @@
                   </div>
                 </div>
               </div>
-
-
-
             </form>
           </div>
           <!--  GET DOCTORS   -->
           <div *ngIf="showDoctors">
-            <h1>Lekarze dostępni w</h1>
+              <section class="hero is-dark is-bold is-small promo-block">
+                  <div class="hero-body">
+                    <div class="container">
+                      <h1 class="title">
+                        <i class="fa fa-heartbeat"></i>
+                        Lekarze dostępni w systemie
+                      </h1>
+                      <h2 class="subtitle">
+                      </h2>
+                    </div>
+                  </div>
+                </section>
+                <br>
             <table class="table is fullwidth is-striped">
               <thead class="thead">
                 <th>Imię</th>
@@ -171,6 +203,39 @@
                   <td>
                     <a class="button is-small is-primary" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>
                   </td>
+                  <br>
+                  <br>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--  GET USERS   -->
+          <div *ngIf="showUsers">
+              <section class="hero is-dark is-bold is-small promo-block">
+                  <div class="hero-body">
+                    <div class="container">
+                      <h1 class="title">
+                        <i class="fa fa-users"></i>
+                        Użytkownicy dostępni w systemie
+                      </h1>
+                      <h2 class="subtitle">
+                      </h2>
+                    </div>
+                  </div>
+                </section>
+                <br>
+            <table class="table is fullwidth is-striped">
+              <thead class="thead">
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>E-mail</th>
+                <th>Szczegóły</th>
+              </thead>
+              <tbody *ngFor="let user of users">
+                <tr>
+                  <td width="10%">{{user.firstName}}</td>
+                  <td width="10%">{{user.lastName}}</td>
+                  <td width="10%">{{user.email}}</td>
                   <br>
                   <br>
                 </tr>

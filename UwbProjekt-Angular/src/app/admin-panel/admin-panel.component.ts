@@ -6,6 +6,7 @@ import { Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Doctor } from '../shared/model/doctor';
 import { Spec } from '../shared/model/spec';
+import { User } from '../shared/model/user';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
@@ -17,9 +18,11 @@ export class AdminPanelComponent implements OnInit {
   showAddDoctor: boolean;
   showDoctors: boolean;
   showAddSpec: boolean;
+  showUsers: boolean;
   model: any = {};
   doctors: Doctor[];
   specs: Spec[];
+  users: User[];
   doctorSpecs: any = {};
   specModel: any = {};
   loading = false;
@@ -39,8 +42,10 @@ export class AdminPanelComponent implements OnInit {
     this.showAddDoctor = false;
     this.showAddSpec = false;
     this.showDoctors = false;
+    this.showUsers = false;
     this.getDoctors();
     this.getSpecs();
+    this.getUsers();
   }
 
   getDoctors(): void {
@@ -51,7 +56,6 @@ export class AdminPanelComponent implements OnInit {
       error => {
         console.log(error);
       }
-
     )
   }
 
@@ -112,6 +116,18 @@ export class AdminPanelComponent implements OnInit {
     );
   }
 
+  getUsers(): void {
+    this.adminPanelService.getUsers().subscribe(
+      users => {
+        this.users = users;
+        console.table(this.users);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 
   clicked() {
     console.log('click')
@@ -156,7 +172,13 @@ export class AdminPanelComponent implements OnInit {
     else {
       this.showDoctors = false;
     }
-
+  }
+  showUsersEnable() {
+    if (this.showUsers == false)
+      this.showUsers = true;
+    else {
+      this.showUsers = false;
+    }
   }
   addSpecEnable() {
     if (this.showAddSpec == false)

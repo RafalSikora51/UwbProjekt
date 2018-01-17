@@ -14,15 +14,6 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-
-  public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(UsersService.API_URL)
-      .pipe(
-      tap(users => this.log(`fetched users`)),
-      catchError(this.handleError('getUsers', []))
-      );
-  }
-
   create(user: User) {
     return this.http.post(UsersService.API_URL, user);
 }

@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Spec } from '../shared/model/spec';
+import { User } from '../shared/model/user';
 
 @Injectable()
 export class AdminPanelService {
@@ -16,6 +17,7 @@ export class AdminPanelService {
   private CREATE_API_URL: any = '//localhost:9080/doctors?specName='
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   private SPEC_API_URL: string = '//localhost:9080/specs/'
+  private USERS_API_URL: string = '//localhost:9080/users'
   private ADD_SPEC_API_URL: string = '//localhost:9080/specs?specName='
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
@@ -50,11 +52,19 @@ export class AdminPanelService {
         }
       });
   }
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.USERS_API_URL)
+      .pipe(
+      tap(users => this.log(`fetched users`)),
+      catchError(this.handleError('getUsers', []))
+      );
+  }
+
 
   public getDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.DOCTORS_API_URL)
       .pipe(
-      tap(users => this.log(`fetched doctors`)),
+      tap(doctors => this.log(`fetched doctors`)),
       catchError(this.handleError('getDoctors', []))
       );
   }
