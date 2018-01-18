@@ -35,7 +35,7 @@ public class Appointment {
 	private Doctor doctor;
 
 	@ManyToOne()
-	@JoinColumn(name = "IDAPPOINTMENT", foreignKey = @ForeignKey(name = "IDHISTORYAPPOINTMENT"))
+	@JoinColumn(name = "IDMEDICALHISTORY", foreignKey = @ForeignKey(name = "IDHISTORYAPPOINTMENT"))
 	private MedicalHistory medicalHistory;
 
 	@Column(name = "APPOINTMENTPROCESS")
@@ -49,7 +49,7 @@ public class Appointment {
 		this.user = user;
 		this.doctor = doctor;
 		this.medicalHistory = medicalHistory;
-		this.localDate = LocalDate.of(year, month, dayOfMonth).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.localDate = LocalDate.of(year, month, dayOfMonth).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 		this.appHourId = appHourId;
 		this.appointmentProcess = "";
 	}

@@ -32,8 +32,19 @@ import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
 import { AlertService, AuthenticationService, } from './services/index';
 import { RegisterService } from './register/register.service';
-import { DoctorDetailsService} from './doctors/doctor-details/doctor-details.service';
+import { DoctorDetailsService } from './doctors/doctor-details/doctor-details.service';
 import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarService } from './calendar/calendar.service';
+
+import {
+  MatDatepickerModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatNativeDateModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -52,6 +63,7 @@ import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.
     AlertComponent,
     RegisterComponent,
     DoctorDetailsComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,12 +73,22 @@ import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
-  providers: [UsersService, SpecsService, DoctorsService, 
-              SpecdetailsService, UserPanelService, AdminPanelService,
-              DoctorPanelService, AuthGuard, DoctorPanelGuard, 
-              AdminPanelGuard, AlertService, AuthenticationService, 
-              RegisterService, DoctorDetailsService],
+  exports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+  ],
+  providers: [UsersService, SpecsService, DoctorsService,
+    SpecdetailsService, UserPanelService, AdminPanelService,
+    DoctorPanelService, AuthGuard, DoctorPanelGuard,
+    AdminPanelGuard, AlertService, AuthenticationService,
+    RegisterService, DoctorDetailsService, CalendarService],
 
   bootstrap: [AppComponent]
 })

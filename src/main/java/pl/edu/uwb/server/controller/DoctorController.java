@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.edu.uwb.server.entity.Appointment;
+import pl.edu.uwb.server.entity.AppointmentHour;
 import pl.edu.uwb.server.entity.Doctor;
 import pl.edu.uwb.server.entity.User;
+import pl.edu.uwb.server.repository.AppointmentDao;
+import pl.edu.uwb.server.repository.AppointmentHourDao;
 import pl.edu.uwb.server.repository.DoctorDao;
 
 @CrossOrigin
@@ -34,8 +38,16 @@ public class DoctorController {
 	private final DoctorDao doctorDao;
 
 	@Autowired
-	public DoctorController(DoctorDao doctorDao) {
+	private AppointmentDao appointmentDao;
+
+	@Autowired
+	private AppointmentHourDao appointmentHourDao;
+
+	@Autowired
+	public DoctorController(DoctorDao doctorDao, AppointmentDao appointmentDao, AppointmentHourDao appointmentHourDao) {
 		this.doctorDao = doctorDao;
+		this.appointmentDao = appointmentDao;
+		this.appointmentHourDao = appointmentHourDao;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,6 +84,39 @@ public class DoctorController {
 			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}/appointments", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> findAppointmentsForDoctor(@PathVariable int id) throws Exception {
+		List<Appointment> apps = appointmentDao.findAllAppointmentsForDoctor(id);
+		if (apps.isEmpty()) {
+			return new ResponseEntity<List<Appointment>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Appointment>>(apps, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}/appointments/date", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> findAppointmentsForDoctorFromGivenDay(@PathVariable int id,
+			@RequestParam int day, @RequestParam int month, @RequestParam int year) {
+		List<Appointment> apps = appointmentDao.findAllAppointmentsForDoctorFromGivenDay(id, day, month, year);
+		if (apps.isEmpty()) {
+			return new ResponseEntity<List<Appointment>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Appointment>>(apps, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}/hours/taken", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AppointmentHour>> findTakenHoursForDoctorFromGivenDay(@PathVariable int id,
+			@RequestParam String date) {
+		return new ResponseEntity<List<AppointmentHour>>(
+				appointmentHourDao.findAllTakenHoursForDoctorFromGivenDay(id, date), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}/hours/free", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AppointmentHour>> findFreeHoursForDoctorFromGivenDay(@PathVariable int id,
+			@RequestParam String date) {
+		return new ResponseEntity<List<AppointmentHour>>(
+				appointmentHourDao.findAllNotTakenHoursForDoctorFromGivenDay(id, date), HttpStatus.OK);
 	}
 
 }

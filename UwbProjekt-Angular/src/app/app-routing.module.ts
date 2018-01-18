@@ -11,6 +11,7 @@ import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 import { AuthGuard } from './guard/index';
 import { DoctorPanelGuard } from './guard/doctorpanel.guard';
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },
       { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
       { path: 'doctors/:id', component: DoctorDetailsComponent},
+      { path: 'calendar', component: CalendarComponent}
 
     ]
   },

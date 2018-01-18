@@ -32,7 +32,7 @@ public class MedicalHistory {
 	private User user;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "IDAPPOINTMENT")
+	@JoinColumn(name = "IDMEDICALHISTORY")
 	@JsonIgnore
 	private Set<Appointment> appointmentSet;
 

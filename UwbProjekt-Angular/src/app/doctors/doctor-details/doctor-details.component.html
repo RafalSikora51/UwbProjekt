@@ -5,3 +5,37 @@
   <div>
   </div>
 </div>
+
+<mat-form-field>
+  <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc" disabled>
+  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+</mat-form-field>
+
+
+<div class="container">
+  <a class="button is-dark is-medium" (click)="showHoursEnable()">Kliknij aby wyświetlić godziny</a>
+</div>
+
+
+
+<div *ngIf="showHours">
+
+  <div class="field-body">
+    <div class="field is-narrow">
+      <label class="label">Godzina</label>
+      <div class="control">
+        <div class="select">
+          <select [(ngModel)]="hourModel.id" placeholder="Wybierz godzinę" name="Godzina">
+            <option value={{apphour.id}} *ngFor="let apphour of apphours">{{apphour.hour}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <a class="button is-dark is-medium" (click)="createAppointment()">Kliknij aby zarejestrować się na wizytę</a>
+  </div>
+
+</div>

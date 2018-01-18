@@ -1,21 +1,32 @@
 package pl.edu.uwb.server.repository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pl.edu.uwb.server.entity.Appointment;
 import pl.edu.uwb.server.entity.AppointmentHour;
+import pl.edu.uwb.server.entity.MedicalHistory;
+import pl.edu.uwb.server.util.Helper;
 import pl.edu.uwb.server.util.SessionConnection;
 
 @Component
 public class AppointmentHourDao {
 
 	private static Logger logger = LogManager.getLogger(AppointmentHourDao.class);
+
+	@Autowired
+	private AppointmentDao appointmentDao;
 
 	public void createAppointmentHour(String hour) {
 		logger.debug("createAppointmentHour");
@@ -37,12 +48,13 @@ public class AppointmentHourDao {
 				if (!getAppointmentHourByHour(hour).isPresent()) {
 					AppointmentHour appHour = new AppointmentHour(hour);
 					session.save(appHour);
+					logger.info("New Appointment Hour added correctly.");
 				}
 			}
 		}
 		session.getTransaction().commit();
 		SessionConnection.shutdown(session);
-		logger.info("New Appointment Hours added correctly.");
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -87,4 +99,34 @@ public class AppointmentHourDao {
 		createAppointmentHour(hours);
 	}
 
+	public List<AppointmentHour> findAllTakenHoursForDoctorFromGivenDay(int docId, int day, int month, int year) {
+		logger.debug("findAllTakenHoursForDoctorFromGivenDay");
+		List<Appointment> doctorAppointmentsByDay = appointmentDao.findAllAppointmentsForDoctorFromGivenDay(docId, day,
+				month, year);
+		List<AppointmentHour> takenHours = new ArrayList<>();
+		doctorAppointmentsByDay.forEach(x -> takenHours.add(getAppointmentHourById(x.getAppHourId()).get()));
+		return takenHours;
+	}
+
+	public static Predicate<AppointmentHour> isHourAlreadyInList(List<AppointmentHour> takenHours) {
+		return p -> !takenHours.contains(p);
+	}
+
+	public List<AppointmentHour> findAllNotTakenHoursForDoctorFromGivenDay(int docId, int day, int month, int year) {
+		List<AppointmentHour> takenHours = findAllTakenHoursForDoctorFromGivenDay(docId, day, month, year);
+		return findAllAppointmentHours().stream().filter(isHourAlreadyInList(takenHours)).collect(Collectors.toList());
+	}
+
+	public List<AppointmentHour> findAllNotTakenHoursForDoctorFromGivenDay(int docId, String date) {
+		Map<String, Integer> dateMap = Helper.createMapFromDate(date);
+		return findAllNotTakenHoursForDoctorFromGivenDay(docId, dateMap.get("day"), dateMap.get("month"),
+				dateMap.get("year"));
+	}
+
+	public List<AppointmentHour> findAllTakenHoursForDoctorFromGivenDay(int docId, String date) {
+		Map<String, Integer> dateMap = Helper.createMapFromDate(date);
+		return findAllTakenHoursForDoctorFromGivenDay(docId, dateMap.get("day"), dateMap.get("month"),
+				dateMap.get("year"));
+	}
+	
 }

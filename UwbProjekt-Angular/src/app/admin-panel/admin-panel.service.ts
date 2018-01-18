@@ -19,7 +19,11 @@ export class AdminPanelService {
   private SPEC_API_URL: string = '//localhost:9080/specs/'
   private USERS_API_URL: string = '//localhost:9080/users'
   private ADD_SPEC_API_URL: string = '//localhost:9080/specs?specName='
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+
+  constructor(
+    private http: HttpClient, 
+    private toastr: ToastrService
+  ) { }
 
   createDoctor(doctor: Doctor, specName: String): Observable<any> {
     return this.http.post(this.CREATE_API_URL + specName, doctor)

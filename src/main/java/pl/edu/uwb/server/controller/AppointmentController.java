@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import pl.edu.uwb.server.entity.Appointment;
 import pl.edu.uwb.server.repository.AppointmentDao;
@@ -31,11 +30,9 @@ public class AppointmentController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> createAppointment(@RequestParam int userId, @RequestParam int docId,
-			@RequestParam int appHourId, @RequestParam int year, @RequestParam int month, @RequestParam int day,
-			UriComponentsBuilder ucBuilder) {
-		appointmentDao.createAppointment(userId, docId, appHourId, year, month, day);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public boolean createAppointment(@RequestParam String userEmail, @RequestParam int docId,
+			@RequestParam int appHourId, @RequestParam String date) {
+		return appointmentDao.createAppointment(userEmail, docId, appHourId, date);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
