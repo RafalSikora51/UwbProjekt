@@ -36,7 +36,7 @@ import { DoctorDetailsService } from './doctors/doctor-details/doctor-details.se
 import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar/calendar.service';
-
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatDatepickerModule,
   MatButtonModule,
@@ -77,6 +77,7 @@ import {
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    NoopAnimationsModule,
   ],
   exports: [
     MatButtonModule,

@@ -1,18 +1,5 @@
-<mat-form-field>
+ <mat-form-field class="example-full-width">
     <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc">
     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    <mat-datepicker touchUi="true" #dp3 disabled="false"></mat-datepicker>
 </mat-form-field>
-
-<div class="container">
-    <a class="button is-dark is-medium" (click)="showInput()">Pokaż datę</a>
-</div>
-
-<div class="container">
-    <a class="button is-dark is-medium" (click)="showHoursEnable()">Test button</a>
-</div>
-
-<div *ngIf="showHours">
-
-    <h1>AAAAAAAAAAAAAAAaa</h1>
-</div>

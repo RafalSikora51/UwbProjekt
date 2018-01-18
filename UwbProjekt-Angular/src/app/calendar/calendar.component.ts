@@ -5,13 +5,16 @@ import { MatFormFieldControl } from '@angular/material/form-field/';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
   providers: [
+    
     { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
   ],
+  
 
 })
 

@@ -44,6 +44,7 @@ export class DoctorDetailsComponent implements OnInit {
     this.adapter.setLocale('pl');
     this.showHours = false;
     this.idDoctor = this.route.snapshot.paramMap.get('id');
+    this. getFreeHoursForDoctorFromGivenDay(this.idDoctor);
   }
 
   isUserLoggedIn() { return JSON.parse(localStorage.getItem('currentUser')) };

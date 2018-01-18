@@ -1,41 +1,103 @@
-<div *ngIf="doctor">
-  <h2>{{ doctor.firstName}} {{doctor.lastName}}</h2>
-  <div>
-    <span>id: </span>{{doctor.id}}</div>
-  <div>
-  </div>
-</div>
-
-<mat-form-field>
-  <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc" disabled>
-  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-</mat-form-field>
-
-
+<br>
+<br>
 <div class="container">
-  <a class="button is-dark is-medium" (click)="showHoursEnable()">Kliknij aby wyświetlić godziny</a>
-</div>
+  <div class="columns">
+    <div class="column is-3">
+      <aside class="menu">
+        <p class="menu-label">
+          Główne
+        </p>
+        <ul class="menu-list">
+          <li>
+            <a class="button is-danger is-medium">Kalendarz</a>
+          </li>
+          <br>
+        </ul>
+        <ul class="menu-list">
+          <li>
+            <mat-form-field class="example-full-width">
+              <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker touchUi="true" #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <br>
+          </li>
+          <li>
+            <br>
+            <br>
+            <a class="button is-dark is-medium" (click)="showHoursEnable()">Wyświetl wolne terminy</a>
+            <br>
+          </li>
+        </ul>
 
+      </aside>
+    </div>
+    <div class="column">
+      <div class="card article">
+        <div class="card-content">
+          <section class="hero is-dark welcome is-small">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  <i class="fa fa-user-md"></i>
+                  Szczegóły Doktora
+                </h1>
+                <h2 class="subtitle" s>
+                  <br>
+                </h2>
+              </div>
+            </div>
+          </section>
+          <div class="hero-body">
+            <div class="container has-text-centered">
+              <div class="columns is-vcentered">
+                <div class="column is-2">
+                  <figure class="image is-200x200">
+                    <img src="https://www.medicentres.com/wp-content/uploads/MedicalDoctorIcon.png" alt="Description">
+                  </figure>
+                </div>
+                <div *ngIf="doctor">
+                  <div class="column is-one-third is-offset-1">
+                    <h1 class="title is-2">
+                      {{doctor.firstName}} {{doctor.lastName}}
+                    </h1>
+                    <h2 class="subtitle is-4">
+                      {{doctor.email}}
+                    </h2>
+                    <br>
 
-
-<div *ngIf="showHours">
-
-  <div class="field-body">
-    <div class="field is-narrow">
-      <label class="label">Godzina</label>
-      <div class="control">
-        <div class="select">
-          <select [(ngModel)]="hourModel.id" placeholder="Wybierz godzinę" name="Godzina">
-            <option value={{apphour.id}} *ngFor="let apphour of apphours">{{apphour.hour}}</option>
-          </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="showHours">
+            <div class="columns">
+              <div class="column is-3">
+                <div class="field">
+                  <div class="field is-narrow">
+                    <label class="label">Wybierz godzinę</label>
+                    <div class="control">
+                      <div class="select is-large">
+                        <select [(ngModel)]="hourModel.id" placeholder="Wybierz godzinę" name="Godzina">
+                          <option value={{apphour.id}} *ngFor="let apphour of apphours">{{apphour.hour}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <a class="button is-dark is-medium is-outlined" (click)="createAppointment()">
+                    Zarezerwuj wizytę!
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="container">
-    <a class="button is-dark is-medium" (click)="createAppointment()">Kliknij aby zarejestrować się na wizytę</a>
-  </div>
-
+  <br>
+  <br>
 </div>
