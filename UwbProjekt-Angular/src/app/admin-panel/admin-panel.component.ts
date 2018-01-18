@@ -20,9 +20,7 @@ export class AdminPanelComponent implements OnInit {
   showAddSpec: boolean;
   showUsers: boolean;
   model: any = {};
-  doctors: Doctor[];
   specs: Spec[];
-  users: User[];
   doctorSpecs: any = {};
   specModel: any = {};
   loading = false;
@@ -43,21 +41,10 @@ export class AdminPanelComponent implements OnInit {
     this.showAddSpec = false;
     this.showDoctors = false;
     this.showUsers = false;
-    this.getDoctors();
     this.getSpecs();
-    this.getUsers();
   }
 
-  getDoctors(): void {
-    this.adminPanelService.getDoctors().subscribe(
-      doctors => {
-        this.doctors = doctors;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  
 
   createDoctor() {
     this.loading = true;
@@ -116,17 +103,7 @@ export class AdminPanelComponent implements OnInit {
     );
   }
 
-  getUsers(): void {
-    this.adminPanelService.getUsers().subscribe(
-      users => {
-        this.users = users;
-        console.table(this.users);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
+  
 
 
   clicked() {

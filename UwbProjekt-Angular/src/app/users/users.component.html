@@ -1,20 +1,20 @@
-<table>
+<table class="table is fullwidth is-striped">
   <thead class="thead">
-    <tr>
-      <th>Id</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Admin</th>
-    </tr>
+    <th>Id</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>E-mail</th>
+    <th>Administrator</th>
   </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.admin ? "Yes": "No"}}</td>
+  <tbody *ngFor="let user of users">
+    <tr>
+      <td width="10%">{{user.id}}</td>
+      <td width="10%">{{user.firstName}}</td>
+      <td width="10%">{{user.lastName}}</td>
+      <td width="10%">{{user.email}}</td>
+      <td width="10%">{{user.admin ? "Tak": "Nie"}}</td>
+      <br>
+      <br>
     </tr>
   </tbody>
 </table>

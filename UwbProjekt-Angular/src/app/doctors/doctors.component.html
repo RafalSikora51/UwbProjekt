@@ -1,0 +1,23 @@
+<table class="table is fullwidth is-striped">
+        <thead class="thead">
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>E-mail</th>
+          <th>Administrator</th>
+          <th>Specid</th>
+        </thead>
+        <tbody *ngFor="let doctor of doctors">
+          <tr>
+            <td width="10%">{{doctor.firstName}}</td>
+            <td width="10%">{{doctor.lastName}}</td>
+            <td width="10%">{{doctor.email}}</td>
+            <td width="10%">{{doctor.admin ? "Tak": "Nie"}}</td>
+            <td width="10%">{{doctor.specId}}</td>
+            <td>
+              <a class="button is-small is-primary" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>
+            </td>
+            <br>
+            <br>
+          </tr>
+        </tbody>
+      </table>

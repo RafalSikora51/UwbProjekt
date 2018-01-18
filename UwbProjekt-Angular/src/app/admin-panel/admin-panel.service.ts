@@ -56,22 +56,10 @@ export class AdminPanelService {
         }
       });
   }
-  public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.USERS_API_URL)
-      .pipe(
-      tap(users => this.log(`fetched users`)),
-      catchError(this.handleError('getUsers', []))
-      );
-  }
+  
 
 
-  public getDoctors(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.DOCTORS_API_URL)
-      .pipe(
-      tap(doctors => this.log(`fetched doctors`)),
-      catchError(this.handleError('getDoctors', []))
-      );
-  }
+ 
 
 
   public getSpecs(): Observable<Spec[]> {

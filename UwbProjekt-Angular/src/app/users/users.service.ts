@@ -10,12 +10,12 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UsersService {
-  private static readonly API_URL: string = '//localhost:9080/users'
+  private USERS_API_URL: string = '//localhost:9080/users'
 
   constructor(private http: HttpClient) { }
 
   create(user: User) {
-    return this.http.post(UsersService.API_URL, user);
+    return this.http.post(this.USERS_API_URL, user);
 }
 
 
@@ -29,6 +29,14 @@ export class UsersService {
 
   private log(message: string) {
     console.log(message);
+  }
+
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.USERS_API_URL)
+      .pipe(
+      tap(users => this.log(`fetched users`)),
+      catchError(this.handleError('getUsers', []))
+      );
   }
 
 

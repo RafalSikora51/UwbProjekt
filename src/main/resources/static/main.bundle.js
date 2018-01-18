@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/admin-panel/admin-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a href=\"/adminpanel\" routerLinkActive=\"active\" class=\"button is-danger is-medium\">Panel Główny</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Lekarze\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"addDoctorEnable()\">Dodaj Lekarza</a>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showDoctorsEnable()\">Lista Lekarzy</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Użytkownicy\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showUsersEnable()\">Lista Użytkowników</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Specjalizacje\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"addSpecEnable()\">Dodaj Specjalizacje</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <a class=\"button is-danger\">Wyloguj</a>\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                    <i class=\"fa fa-user-secret\"></i>\r\n                  Panel Administratora\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <br>\r\n          <br>\r\n          <!-- DODAWANIE LEKARZA -->\r\n          <div *ngIf=\"showAddDoctor\">\r\n            <form id=\"doctorForm\" (ngSubmit)=\"onSubmit()\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                <div class=\"hero-body\">\r\n                  <div class=\"container\">\r\n                    <h1 class=\"title\">\r\n                      <i class=\"fa fa-user-md\"></i>\r\n                      Dodaj Lekarza\r\n                    </h1>\r\n                    <h2 class=\"subtitle\">\r\n                    </h2>\r\n                  </div>\r\n                </div>\r\n              </section>\r\n              <br>\r\n              <div class=\"column is-4\">\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Pesel</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Pesel Lekarza\" name=\"Pesel\">\r\n\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">E-mail</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Nazwisko</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Imię</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n                  </div>\r\n                </div>\r\n\r\n                <div class=\"field-body\">\r\n                  <div class=\"field is-narrow\">\r\n                    <label class=\"label\">Specjalizacja</label>\r\n                    <div class=\"control\">\r\n                      <div class=\"select\">\r\n                        <select [(ngModel)]=\"specModel.specName\" placeholder=\"Wybierz specjalizacje\" name=\"Specjalizacja\">\r\n                          <option value={{spec.name}} *ngFor=\"let spec of specs\">{{spec.name}}</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <div class=\"field\">\r\n                  <div class=\"control\">\r\n                    <label class=\"checkbox\">\r\n                      <input type=\"checkbox\" (click)=\"clicked()\" [checked]=\"checkbox\" (change)=\"changed($event)\" /> Nadać uprawnienia administratora?\r\n                    </label>\r\n                  </div>\r\n                </div>\r\n                <div class=\"field is-grouped\">\r\n                  <div class=\"control\">\r\n                    <button class=\"button is-primary\">Dodaj</button>\r\n                  </div>\r\n                  <div class=\"control\">\r\n                    <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n\r\n          <!-- CREATE SPEC -->\r\n          <div *ngIf=\"showAddSpec\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-briefcase\"></i>\r\n                        Dodaj Specjalizację\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <form id=\"specForm\" (ngSubmit)=\"onSpecSubmit()\">\r\n              <div class=\"column is-4\">\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Specjalizacja</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"specModel.specName\" placeholder=\"Wpisz specjalizacje\" name=\"Specjalizacja\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field is-grouped\">\r\n                  <div class=\"control\">\r\n                    <button class=\"button is-primary\">Dodaj</button>\r\n                  </div>\r\n                  <div class=\"control\">\r\n                    <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n          <!--  GET DOCTORS   -->\r\n          <div *ngIf=\"showDoctors\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-heartbeat\"></i>\r\n                        Lekarze dostępni w systemie\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <table class=\"table is fullwidth is-striped\">\r\n              <thead class=\"thead\">\r\n                <th>Imię</th>\r\n                <th>Nazwisko</th>\r\n                <th>E-mail</th>\r\n                <th>Szczegóły</th>\r\n              </thead>\r\n              <tbody *ngFor=\"let doctor of doctors\">\r\n                <tr>\r\n                  <td width=\"10%\">{{doctor.firstName}}</td>\r\n                  <td width=\"10%\">{{doctor.lastName}}</td>\r\n                  <td width=\"10%\">{{doctor.email}}</td>\r\n                  <td>\r\n                    <a class=\"button is-small is-primary\" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>\r\n                  </td>\r\n                  <br>\r\n                  <br>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <!--  GET USERS   -->\r\n          <div *ngIf=\"showUsers\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-users\"></i>\r\n                        Użytkownicy dostępni w systemie\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <table class=\"table is fullwidth is-striped\">\r\n              <thead class=\"thead\">\r\n                <th>Imię</th>\r\n                <th>Nazwisko</th>\r\n                <th>E-mail</th>\r\n                <th>Szczegóły</th>\r\n              </thead>\r\n              <tbody *ngFor=\"let user of users\">\r\n                <tr>\r\n                  <td width=\"10%\">{{user.firstName}}</td>\r\n                  <td width=\"10%\">{{user.lastName}}</td>\r\n                  <td width=\"10%\">{{user.email}}</td>\r\n                  <br>\r\n                  <br>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a href=\"/adminpanel\" routerLinkActive=\"active\" class=\"button is-danger is-medium\">Panel Główny</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Lekarze\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"addDoctorEnable()\">Dodaj Lekarza</a>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showDoctorsEnable()\">Lista Lekarzy</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Użytkownicy\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showUsersEnable()\">Lista Użytkowników</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Specjalizacje\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"addSpecEnable()\">Dodaj Specjalizacje</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n        <a class=\"button is-danger\">Wyloguj</a>\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                    <i class=\"fa fa-user-secret\"></i>\r\n                  Panel Administratora\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <br>\r\n          <br>\r\n          <!-- DODAWANIE LEKARZA -->\r\n          <div *ngIf=\"showAddDoctor\">\r\n            <form id=\"doctorForm\" (ngSubmit)=\"onSubmit()\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                <div class=\"hero-body\">\r\n                  <div class=\"container\">\r\n                    <h1 class=\"title\">\r\n                      <i class=\"fa fa-user-md\"></i>\r\n                      Dodaj Lekarza\r\n                    </h1>\r\n                    <h2 class=\"subtitle\">\r\n                    </h2>\r\n                  </div>\r\n                </div>\r\n              </section>\r\n              <br>\r\n              <div class=\"column is-4\">\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Pesel</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.countryId\" placeholder=\"Pesel Lekarza\" name=\"Pesel\">\r\n\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">E-mail</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input \" type=\"text\" [(ngModel)]=\"model.email\" placeholder=\"E-mail\" name=\"Email\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Nazwisko</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.lastName\" placeholder=\"Nazwisko\" name=\"Nazwisko\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Imię</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"model.firstName\" placeholder=\"Imię\" name=\"Imie\">\r\n                  </div>\r\n                </div>\r\n\r\n                <div class=\"field-body\">\r\n                  <div class=\"field is-narrow\">\r\n                    <label class=\"label\">Specjalizacja</label>\r\n                    <div class=\"control\">\r\n                      <div class=\"select\">\r\n                        <select [(ngModel)]=\"specModel.specName\" placeholder=\"Wybierz specjalizacje\" name=\"Specjalizacja\">\r\n                          <option value={{spec.name}} *ngFor=\"let spec of specs\">{{spec.name}}</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <div class=\"field\">\r\n                  <div class=\"control\">\r\n                    <label class=\"checkbox\">\r\n                      <input type=\"checkbox\" (click)=\"clicked()\" [checked]=\"checkbox\" (change)=\"changed($event)\" /> Nadać uprawnienia administratora?\r\n                    </label>\r\n                  </div>\r\n                </div>\r\n                <div class=\"field is-grouped\">\r\n                  <div class=\"control\">\r\n                    <button class=\"button is-primary\">Dodaj</button>\r\n                  </div>\r\n                  <div class=\"control\">\r\n                    <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n\r\n          <!-- CREATE SPEC -->\r\n          <div *ngIf=\"showAddSpec\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-briefcase\"></i>\r\n                        Dodaj Specjalizację\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <form id=\"specForm\" (ngSubmit)=\"onSpecSubmit()\">\r\n              <div class=\"column is-4\">\r\n                <div class=\"field\">\r\n                  <label class=\"label\">Specjalizacja</label>\r\n                  <div class=\"control has-icons-left has-icons-right\">\r\n                    <input class=\"input\" type=\"text\" [(ngModel)]=\"specModel.specName\" placeholder=\"Wpisz specjalizacje\" name=\"Specjalizacja\">\r\n                  </div>\r\n                </div>\r\n                <div class=\"field is-grouped\">\r\n                  <div class=\"control\">\r\n                    <button class=\"button is-primary\">Dodaj</button>\r\n                  </div>\r\n                  <div class=\"control\">\r\n                    <button routerLink='./' class=\"button is-text\">Cancel</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n          <!--  GET DOCTORS   -->\r\n          <div *ngIf=\"showDoctors\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-heartbeat\"></i>\r\n                        Lekarze dostępni w systemie\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <app-doctors></app-doctors>\r\n          </div>\r\n          <!--  GET USERS   -->\r\n          <div *ngIf=\"showUsers\">\r\n              <section class=\"hero is-dark is-bold is-small promo-block\">\r\n                  <div class=\"hero-body\">\r\n                    <div class=\"container\">\r\n                      <h1 class=\"title\">\r\n                        <i class=\"fa fa-users\"></i>\r\n                        Użytkownicy dostępni w systemie\r\n                      </h1>\r\n                      <h2 class=\"subtitle\">\r\n                      </h2>\r\n                    </div>\r\n                  </div>\r\n                </section>\r\n                <br>\r\n            <app-users></app-users> \r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -82,17 +82,7 @@ var AdminPanelComponent = (function () {
         this.showAddSpec = false;
         this.showDoctors = false;
         this.showUsers = false;
-        this.getDoctors();
         this.getSpecs();
-        this.getUsers();
-    };
-    AdminPanelComponent.prototype.getDoctors = function () {
-        var _this = this;
-        this.adminPanelService.getDoctors().subscribe(function (doctors) {
-            _this.doctors = doctors;
-        }, function (error) {
-            console.log(error);
-        });
     };
     AdminPanelComponent.prototype.createDoctor = function () {
         var _this = this;
@@ -141,15 +131,6 @@ var AdminPanelComponent = (function () {
         this.adminPanelService.getSpecs().subscribe(function (specs) {
             _this.specs = specs;
             console.table(_this.specs);
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    AdminPanelComponent.prototype.getUsers = function () {
-        var _this = this;
-        this.adminPanelService.getUsers().subscribe(function (users) {
-            _this.users = users;
-            console.table(_this.users);
         }, function (error) {
             console.log(error);
         });
@@ -298,16 +279,6 @@ var AdminPanelService = (function () {
                 return false;
             }
         });
-    };
-    AdminPanelService.prototype.getUsers = function () {
-        var _this = this;
-        return this.http.get(this.USERS_API_URL)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
-    };
-    AdminPanelService.prototype.getDoctors = function () {
-        var _this = this;
-        return this.http.get(this.DOCTORS_API_URL)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (doctors) { return _this.log("fetched doctors"); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError('getDoctors', [])));
     };
     AdminPanelService.prototype.getSpecs = function () {
         var _this = this;
@@ -819,7 +790,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctor-panel/doctor-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  doctor-panel works!\n</p>\n"
+module.exports = "<p>\r\n  doctor-panel works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -954,7 +925,6 @@ var DoctorDetailsComponent = (function () {
         this.adapter.setLocale('pl');
         this.showHours = false;
         this.idDoctor = this.route.snapshot.paramMap.get('id');
-        this.getFreeHoursForDoctorFromGivenDay(this.idDoctor);
     };
     DoctorDetailsComponent.prototype.isUserLoggedIn = function () { return JSON.parse(localStorage.getItem('currentUser')); };
     ;
@@ -1148,7 +1118,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctors/doctors.component.html":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<table class=\"table is fullwidth is-striped\">\r\n        <thead class=\"thead\">\r\n          <th>Imię</th>\r\n          <th>Nazwisko</th>\r\n          <th>E-mail</th>\r\n          <th>Administrator</th>\r\n          <th>Specid</th>\r\n        </thead>\r\n        <tbody *ngFor=\"let doctor of doctors\">\r\n          <tr>\r\n            <td width=\"10%\">{{doctor.firstName}}</td>\r\n            <td width=\"10%\">{{doctor.lastName}}</td>\r\n            <td width=\"10%\">{{doctor.email}}</td>\r\n            <td width=\"10%\">{{doctor.admin ? \"Tak\": \"Nie\"}}</td>\r\n            <td width=\"10%\">{{doctor.specId}}</td>\r\n            <td>\r\n              <a class=\"button is-small is-primary\" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>\r\n            </td>\r\n            <br>\r\n            <br>\r\n          </tr>\r\n        </tbody>\r\n      </table>"
 
 /***/ }),
 
@@ -1233,12 +1203,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DoctorsService = (function () {
     function DoctorsService(http) {
         this.http = http;
+        this.DOCTORS_API_URL = '//localhost:9080/doctors';
     }
-    DoctorsService_1 = DoctorsService;
     DoctorsService.prototype.getDoctors = function () {
         var _this = this;
-        return this.http.get(DoctorsService_1.API_URL)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched doctors"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getDoctors', [])));
+        return this.http.get(this.DOCTORS_API_URL)
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (doctors) { return _this.log("fetched doctors"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getDoctors', [])));
     };
     DoctorsService.prototype.handleError = function (operation, result) {
         var _this = this;
@@ -1252,13 +1222,11 @@ var DoctorsService = (function () {
     DoctorsService.prototype.log = function (message) {
         console.log(message);
     };
-    DoctorsService.API_URL = '//localhost:9080/doctors';
-    DoctorsService = DoctorsService_1 = __decorate([
+    DoctorsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], DoctorsService);
     return DoctorsService;
-    var DoctorsService_1;
 }());
 
 
@@ -2091,7 +2059,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/specdetails/specdetails.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"section\">\n  <div class=\"container\">\n  </div>\n</section>\n<div class=\"hero-body\">\n  <div class=\"container has-text-centered\" *ngFor=\"let doctor of doctors\">\n    <div class=\"columns is-vcentered\">\n      <div class=\"column is-4\">\n        <figure>\n          <img src=\"http://placehold.it/800x600\" alt=\"Description\">\n        </figure>\n      </div>\n      <div class=\"column is-half is-offset-2\">\n        <h1 class=\"title is-2\">\n          {{doctor.firstName}} {{doctor.lastName}}\n        </h1>\n        <h2 class=\"subtitle is-4\">\n          {{doctor.email}}\n        </h2>\n        <br>\n        <p class=\"has-text-centered\">\n          <a href='/doctors/{{doctor.id}}' class=\"button is-medium is-info is-outlined\">\n            Zarezerwuj wizytę!\n          </a>\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<section class=\"section\">\r\n  <div class=\"container\">\r\n  </div>\r\n</section>\r\n<div class=\"hero-body\">\r\n  <div class=\"container has-text-centered\" *ngFor=\"let doctor of doctors\">\r\n    <div class=\"columns is-vcentered\">\r\n      <div class=\"column is-4\">\r\n        <figure>\r\n          <img src=\"http://placehold.it/800x600\" alt=\"Description\">\r\n        </figure>\r\n      </div>\r\n      <div class=\"column is-half is-offset-2\">\r\n        <h1 class=\"title is-2\">\r\n          {{doctor.firstName}} {{doctor.lastName}}\r\n        </h1>\r\n        <h2 class=\"subtitle is-4\">\r\n          {{doctor.email}}\r\n        </h2>\r\n        <br>\r\n        <p class=\"has-text-centered\">\r\n          <a href='/doctors/{{doctor.id}}' class=\"button is-medium is-info is-outlined\">\r\n            Zarezerwuj wizytę!\r\n          </a>\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -2371,7 +2339,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user-panel/user-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<br>\n<div class=\"container\">\n  <div class=\"columns\">\n    <div class=\"column is-3\">\n      <aside class=\"menu\">\n        <p class=\"menu-label\">\n          Główne\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n            <a href=\"/userpanel\" routerLinkActive=\"active\" class=\"button is-primary is-medium\">Moje konto</a>\n          </li>\n        </ul>\n        <p class=\"menu-label\">\n          Wizyty\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n            <br>\n            <a class=\"button is-dark is-medium\" routerLink=\"/specs\">Zarezerwuj wizytę</a>\n          </li>\n          <li>\n            <br>\n            <a class=\"button is-dark is-medium\" (click)=\"showAppointmentsEnable()\">Wyświetl moje wizyty</a>\n          </li>\n        </ul>\n        <p class=\"menu-label\">\n          Lekarze\n        </p>\n        <ul class=\"menu-list\">\n          <li>\n\n            <a class=\"button is-dark is-medium\" (click)=\"showDoctorsEnable()\">Wyświetl lekarzy</a>\n          </li>\n        </ul>\n        <br>\n        <a class=\"button is-danger\">Wyloguj</a>\n      </aside>\n    </div>\n    <div class=\"column\">\n      <div class=\"card article\">\n        <div class=\"card-content\">\n          <section class=\"hero is-dark welcome is-small\">\n            <div class=\"hero-body\">\n              <div class=\"container\">\n                <h1 class=\"title\">\n                  <i class=\"fa fa-user-circle\"></i>\n                  Panel Użytkownika\n                </h1>\n                <h2 class=\"subtitle\" s>\n                  <br>\n                </h2>\n              </div>\n            </div>\n          </section>\n          <br>\n          <br>\n          <!--  GET DOCTORS   -->\n          <div *ngIf=\"showDoctors\">\n            <section class=\"hero is-dark is-bold is-small promo-block\">\n              <div class=\"hero-body\">\n                <div class=\"container\">\n                  <h1 class=\"title\">\n                    <i class=\"fa fa-heartbeat\"></i>\n                    Specjaliści Kliniki\n                  </h1>\n                  <h2 class=\"subtitle\">\n                  </h2>\n                </div>\n              </div>\n            </section>\n            <br>\n            <table class=\"table is fullwidth is-striped\">\n              <thead class=\"thead\">\n                <th>Imię</th>\n                <th>Nazwisko</th>\n                <th>E-mail</th>\n                <th>Szczegóły</th>\n              </thead>\n              <tbody *ngFor=\"let doctor of doctors\">\n                <tr>\n                  <td width=\"10%\">{{doctor.firstName}}</td>\n                  <td width=\"10%\">{{doctor.lastName}}</td>\n                  <td width=\"10%\">{{doctor.email}}</td>\n                  <td>\n                    <a class=\"button is-small is-primary\" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>\n                  </td>\n                  <br>\n                  <br>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n          <!--  WYŚWIETLANIE WIZYT  -->\n          <div *ngIf=\"showAppointments\">\n            <section class=\"hero is-dark is-bold is-small promo-block\">\n              <div class=\"hero-body\">\n                <div class=\"container\">\n                  <h1 class=\"title\">\n                    <i class=\"fa fa-thumb-tack\"></i>\n                    Aktualnie zarezerwowane wizyty\n                  </h1>\n                  <h2 class=\"subtitle\">\n                  </h2>\n                </div>\n              </div>\n            </section>\n            <br>\n            <h1>Kalendarz</h1>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a href=\"/userpanel\" routerLinkActive=\"active\" class=\"button is-primary is-medium\">Moje konto</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Wizyty\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <br>\r\n            <a class=\"button is-dark is-medium\" routerLink=\"/specs\">Zarezerwuj wizytę</a>\r\n          </li>\r\n          <li>\r\n            <br>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showAppointmentsEnable()\">Wyświetl moje wizyty</a>\r\n          </li>\r\n        </ul>\r\n        <p class=\"menu-label\">\r\n          Lekarze\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n\r\n            <a class=\"button is-dark is-medium\" (click)=\"showDoctorsEnable()\">Wyświetl lekarzy</a>\r\n          </li>\r\n        </ul>\r\n        <br>\r\n        <a class=\"button is-danger\">Wyloguj</a>\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                  <i class=\"fa fa-user-circle\"></i>\r\n                  Panel Użytkownika\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <br>\r\n          <br>\r\n          <!--  GET DOCTORS   -->\r\n          <div *ngIf=\"showDoctors\">\r\n            <section class=\"hero is-dark is-bold is-small promo-block\">\r\n              <div class=\"hero-body\">\r\n                <div class=\"container\">\r\n                  <h1 class=\"title\">\r\n                    <i class=\"fa fa-heartbeat\"></i>\r\n                    Specjaliści Kliniki\r\n                  </h1>\r\n                  <h2 class=\"subtitle\">\r\n                  </h2>\r\n                </div>\r\n              </div>\r\n            </section>\r\n            <br>\r\n            <table class=\"table is fullwidth is-striped\">\r\n              <thead class=\"thead\">\r\n                <th>Imię</th>\r\n                <th>Nazwisko</th>\r\n                <th>E-mail</th>\r\n                <th>Szczegóły</th>\r\n              </thead>\r\n              <tbody *ngFor=\"let doctor of doctors\">\r\n                <tr>\r\n                  <td width=\"10%\">{{doctor.firstName}}</td>\r\n                  <td width=\"10%\">{{doctor.lastName}}</td>\r\n                  <td width=\"10%\">{{doctor.email}}</td>\r\n                  <td>\r\n                    <a class=\"button is-small is-primary\" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>\r\n                  </td>\r\n                  <br>\r\n                  <br>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <!--  WYŚWIETLANIE WIZYT  -->\r\n          <div *ngIf=\"showAppointments\">\r\n            <section class=\"hero is-dark is-bold is-small promo-block\">\r\n              <div class=\"hero-body\">\r\n                <div class=\"container\">\r\n                  <h1 class=\"title\">\r\n                    <i class=\"fa fa-thumb-tack\"></i>\r\n                    Aktualnie zarezerwowane wizyty\r\n                  </h1>\r\n                  <h2 class=\"subtitle\">\r\n                  </h2>\r\n                </div>\r\n              </div>\r\n            </section>\r\n            <br>\r\n            <h1>Kalendarz</h1>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -2515,7 +2483,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\n  <thead class=\"thead\">\n    <tr>\n      <th>Id</th>\n      <th>First name</th>\n      <th>Last name</th>\n      <th>Email</th>\n      <th>Admin</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users\">\n      <td>{{user.id}}</td>\n      <td>{{user.firstName}}</td>\n      <td>{{user.lastName}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.admin ? \"Yes\": \"No\"}}</td>\n    </tr>\n  </tbody>\n</table>"
+module.exports = "<table class=\"table is fullwidth is-striped\">\r\n  <thead class=\"thead\">\r\n    <th>Id</th>\r\n    <th>Imię</th>\r\n    <th>Nazwisko</th>\r\n    <th>E-mail</th>\r\n    <th>Administrator</th>\r\n  </thead>\r\n  <tbody *ngFor=\"let user of users\">\r\n    <tr>\r\n      <td width=\"10%\">{{user.id}}</td>\r\n      <td width=\"10%\">{{user.firstName}}</td>\r\n      <td width=\"10%\">{{user.lastName}}</td>\r\n      <td width=\"10%\">{{user.email}}</td>\r\n      <td width=\"10%\">{{user.admin ? \"Tak\": \"Nie\"}}</td>\r\n      <br>\r\n      <br>\r\n    </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 
@@ -2542,6 +2510,16 @@ var UsersComponent = (function () {
         this.userService = userService;
     }
     UsersComponent.prototype.ngOnInit = function () {
+        this.getUsers();
+    };
+    UsersComponent.prototype.getUsers = function () {
+        var _this = this;
+        this.userService.getUsers().subscribe(function (users) {
+            _this.users = users;
+            console.table(_this.users);
+        }, function (error) {
+            console.log(error);
+        });
     };
     UsersComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -2569,7 +2547,8 @@ var UsersComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2585,13 +2564,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UsersService = (function () {
     function UsersService(http) {
         this.http = http;
+        this.USERS_API_URL = '//localhost:9080/users';
     }
-    UsersService_1 = UsersService;
     UsersService.prototype.create = function (user) {
-        return this.http.post(UsersService_1.API_URL, user);
+        return this.http.post(this.USERS_API_URL, user);
     };
     UsersService.prototype.handleError = function (operation, result) {
         var _this = this;
@@ -2599,19 +2579,22 @@ var UsersService = (function () {
         return function (error) {
             console.error(error);
             _this.log(operation + " failed: " + error.message);
-            return Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     UsersService.prototype.log = function (message) {
         console.log(message);
     };
-    UsersService.API_URL = '//localhost:9080/users';
-    UsersService = UsersService_1 = __decorate([
+    UsersService.prototype.getUsers = function () {
+        var _this = this;
+        return this.http.get(this.USERS_API_URL)
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
+    };
+    UsersService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], UsersService);
     return UsersService;
-    var UsersService_1;
 }());
 
 

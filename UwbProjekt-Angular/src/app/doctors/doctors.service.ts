@@ -11,14 +11,13 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class DoctorsService {
-  private static readonly API_URL: string = '//localhost:9080/doctors'
+  private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   constructor(private http: HttpClient) { }
 
-
-  public getDoctors(): Observable<Doctor[]>{
-    return this.http.get<Doctor[]>(DoctorsService.API_URL)
-    .pipe(
-      tap(users => this.log(`fetched doctors`)),
+  public getDoctors(): Observable<Doctor[]> {
+    return this.http.get<Doctor[]>(this.DOCTORS_API_URL)
+      .pipe(
+      tap(doctors => this.log(`fetched doctors`)),
       catchError(this.handleError('getDoctors', []))
       );
   }
