@@ -1,12 +1,15 @@
 package pl.edu.uwb.server.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import pl.edu.uwb.server.entity.Specialization;
@@ -22,6 +25,9 @@ public class SpecializationDao {
 	private static final String CREATED_VALUE = "CREATED";
 	private static final String STATUS = "status";
 	private static final String CREATED_KEY = "created";
+
+	@Autowired
+	private DoctorDao doctorDao;
 
 	public boolean validSpecDetails(String specName) {
 		return specName.length() >= 2;
@@ -92,6 +98,36 @@ public class SpecializationDao {
 			logger.info("There is no such Specialization.");
 			return Optional.empty();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Integer> countDoctorsBySpec(int specId) {
+		logger.debug("countDoctorsBySpec");
+		List<Integer> sepcs;
+		Session session = SessionConnection.getSessionFactory().openSession();
+		String hql = "Select COUNT(ID) from Doctor where specId = :id";
+		Query query = session.createQuery(hql);
+		query.setParameter("id", specId);
+		sepcs = query.list();
+		SessionConnection.shutdown(session);
+		logger.info("Doctors counted.");
+		return sepcs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<JSONObject> countDoctorsBySpecJSON() {
+		List<Specialization> specs = findAllSpecializations();
+		logger.debug("countDoctorsBySpecJSON");
+		List<JSONObject> specsData = new ArrayList<>();
+
+		for (Specialization spec : specs) {
+			JSONObject doctors = new JSONObject();
+			doctors.put("id", spec.getId());
+			doctors.put("count", doctorDao.findDoctorsBySpecId(spec.getId()).size());
+			specsData.add(doctors);
+		}
+
+		return specsData;
 	}
 
 }

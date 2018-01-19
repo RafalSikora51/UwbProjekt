@@ -78,5 +78,15 @@ public class SpecializationController {
 		}
 		return new ResponseEntity<List<Doctor>>(doctors, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/count", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<JSONObject>> countDoctorsBySpec() {
+		List<JSONObject> stats = specializationDao.countDoctorsBySpecJSON();
+		if (!stats.isEmpty()) {
+			return new ResponseEntity<List<JSONObject>>(stats, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<List<JSONObject>>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 }

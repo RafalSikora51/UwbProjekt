@@ -10,7 +10,7 @@ import { Spec } from '../shared/model/spec';
 })
 export class SpecsComponent implements OnInit {
 
-  specs: Spec[];
+  public specs:  Spec[];
 
   constructor(private specService: SpecsService) { }
 
@@ -22,6 +22,19 @@ export class SpecsComponent implements OnInit {
     this.specService.getSpecs().subscribe(
       specs => {
         this.specs = specs;
+        console.table(this.specs);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  getSpecs2(listOfSpecs:  Spec[]): void {
+    this.specService.getSpecs().subscribe(
+      specs => {
+        listOfSpecs = specs;
         console.table(this.specs);
       },
       error => {

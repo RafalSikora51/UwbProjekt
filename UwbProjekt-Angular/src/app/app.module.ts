@@ -36,7 +36,9 @@ import { DoctorDetailsService } from './doctors/doctor-details/doctor-details.se
 import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar/calendar.service';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { SpecsStatsComponent } from './specs-stats/specs-stats.component';
+import { SpecsStatsService } from './specs-stats/specs-stats.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatDatepickerModule,
   MatButtonModule,
@@ -45,6 +47,7 @@ import {
   MatRippleModule,
   MatNativeDateModule
 } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import {
     RegisterComponent,
     DoctorDetailsComponent,
     CalendarComponent,
+    SpecsStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import {
     SpecdetailsService, UserPanelService, AdminPanelService,
     DoctorPanelService, AuthGuard, DoctorPanelGuard,
     AdminPanelGuard, AlertService, AuthenticationService,
-    RegisterService, DoctorDetailsService, CalendarService],
+    RegisterService, DoctorDetailsService, CalendarService, SpecsStatsService,
+    SpecsComponent],
 
   bootstrap: [AppComponent]
 })

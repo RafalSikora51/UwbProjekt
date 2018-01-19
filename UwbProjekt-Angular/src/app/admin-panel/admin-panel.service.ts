@@ -16,7 +16,6 @@ export class AdminPanelService {
 
   private CREATE_API_URL: any = '//localhost:9080/doctors?specName='
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
-  private SPEC_API_URL: string = '//localhost:9080/specs/'
   private USERS_API_URL: string = '//localhost:9080/users'
   private ADD_SPEC_API_URL: string = '//localhost:9080/specs?specName='
 
@@ -57,30 +56,10 @@ export class AdminPanelService {
       });
   }
   
-
+  
 
  
 
-
-  public getSpecs(): Observable<Spec[]> {
-    return this.http.get<Spec[]>(this.SPEC_API_URL)
-      .pipe(
-      tap(specs => this.log(`fetched specs`)),
-      catchError(this.handleError('getSpecs', []))
-      );
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    console.log(message);
-  }
 
 }
 

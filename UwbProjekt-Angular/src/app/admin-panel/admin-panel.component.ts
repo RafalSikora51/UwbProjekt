@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../admin-panel/admin-panel.service';
+import { SpecsService } from '../specs/specs.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -18,9 +19,9 @@ export class AdminPanelComponent implements OnInit {
   showAddDoctor: boolean;
   showDoctors: boolean;
   showAddSpec: boolean;
+  showSpec: boolean;
   showUsers: boolean;
   model: any = {};
-  specs: Spec[];
   doctorSpecs: any = {};
   specModel: any = {};
   loading = false;
@@ -29,11 +30,14 @@ export class AdminPanelComponent implements OnInit {
   createDocForm: any;
   createSpecForm: any;
 
+  specs: Spec[];
+
   error: String = '';
   constructor(private route: ActivatedRoute,
     private router: Router,
     private adminPanelService: AdminPanelService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private specsService: SpecsService) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -41,10 +45,22 @@ export class AdminPanelComponent implements OnInit {
     this.showAddSpec = false;
     this.showDoctors = false;
     this.showUsers = false;
+    this.showSpec = false;
     this.getSpecs();
   }
 
-  
+  getSpecs(): void {
+    this.specsService.getSpecs().subscribe(
+      specs => {
+        this.specs = specs;
+        console.table(this.specs);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
 
   createDoctor() {
     this.loading = true;
@@ -90,21 +106,6 @@ export class AdminPanelComponent implements OnInit {
       },
       () => console.log('done!'));
   }
-
-  getSpecs(): void {
-    this.adminPanelService.getSpecs().subscribe(
-      specs => {
-        this.specs = specs;
-        console.table(this.specs);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  
-
 
   clicked() {
     console.log('click')
@@ -157,6 +158,17 @@ export class AdminPanelComponent implements OnInit {
       this.showUsers = false;
     }
   }
+
+  showSpecEnable() {
+    if (this.showSpec == false) {
+      this.showSpec = true;
+    } else {
+      this.showSpec = false;
+    }
+  }
+
+
+
   addSpecEnable() {
     if (this.showAddSpec == false)
       this.showAddSpec = true;

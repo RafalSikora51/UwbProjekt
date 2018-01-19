@@ -42,6 +42,10 @@
             <a class="button is-dark is-medium" (click)="addSpecEnable()">Dodaj Specjalizacje</a>
             <br>
           </li>
+          <li>
+            <a class="button is-dark is-medium" (click)="showSpecEnable()">Lista specjalizacji</a>
+            <br>
+          </li>
         </ul>
         <a class="button is-danger">Wyloguj</a>
       </aside>
@@ -53,7 +57,7 @@
             <div class="hero-body">
               <div class="container">
                 <h1 class="title">
-                    <i class="fa fa-user-secret"></i>
+                  <i class="fa fa-user-secret"></i>
                   Panel Administratora
                 </h1>
                 <h2 class="subtitle" s>
@@ -141,19 +145,19 @@
 
           <!-- CREATE SPEC -->
           <div *ngIf="showAddSpec">
-              <section class="hero is-dark is-bold is-small promo-block">
-                  <div class="hero-body">
-                    <div class="container">
-                      <h1 class="title">
-                        <i class="fa fa-briefcase"></i>
-                        Dodaj Specjalizację
-                      </h1>
-                      <h2 class="subtitle">
-                      </h2>
-                    </div>
-                  </div>
-                </section>
-                <br>
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-briefcase"></i>
+                    Dodaj Specjalizację
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
             <form id="specForm" (ngSubmit)="onSpecSubmit()">
               <div class="column is-4">
                 <div class="field">
@@ -175,38 +179,57 @@
           </div>
           <!--  GET DOCTORS   -->
           <div *ngIf="showDoctors">
-              <section class="hero is-dark is-bold is-small promo-block">
-                  <div class="hero-body">
-                    <div class="container">
-                      <h1 class="title">
-                        <i class="fa fa-heartbeat"></i>
-                        Lekarze dostępni w systemie
-                      </h1>
-                      <h2 class="subtitle">
-                      </h2>
-                    </div>
-                  </div>
-                </section>
-                <br>
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-heartbeat"></i>
+                    Lekarze dostępni w systemie
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
             <app-doctors></app-doctors>
           </div>
           <!--  GET USERS   -->
           <div *ngIf="showUsers">
-              <section class="hero is-dark is-bold is-small promo-block">
-                  <div class="hero-body">
-                    <div class="container">
-                      <h1 class="title">
-                        <i class="fa fa-users"></i>
-                        Użytkownicy dostępni w systemie
-                      </h1>
-                      <h2 class="subtitle">
-                      </h2>
-                    </div>
-                  </div>
-                </section>
-                <br>
-            <app-users></app-users> 
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Użytkownicy dostępni w systemie
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <app-users></app-users>
           </div>
+
+          <!--  GET SPECS   -->
+          <div *ngIf="showSpec">
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Specjalizacje dostępne w systemie
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <app-specs-stats></app-specs-stats>
+          </div>
+
         </div>
       </div>
     </div>
