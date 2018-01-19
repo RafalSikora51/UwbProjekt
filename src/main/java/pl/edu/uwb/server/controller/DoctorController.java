@@ -119,4 +119,9 @@ public class DoctorController {
 				appointmentHourDao.findAllNotTakenHoursForDoctorFromGivenDay(id, date), HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/{id}/admin", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean changeDoctorAdminRights(@PathVariable int id) {
+		return doctorDao.changeDoctorAdminRights(id);
+	}
+
 }

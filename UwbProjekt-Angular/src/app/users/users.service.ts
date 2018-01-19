@@ -39,5 +39,11 @@ export class UsersService {
       );
   }
 
+  public changeAdminRights(id: number): Observable<any>{
+    return this.http.post(this.USERS_API_URL + `/${id}/admin` ,null)
+    .pipe(
+      catchError(this.handleError('changeAdminRights', []))
+    );
+  }
 
 }

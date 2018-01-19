@@ -221,4 +221,21 @@ public class DoctorDao {
 		return jsonResponse;
 	}
 
+	public boolean changeDoctorAdminRights(int id) {
+		Session session = SessionConnection.getSessionFactory().openSession();
+		Optional<Doctor> doctorOptional = findDoctorById(id);
+		if (doctorOptional.isPresent()) {
+			session.beginTransaction();
+			Doctor doctor = doctorOptional.get();
+			doctor.setAdmin(!doctor.isAdmin());
+			session.saveOrUpdate(doctor);
+			session.getTransaction().commit();
+			SessionConnection.shutdown(session);
+			return true;
+		} else {
+			SessionConnection.shutdown(session);
+			return false;
+		}
+	}
+
 }

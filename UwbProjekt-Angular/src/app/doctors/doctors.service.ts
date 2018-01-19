@@ -10,12 +10,10 @@ import { Doctor } from '../shared/model/doctor';
 import { Spec } from '../shared/model/spec';
 
 
-
-
 @Injectable()
 export class DoctorsService {
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
-  private SPECS_API_URL:string ='//localhost:9080/specs'
+  private SPECS_API_URL: string = '//localhost:9080/specs'
   constructor(private http: HttpClient) { }
 
   public getDoctors(): Observable<Doctor[]> {
@@ -26,12 +24,19 @@ export class DoctorsService {
       );
   }
 
-  public getSpecs(): Observable<Spec[]>{
+  public getSpecs(): Observable<Spec[]> {
     return this.http.get<Spec[]>(this.SPECS_API_URL)
-    .pipe(
+      .pipe(
       tap(specs => this.log(`fetched specs`)),
       catchError(this.handleError('getSpecs', []))
-    );
+      );
+  }
+
+  public changeAdminRights(id: number): Observable<any> {
+    return this.http.post(this.DOCTORS_API_URL + `/${id}/admin`, null)
+      .pipe(
+      catchError(this.handleError('changeAdminRights', []))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

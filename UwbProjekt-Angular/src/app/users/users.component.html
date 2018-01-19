@@ -1,18 +1,27 @@
-<table class="table is fullwidth is-striped">
+<table class="table is-striped is-narrow is-hoverable  is-fullwidth ">
   <thead class="thead">
-    <th>ID</th>
     <th>Imię</th>
     <th>Nazwisko</th>
     <th>E-mail</th>
-    <th>Administrator</th>
+    <th width="10%">Strona Użytkownika</th>
+    <th width="10%">Administrator</th>
+    <th width="10%">Prawa administratora</th>
   </thead>
   <tbody *ngFor="let user of users">
     <tr>
-      <td width="10%">{{user.id}}</td>
       <td width="10%">{{user.firstName}}</td>
       <td width="10%">{{user.lastName}}</td>
       <td width="10%">{{user.email}}</td>
+      <td>
+        <a class="button is-small is-primary" routerLink='/users/{{user.id}}'>Przejdź</a>
+      </td>
       <td width="10%">{{user.admin ? "Tak": "Nie"}}</td>
+      <td *ngIf="user.admin==true">
+          <button class="button is-small is-primary" (click)="onSubmit(user.id)" type="submit">Odbierz</button>
+        </td>
+        <td *ngIf="user.admin==false">
+          <button class="button is-small is-primary" (click)="onSubmit(user.id)" type="submit">Nadaj</button>
+        </td>
       <br>
       <br>
     </tr>

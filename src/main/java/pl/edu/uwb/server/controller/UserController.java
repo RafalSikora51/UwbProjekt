@@ -113,7 +113,11 @@ public class UserController {
 	@RequestMapping(value = "/email", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public int getUserIdByEmail(@RequestParam String email) throws Exception {
 		return userDao.findUserIdByEmail(email);
+	}
 
+	@RequestMapping(value = "/{id}/admin", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean changeDoctorAdminRights(@PathVariable int id) {
+		return userDao.changeUserAdminRights(id);
 	}
 
 }

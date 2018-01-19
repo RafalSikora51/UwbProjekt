@@ -1,20 +1,19 @@
-<table class="table is-striped is-narrow is-hoverable is-fullwidth ">
+<table class=" table is-striped is-narrow is-hoverable  is-fullwidth ">
   <thead class="thead">
-    <th>ID</th>
-    <th>Imię</th>
-    <th>Nazwisko</th>
-    <th>E-mail</th>
-    <th>Administrator</th>
+    <th width="10%">Imię</th>
+    <th width="10%">Nazwisko</th>
+    <th width="10%">E-mail</th>
     <th width="10%">Specjalizacja</th>
-    <th>Strona Lekarza</th>
+    <th width="10%">Strona Lekarza</th>
+    <th width="10%">Administrator</th>
+    <th width="10%">Prawa administratora</th>
+
   </thead>
   <tbody *ngFor="let doctor of doctors">
     <tr>
-      <td width="10%">{{doctor.id}}</td>
       <td width="10%">{{doctor.firstName}}</td>
       <td width="10%">{{doctor.lastName}}</td>
       <td width="10%">{{doctor.email}}</td>
-      <td width="10%">{{doctor.admin ? "Tak": "Nie"}}</td>
       <table class="is-hoverable">
         <tbody *ngFor="let spec of specs">
           <td *ngIf="spec.id==doctor.specId">{{spec.name}}</td>
@@ -22,6 +21,14 @@
       </table>
       <td>
         <a class="button is-small is-primary" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>
+      </td>
+
+      <td width="10%">{{doctor.admin ? "Tak": "Nie"}}</td>
+      <td *ngIf="doctor.admin==true">
+        <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Odbierz</button>
+      </td>
+      <td *ngIf="doctor.admin==false">
+        <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Nadaj</button>
       </td>
       <br>
       <br>

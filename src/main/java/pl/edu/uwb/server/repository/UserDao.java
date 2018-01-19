@@ -219,4 +219,21 @@ public class UserDao {
 
 	}
 
+	public boolean changeUserAdminRights(int id) {
+		Session session = SessionConnection.getSessionFactory().openSession();
+		Optional<User> userOptional = findUserById(id);
+		if (userOptional.isPresent()) {
+			session.beginTransaction();
+			User user = userOptional.get();
+			user.setAdmin(!user.isAdmin());
+			session.saveOrUpdate(user);
+			session.getTransaction().commit();
+			SessionConnection.shutdown(session);
+			return true;
+		} else {
+			SessionConnection.shutdown(session);
+			return false;
+		}
+	}
+
 }
