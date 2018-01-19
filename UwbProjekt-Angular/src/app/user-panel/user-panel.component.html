@@ -107,7 +107,26 @@
               </div>
             </section>
             <br>
-            <h1>Kalendarz</h1>
+            <table class="table is fullwidth is-striped">
+              <thead class="thead">
+                <th>Id</th>
+                <th>Nazwisko</th>
+                <th>E-mail</th>
+                <th>Data</th>
+                <th>Specid</th>
+              </thead>
+              <tbody *ngFor="let appointment of appointments">
+                <tr>
+                  <td width="10%">{{appointment.id}}</td>
+                  <td width="10%">{{doctor.lastName}}</td>
+                  <td width="10%">{{doctor.email}}</td>
+                  <td width="10%">{{apphour.hour}}</td>
+                  <td width="10%">{{doctor.specId}}</td>
+                  <br>
+                  <br>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

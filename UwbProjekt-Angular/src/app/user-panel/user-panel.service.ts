@@ -3,22 +3,50 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Doctor } from '../shared/model/doctor';
 import { catchError, map, tap } from 'rxjs/operators';
+import { OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+import { of } from 'rxjs/observable/of';
+import { Apphour } from '../shared/model/apphour';
+import { Appointments } from '../shared/model/appointments';
 
 @Injectable()
 export class UserPanelService {
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private toastr: ToastrService) { }
 
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
+  private APPOINT_API_URL: any = '//localhost:9080/users'
 
   public getDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.DOCTORS_API_URL);
   }
 
+  public getAllAppointmentsForId(id: number): Observable<Appointments[]> {
+    return this.http.get<Appointments[]>(`${this.APPOINT_API_URL}/${id}/appointments`)
+      .pipe(
+      tap(appointments => this.log(`fetched appointments`)),
+      catchError(this.handleError('getAllAppointments', []))
+      );
+
+  }
+
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
   private log(message: string) {
     console.log(message);
   }
+
 
 
 }
