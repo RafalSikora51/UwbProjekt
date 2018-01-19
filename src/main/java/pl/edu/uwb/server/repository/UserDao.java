@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
@@ -203,6 +204,19 @@ public class UserDao {
 			return findAllMedicalHistoriesForUserBySpecialization(userOptional.get(), specId);
 		} else
 			throw new Exception("User not found");
+	}
+
+	public int findUserIdByEmail(String email) throws Exception {
+		logger.debug("findAllMedicalHistoriesForUserBySpecialization");
+		if (StringUtils.isNotBlank(email)) {
+			Optional<User> userOptional = findUserByEmail(email);
+			if (userOptional.isPresent()) {
+				return userOptional.get().getId();
+			} else
+				throw new Exception("User not found");
+		} else
+			throw new Exception("Email cant be blank");
+
 	}
 
 }

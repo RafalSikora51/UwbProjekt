@@ -20,6 +20,8 @@ export class UserPanelService {
 
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   private APPOINT_API_URL: any = '//localhost:9080/users'
+  private USERID_API_URL: any = '//localhost:9080/users/email?email='
+
 
   public getDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.DOCTORS_API_URL);
@@ -30,6 +32,15 @@ export class UserPanelService {
       .pipe(
       tap(appointments => this.log(`fetched appointments`)),
       catchError(this.handleError('getAllAppointments', []))
+      );
+
+  }
+
+  public getUserIdByEmail(email: string): Observable<any> {
+    return this.http.get<number>(this.USERID_API_URL + email)
+      .pipe(
+      tap(appointments => this.log(`fetched id`)),
+      catchError(this.handleError('getUserIdByEmail', []))
       );
 
   }

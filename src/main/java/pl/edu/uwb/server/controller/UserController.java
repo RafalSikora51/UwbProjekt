@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -107,6 +108,12 @@ public class UserController {
 			return new ResponseEntity<List<MedicalHistory>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<MedicalHistory>>(medicalHistories, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/email", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public int getUserIdByEmail(@RequestParam String email) throws Exception {
+		return userDao.findUserIdByEmail(email);
+
 	}
 
 }

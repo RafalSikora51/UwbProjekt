@@ -26,6 +26,9 @@ export class UserPanelComponent implements OnInit {
   doctors: Doctor[];
   users: User[];
   appointments: Appointments[];
+  email: string;
+  id: number;
+
   constructor(private userPanelService: UserPanelService,
     private route: ActivatedRoute,
     private router: Router, ) { }
@@ -35,8 +38,16 @@ export class UserPanelComponent implements OnInit {
     this.showAppointments = false;
     this.showDoctors = false;
     this.getDoctors();
-
+    this.getEmailFromLoggedUser();
+    this.getUserIdByEmail();
   }
+
+  getEmailFromLoggedUser() {
+    this.email = JSON.parse(localStorage.getItem('currentUser')).email;
+  }
+
+
+
   getDoctors(): void {
     this.userPanelService.getDoctors().subscribe(
       doctors => {
@@ -49,9 +60,24 @@ export class UserPanelComponent implements OnInit {
     )
   }
 
+  getUserIdByEmail(): void {
+    this.userPanelService.getUserIdByEmail(this.email).subscribe(
+      id => {
+        this.id = id;
+
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+
+
+
   getAllAppointmentsForId(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userPanelService.getAllAppointmentsForId(id).subscribe(
+    //const id = +this.route.snapshot.paramMap.get('id');
+    this.userPanelService.getAllAppointmentsForId(this.id).subscribe(
       appointments => {
         this.appointments = appointments;
         console.table(this.appointments);
