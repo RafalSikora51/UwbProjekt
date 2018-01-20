@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { DoctorsComponent } from '../doctors/doctors.component'
 import { Doctor } from '../shared/model/doctor';
 import { Spec } from '../shared/model/spec';
 import { User } from '../shared/model/user';
@@ -37,7 +38,8 @@ export class AdminPanelComponent implements OnInit {
     private router: Router,
     private adminPanelService: AdminPanelService,
     private toastr: ToastrService,
-    private specsService: SpecsService) { }
+    private specsService: SpecsService,
+    private doctorsComponent: DoctorsComponent) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -71,6 +73,7 @@ export class AdminPanelComponent implements OnInit {
           this.toastr.success('Lekarz został dodany pomyślnie! E-mail z wygenerowanym hasłem został wysłany.');
           this.createDocForm = document.getElementById("doctorForm");
           this.createDocForm.reset();
+          this.doctorsComponent.ngOnInit();
         } else {
           this.error = 'Nieprawidłowe dane podczas dodawania lekarza!';
           this.loading = false;

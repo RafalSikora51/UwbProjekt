@@ -14,6 +14,7 @@ import { User } from '../../shared/model/user';
 export class DoctorUsersComponent implements OnInit {
 
   users: User[];
+  currentPage = 1;
 
 
   constructor(

@@ -1,21 +1,43 @@
-<table class="table is-striped is-narrow is-hoverable  is-fullwidth ">
-  <thead class="thead">
-    <th>Imię</th>
-    <th>Nazwisko</th>
-    <th>E-mail</th>
-    <th width="10%">Strona Użytkownika</th>
-  </thead>
-  <tbody *ngFor="let user of users">
-    <tr>
-      <td width="10%">{{user.firstName}}</td>
-      <td width="10%">{{user.lastName}}</td>
-      <td width="10%">{{user.email}}</td>
-      <td>
-        <a class="button is-small is-primary" routerLink='/users/{{user.id}}'>Przejdź</a>
-      </td>
+<section class="section">
+  <div class="columns is-desktop is-multiline">
+    <div class="column is-desktop">
+      <div class="row">
+        <div class="column">
+          <table class="table is-striped is-narrow is-hoverable  is-fullwidth ">
+            <thead class="thead">
+              <th>Imię</th>
+              <th>Nazwisko</th>
+              <th>E-mail</th>
+              <th width="10%">Strona Użytkownika</th>
+            </thead>
+            <tbody *ngFor="let user of users | paginate: { itemsPerPage: 8, currentPage: currentPage }">
+              <tr>
+                <td width="10%">{{user.firstName}}</td>
+                <td width="10%">{{user.lastName}}</td>
+                <td width="10%">{{user.email}}</td>
+                <td>
+                  <a class="button is-small is-primary" routerLink='/users/{{user.id}}'>Przejdź</a>
+                </td>
 
-      <br>
-      <br>
-    </tr>
-  </tbody>
-</table>
+                <br>
+                <br>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="column">
+          <pagination-template #p="paginationApi" (pageChange)="currentPage = $event" class="pagination is-centered is-outlined">
+            <button [disabled]="p.isFirstPage()" (click)="p.setCurrent(1)" class="pagination-previous is-outlined">Pierwsza strona</button>
+            <button [disabled]="p.isFirstPage()" (click)="p.previous()" class="pagination-previous is-outlined">Poprzednia strona</button>
+            <button [disabled]="p.isLastPage()" (click)="p.next()" class="pagination-previous is-outlined">Następna strona</button>
+            <button [disabled]="p.isLastPage()" (click)="p.setCurrent(p.getLastPage())" class="pagination-previous is-outlined">Ostatnia strona</button>
+            <ul class="pagination-list">
+              <li *ngFor="let page of p.pages">
+                <button class="pagination-link" [ngClass]="{ 'is-current' : p.getCurrent() == page.value}" (click)="p.setCurrent(page.value)">{{page.label}}</button>
+            </ul>
+          </pagination-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

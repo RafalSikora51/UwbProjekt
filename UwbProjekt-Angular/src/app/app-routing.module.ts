@@ -38,6 +38,7 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'doctors', component: DoctorsComponent },
   { path: 'users', component: UsersComponent },
   { path: '**', redirectTo: '' },
 

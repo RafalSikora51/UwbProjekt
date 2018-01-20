@@ -16,6 +16,7 @@ export class DoctorsComponent implements OnInit {
 
   doctors: Doctor[];
   specs: Spec[];
+  currentPage = 1;
 
   constructor(
     private doctorsService: DoctorsService,

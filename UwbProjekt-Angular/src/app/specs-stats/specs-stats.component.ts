@@ -11,6 +11,7 @@ export class SpecsStatsComponent implements OnInit {
 
   specs: Spec[];
   specsStats: any[];
+  currentPage = 1;
 
   constructor(private specsStatsService: SpecsStatsService) { }
 

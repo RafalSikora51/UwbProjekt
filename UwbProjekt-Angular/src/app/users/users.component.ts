@@ -13,6 +13,8 @@ import { User } from '../shared/model/user';
 })
 export class UsersComponent implements OnInit {
 
+  currentPage = 1;
+
   users: User[];
 
   constructor(

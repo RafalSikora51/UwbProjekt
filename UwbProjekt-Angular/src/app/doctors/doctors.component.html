@@ -1,37 +1,57 @@
-<table class=" table is-striped is-narrow is-hoverable  is-fullwidth ">
-  <thead class="thead">
-    <th width="10%">Imię</th>
-    <th width="10%">Nazwisko</th>
-    <th width="10%">E-mail</th>
-    <th width="10%">Specjalizacja</th>
-    <th width="10%">Strona Lekarza</th>
-    <th width="10%">Administrator</th>
-    <th width="10%">Prawa administratora</th>
-
-  </thead>
-  <tbody *ngFor="let doctor of doctors">
-    <tr>
-      <td width="10%">{{doctor.firstName}}</td>
-      <td width="10%">{{doctor.lastName}}</td>
-      <td width="10%">{{doctor.email}}</td>
-      <table class="is-hoverable">
-        <tbody *ngFor="let spec of specs">
-          <td *ngIf="spec.id==doctor.specId">{{spec.name}}</td>
-        </tbody>
-      </table>
-      <td>
-        <a class="button is-small is-primary" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>
-      </td>
-
-      <td width="10%">{{doctor.admin ? "Tak": "Nie"}}</td>
-      <td *ngIf="doctor.admin==true">
-        <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Odbierz</button>
-      </td>
-      <td *ngIf="doctor.admin==false">
-        <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Nadaj</button>
-      </td>
-      <br>
-      <br>
-    </tr>
-  </tbody>
-</table>
+<section class="section">
+  <div class="columns is-desktop is-multiline">
+    <div class="column is-desktop">
+      <div class="row">
+        <div class="column">
+          <table class=" table is-striped is-narrow is-hoverable ">
+            <thead class="thead">
+              <th width="10%">Imię</th>
+              <th width="10%">Nazwisko</th>
+              <th width="10%">E-mail</th>
+              <th width="10%">Specjalizacja</th>
+              <th width="10%">Strona Lekarza</th>
+              <th width="10%">Administrator</th>
+              <th width="10%">Prawa administratora</th>
+            </thead>
+            <tbody *ngFor="let doctor of doctors | paginate: { itemsPerPage: 8, currentPage: currentPage }">
+              <tr>
+                <td width="10%">{{doctor.firstName}}</td>
+                <td width="10%">{{doctor.lastName}}</td>
+                <td width="10%">{{doctor.email}}</td>
+                <table class="is-hoverable">
+                  <tbody *ngFor="let spec of specs">
+                    <td *ngIf="spec.id==doctor.specId">{{spec.name}}</td>
+                  </tbody>
+                </table>
+                <td>
+                  <a class="button is-small is-primary" routerLink='/doctors/{{doctor.id}}'>Przejdź</a>
+                </td>
+                <td width="10%">{{doctor.admin ? "Tak": "Nie"}}</td>
+                <td *ngIf="doctor.admin==true">
+                  <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Odbierz</button>
+                </td>
+                <td *ngIf="doctor.admin==false">
+                  <button class="button is-small is-primary" (click)="onSubmit(doctor.id)" type="submit">Nadaj</button>
+                </td>
+                <br>
+                <br>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="column">
+          <pagination-template #p="paginationApi" (pageChange)="currentPage = $event" class="pagination is-centered is-outlined">
+            <button [disabled]="p.isFirstPage()" (click)="p.setCurrent(1)" class="pagination-previous is-outlined">Pierwsza strona</button>
+            <button [disabled]="p.isFirstPage()" (click)="p.previous()" class="pagination-previous is-outlined">Poprzednia strona</button>
+            <button [disabled]="p.isLastPage()" (click)="p.next()" class="pagination-previous is-outlined">Następna strona</button>
+            <button [disabled]="p.isLastPage()" (click)="p.setCurrent(p.getLastPage())" class="pagination-previous is-outlined">Ostatnia strona</button>
+            <ul class="pagination-list">
+              <li *ngFor="let page of p.pages">
+                <button class="pagination-link" [ngClass]="{ 'is-current' : p.getCurrent() == page.value}" (click)="p.setCurrent(page.value)">{{page.label}}</button>
+            </ul>
+          </pagination-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -39,6 +39,7 @@ import { CalendarService } from './calendar/calendar.service';
 import { SpecsStatsComponent } from './specs-stats/specs-stats.component';
 import { SpecsStatsService } from './specs-stats/specs-stats.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 import {
   MatDatepickerModule,
   MatButtonModule,
@@ -84,6 +85,7 @@ import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.c
     MatNativeDateModule,
     MatInputModule,
     NoopAnimationsModule,
+    NgxPaginationModule,
   ],
   exports: [
     MatButtonModule,
@@ -96,7 +98,7 @@ import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.c
     DoctorPanelService, AuthGuard, DoctorPanelGuard,
     AdminPanelGuard, AlertService, AuthenticationService,
     RegisterService, DoctorDetailsService, CalendarService, SpecsStatsService,
-    SpecsComponent],
+    SpecsComponent, DoctorsComponent],
 
   bootstrap: [AppComponent]
 })
