@@ -109,19 +109,25 @@
             <br>
             <table class="table is fullwidth is-striped">
               <thead class="thead">
-                <th>Id</th>
-                <th>Nazwisko</th>
-                <th>E-mail</th>
-                <th>Data</th>
-                <th>Specid</th>
+                <th>Data Wizyty</th>
+                <th>Godzina </th>
+                <th>Imię</th>
+                <th>Nazwisko </th>
+                <th>Opis Wizyty</th>
               </thead>
+
               <tbody *ngFor="let appointment of appointments">
                 <tr>
-                  <td width="10%">{{appointment.id}}</td>
-                  <td width="10%">{{doctor.lastName}}</td>
-                  <td width="10%">{{doctor.email}}</td>
-                  <td width="10%">{{apphour.hour}}</td>
-                  <td width="10%">{{doctor.specId}}</td>
+
+                  <td >{{appointment.localDate}}</td>
+                  <tbody *ngFor="let appHour of appHours">
+                    <td *ngIf="appHour.id==appointment.appHourId">{{appHour.hour}}</td>
+                  </tbody>
+
+                  <td >{{appointment.doctor.firstName}}</td>
+                  <td >{{appointment.doctor.lastName}}</td>
+                  <td width="20%">{{appointment.medicalHistory.appointmentProcess}} button routerLink?</td>
+                  
                   <br>
                   <br>
                 </tr>

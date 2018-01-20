@@ -21,6 +21,7 @@ export class UserPanelService {
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   private APPOINT_API_URL: any = '//localhost:9080/users'
   private USERID_API_URL: any = '//localhost:9080/users/email?email='
+  private APPHOUR_API_URL: any = '//localhost:9080/hours'
 
 
   public getDoctors(): Observable<Doctor[]> {
@@ -34,6 +35,21 @@ export class UserPanelService {
       catchError(this.handleError('getAllAppointments', []))
       );
 
+  }
+
+  getHourByHourId(id: number): Observable<Apphour> {
+    return this.http.get<Apphour>(`${this.APPHOUR_API_URL}/${id}`)
+      .pipe(
+      tap(appointments => this.log(`fetched hour`))
+      );
+  }
+
+  getAllHours(): Observable<Apphour[]> {
+    return this.http.get<Apphour[]>(this.APPHOUR_API_URL)
+    .pipe(
+      tap(apphours => this.log(`fetched hours`)),
+      catchError(this.handleError('getAllHours', []))
+      );
   }
 
   public getUserIdByEmail(email: string): Observable<any> {

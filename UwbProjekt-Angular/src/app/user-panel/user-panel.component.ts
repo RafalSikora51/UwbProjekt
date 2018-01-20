@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Spec } from '../shared/model/spec';
 import { User } from '../shared/model/user';
 import { Appointments } from '../shared/model/appointments';
-
+import { Apphour } from '../shared/model/apphour';
 @Component({
   selector: 'app-user-panel',
   templateUrl: './user-panel.component.html',
@@ -24,11 +24,11 @@ export class UserPanelComponent implements OnInit {
   showAddAppointments: boolean;
   showAppointments: boolean;
   doctors: Doctor[];
+  appHours: Apphour[];
   users: User[];
   appointments: Appointments[];
   email: string;
   id: number;
-
   constructor(private userPanelService: UserPanelService,
     private route: ActivatedRoute,
     private router: Router, ) { }
@@ -60,6 +60,7 @@ export class UserPanelComponent implements OnInit {
     )
   }
 
+
   getUserIdByEmail(): void {
     this.userPanelService.getUserIdByEmail(this.email).subscribe(
       id => {
@@ -71,8 +72,6 @@ export class UserPanelComponent implements OnInit {
       }
     )
   }
-
-
 
 
   getAllAppointmentsForId(): void {
@@ -88,12 +87,24 @@ export class UserPanelComponent implements OnInit {
     );
   }
 
+  getAllHours(): void {
+    this.userPanelService.getAllHours().subscribe(
+      appHours => {
+        this.appHours = appHours;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
 
   showAppointmentsEnable() {
 
     if (this.showAppointments == false) {
       this.showAppointments = true;
       this.getAllAppointmentsForId();
+      this.getAllHours();
       console.log("dziala");
     }
     else {
