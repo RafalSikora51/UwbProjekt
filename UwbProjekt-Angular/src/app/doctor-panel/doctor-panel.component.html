@@ -1,3 +1,67 @@
-<p>
-  doctor-panel works!
-</p>
+<br>
+<br>
+<div class="container">
+  <div class="columns">
+    <div class="column is-3">
+      <aside class="menu">
+
+        <p class="menu-label">
+          Użytkownicy
+        </p>
+        <ul class="menu-list">
+          <li>
+            <a class="button is-dark is-medium" (click)="showUsersEnable()">Moi pacjenci</a>
+            <br>
+          </li>
+          <li>
+            <a class="button is-dark is-medium" (click)="addSpecEnable()">Wizyty</a>
+            <br>
+          </li>
+        </ul>
+
+      </aside>
+    </div>
+    <div class="column">
+      <div class="card article">
+        <div class="card-content">
+          <section class="hero is-dark welcome is-small">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  <i class="fa fa-user-secret"></i>
+                  Panel Lekarza
+                </h1>
+                <h2 class="subtitle" s>
+                  <br>
+                </h2>
+              </div>
+            </div>
+          </section>
+          <br>
+          <br>
+
+          <div *ngIf="showUsers">
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Moi Pacjenci
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <app-doctor-users></app-doctor-users>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

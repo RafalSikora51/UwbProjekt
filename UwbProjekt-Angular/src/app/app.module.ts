@@ -47,6 +47,7 @@ import {
   MatRippleModule,
   MatNativeDateModule
 } from '@angular/material';
+import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import {
     DoctorDetailsComponent,
     CalendarComponent,
     SpecsStatsComponent,
+    DoctorUsersComponent,
   ],
   imports: [
     BrowserModule,

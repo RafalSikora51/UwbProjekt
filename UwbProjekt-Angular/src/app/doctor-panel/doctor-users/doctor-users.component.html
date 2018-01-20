@@ -4,8 +4,6 @@
     <th>Nazwisko</th>
     <th>E-mail</th>
     <th width="10%">Strona Użytkownika</th>
-    <th width="10%">Administrator</th>
-    <th width="10%">Prawa administratora</th>
   </thead>
   <tbody *ngFor="let user of users">
     <tr>
@@ -15,13 +13,7 @@
       <td>
         <a class="button is-small is-primary" routerLink='/users/{{user.id}}'>Przejdź</a>
       </td>
-      <td width="10%">{{user.admin ? "Tak": "Nie"}}</td>
-      <td *ngIf="user.admin==true">
-        <button class="button is-small is-primary" (click)="onSubmit(user.id)" type="submit">Odbierz</button>
-      </td>
-      <td *ngIf="user.admin==false">
-        <button class="button is-small is-primary" (click)="onSubmit(user.id)" type="submit">Nadaj</button>
-      </td>
+
       <br>
       <br>
     </tr>

@@ -16,7 +16,7 @@
         <ul class="menu-list">
           <li>
             <mat-form-field class="example-full-width">
-              <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc">
+              <input id="picker" matInput [matDatepicker]="dp3" placeholder="Wybierz datę" [(ngModel)]="model.abc" disabled>
               <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker touchUi="true" #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>

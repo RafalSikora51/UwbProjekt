@@ -7,9 +7,50 @@ import { DoctorPanelService } from '../doctor-panel/doctor-panel.service';
 })
 export class DoctorPanelComponent implements OnInit {
 
-  constructor() { }
+  showUsers: boolean;
+  id: number;
+  email: string;
+
+
+
+  constructor(
+    private doctorPanelService: DoctorPanelService
+  ) { }
 
   ngOnInit() {
+    this.showUsers = false;
+    //this.doctorUsersComponent.getUsers
+    this.getEmailFromLoggedDoctor();
+    this.getDoctorIdByEmail();
   }
+
+  getEmailFromLoggedDoctor() {
+    if (localStorage.getItem('currentDoctor')) {
+      this.email = JSON.parse(localStorage.getItem('currentDoctor')).email;
+    }
+    else {
+      this.email = JSON.parse(localStorage.getItem('currentDoctorAdmin')).email;
+    }
+  }
+
+  getDoctorIdByEmail(): void {
+    this.doctorPanelService.getDoctorIdByEmail(this.email).subscribe(
+      id => {
+        this.id = id;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  showUsersEnable() {
+    if (this.showUsers == false)
+      this.showUsers = true;
+    else {
+      this.showUsers = false;
+    }
+  }
+
 
 }

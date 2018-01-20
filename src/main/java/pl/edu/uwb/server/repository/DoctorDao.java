@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
@@ -221,6 +222,19 @@ public class DoctorDao {
 		return jsonResponse;
 	}
 
+	public int findDoctorIdByEmail(String email) throws Exception {
+		logger.debug("findAllMedicalHistoriesForUserBySpecialization");
+		if (StringUtils.isNotBlank(email)) {
+			Optional<Doctor> doctorOptional = findDoctorByEmail(email);
+			if (doctorOptional.isPresent()) {
+				return doctorOptional.get().getId();
+			} else
+				throw new Exception("Doctor not found");
+		} else
+			throw new Exception("Email cant be blank");
+
+	}
+	
 	public boolean changeDoctorAdminRights(int id) {
 		Session session = SessionConnection.getSessionFactory().openSession();
 		Optional<Doctor> doctorOptional = findDoctorById(id);

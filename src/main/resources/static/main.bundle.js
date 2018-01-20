@@ -532,12 +532,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__specs_stats_specs_stats_component__ = __webpack_require__("../../../../../src/app/specs-stats/specs-stats.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__specs_stats_specs_stats_service__ = __webpack_require__("../../../../../src/app/specs-stats/specs-stats.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__doctor_panel_doctor_users_doctor_users_component__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -602,6 +604,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_34__doctors_doctor_details_doctor_details_component__["a" /* DoctorDetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_35__calendar_calendar_component__["a" /* CalendarComponent */],
                 __WEBPACK_IMPORTED_MODULE_37__specs_stats_specs_stats_component__["a" /* SpecsStatsComponent */],
+                __WEBPACK_IMPORTED_MODULE_40__doctor_panel_doctor_users_doctor_users_component__["a" /* DoctorUsersComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -787,7 +790,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctor-panel/doctor-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  doctor-panel works!\r\n</p>\r\n"
+module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n\r\n        <p class=\"menu-label\">\r\n          Użytkownicy\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showUsersEnable()\">Moi pacjenci</a>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <a class=\"button is-dark is-medium\" (click)=\"addSpecEnable()\">Wizyty</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                  <i class=\"fa fa-user-secret\"></i>\r\n                  Panel Lekarza\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <br>\r\n          <br>\r\n\r\n          <div *ngIf=\"showUsers\">\r\n            <section class=\"hero is-dark is-bold is-small promo-block\">\r\n              <div class=\"hero-body\">\r\n                <div class=\"container\">\r\n                  <h1 class=\"title\">\r\n                    <i class=\"fa fa-users\"></i>\r\n                    Moi Pacjenci\r\n                  </h1>\r\n                  <h2 class=\"subtitle\">\r\n                  </h2>\r\n                </div>\r\n              </div>\r\n            </section>\r\n            <br>\r\n            <app-doctor-users></app-doctor-users>\r\n          </div>\r\n\r\n\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -797,6 +800,7 @@ module.exports = "<p>\r\n  doctor-panel works!\r\n</p>\r\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorPanelComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__doctor_panel_doctor_panel_service__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -807,10 +811,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var DoctorPanelComponent = (function () {
-    function DoctorPanelComponent() {
+    function DoctorPanelComponent(doctorPanelService) {
+        this.doctorPanelService = doctorPanelService;
     }
     DoctorPanelComponent.prototype.ngOnInit = function () {
+        this.showUsers = false;
+        //this.doctorUsersComponent.getUsers
+        this.getEmailFromLoggedDoctor();
+        this.getDoctorIdByEmail();
+    };
+    DoctorPanelComponent.prototype.getEmailFromLoggedDoctor = function () {
+        if (localStorage.getItem('currentDoctor')) {
+            this.email = JSON.parse(localStorage.getItem('currentDoctor')).email;
+        }
+        else {
+            this.email = JSON.parse(localStorage.getItem('currentDoctorAdmin')).email;
+        }
+    };
+    DoctorPanelComponent.prototype.getDoctorIdByEmail = function () {
+        var _this = this;
+        this.doctorPanelService.getDoctorIdByEmail(this.email).subscribe(function (id) {
+            _this.id = id;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    DoctorPanelComponent.prototype.showUsersEnable = function () {
+        if (this.showUsers == false)
+            this.showUsers = true;
+        else {
+            this.showUsers = false;
+        }
     };
     DoctorPanelComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -818,7 +851,7 @@ var DoctorPanelComponent = (function () {
             template: __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.html"),
             styles: [__webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__doctor_panel_doctor_panel_service__["a" /* DoctorPanelService */]])
     ], DoctorPanelComponent);
     return DoctorPanelComponent;
 }());
@@ -833,6 +866,13 @@ var DoctorPanelComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorPanelService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -843,14 +883,127 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
+
 var DoctorPanelService = (function () {
-    function DoctorPanelService() {
+    function DoctorPanelService(http, toastr) {
+        this.http = http;
+        this.toastr = toastr;
+        this.DOCTORS_API_URL = '//localhost:9080/doctors';
+        this.APPOINT_API_URL = '//localhost:9080/users';
+        this.USERID_API_URL = '//localhost:9080/users/email?email=';
+        this.DOCTORID_API_URL = '//localhost:9080/doctors/email?email=';
     }
+    DoctorPanelService.prototype.getDoctorIdByEmail = function (email) {
+        var _this = this;
+        return this.http.get(this.DOCTORID_API_URL + email)
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* tap */])(function (id) { return _this.log("fetched id"); }), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* catchError */])(this.handleError('getDoctorIdByEmail', [])));
+    };
+    DoctorPanelService.prototype.handleError = function (operation, result) {
+        var _this = this;
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            console.error(error);
+            _this.log(operation + " failed: " + error.message);
+            return Object(__WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of__["a" /* of */])(result);
+        };
+    };
+    DoctorPanelService.prototype.log = function (message) {
+        console.log(message);
+    };
     DoctorPanelService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3_ngx_toastr__["b" /* ToastrService */]])
     ], DoctorPanelService);
     return DoctorPanelService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<table class=\"table is-striped is-narrow is-hoverable  is-fullwidth \">\n  <thead class=\"thead\">\n    <th>Imię</th>\n    <th>Nazwisko</th>\n    <th>E-mail</th>\n    <th width=\"10%\">Strona Użytkownika</th>\n  </thead>\n  <tbody *ngFor=\"let user of users\">\n    <tr>\n      <td width=\"10%\">{{user.firstName}}</td>\n      <td width=\"10%\">{{user.lastName}}</td>\n      <td width=\"10%\">{{user.email}}</td>\n      <td>\n        <a class=\"button is-small is-primary\" routerLink='/users/{{user.id}}'>Przejdź</a>\n      </td>\n\n      <br>\n      <br>\n    </tr>\n  </tbody>\n</table>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DoctorUsersComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_users_service__ = __webpack_require__("../../../../../src/app/users/users.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/toastr.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__doctor_panel_component__ = __webpack_require__("../../../../../src/app/doctor-panel/doctor-panel.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var DoctorUsersComponent = (function () {
+    function DoctorUsersComponent(userService, toastr, doctorPanelComponent) {
+        this.userService = userService;
+        this.toastr = toastr;
+        this.doctorPanelComponent = doctorPanelComponent;
+    }
+    DoctorUsersComponent.prototype.ngOnInit = function () {
+        this.getUsers();
+    };
+    DoctorUsersComponent.prototype.getUsers = function () {
+        var _this = this;
+        this.userService.getUsersForDoctor(this.doctorPanelComponent.id).subscribe(function (users) {
+            _this.users = users;
+            console.table(_this.users);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    DoctorUsersComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-doctor-users',
+            template: __webpack_require__("../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/doctor-panel/doctor-users/doctor-users.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__users_users_service__["a" /* UsersService */],
+            __WEBPACK_IMPORTED_MODULE_2_ngx_toastr__["b" /* ToastrService */],
+            __WEBPACK_IMPORTED_MODULE_3__doctor_panel_component__["a" /* DoctorPanelComponent */]])
+    ], DoctorUsersComponent);
+    return DoctorUsersComponent;
 }());
 
 
@@ -878,7 +1031,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/doctors/doctor-details/doctor-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-danger is-medium\">Kalendarz</a>\r\n          </li>\r\n          <br>\r\n        </ul>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <mat-form-field class=\"example-full-width\">\r\n              <input id=\"picker\" matInput [matDatepicker]=\"dp3\" placeholder=\"Wybierz datę\" [(ngModel)]=\"model.abc\">\r\n              <mat-datepicker-toggle matSuffix [for]=\"dp3\"></mat-datepicker-toggle>\r\n              <mat-datepicker touchUi=\"true\" #dp3 disabled=\"false\"></mat-datepicker>\r\n            </mat-form-field>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <br>\r\n            <br>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showHoursEnable()\">Wyświetl wolne terminy</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                  <i class=\"fa fa-user-md\"></i>\r\n                  Szczegóły Doktora\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <div class=\"hero-body\">\r\n            <div class=\"container has-text-centered\">\r\n              <div class=\"columns is-vcentered\">\r\n                <div class=\"column is-2\">\r\n                  <figure class=\"image is-200x200\">\r\n                    <img src=\"https://www.medicentres.com/wp-content/uploads/MedicalDoctorIcon.png\" alt=\"Description\">\r\n                  </figure>\r\n                </div>\r\n                <div *ngIf=\"doctor\">\r\n                  <div class=\"column is-one-third is-offset-1\">\r\n                    <h1 class=\"title is-2\">\r\n                      {{doctor.firstName}} {{doctor.lastName}}\r\n                    </h1>\r\n                    <h2 class=\"subtitle is-4\">\r\n                      {{doctor.email}}\r\n                    </h2>\r\n                    <br>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div *ngIf=\"showHours\">\r\n            <div class=\"columns\">\r\n              <div class=\"column is-3\">\r\n                <div class=\"field\">\r\n                  <div class=\"field is-narrow\">\r\n                    <label class=\"label\">Wybierz godzinę</label>\r\n                    <div class=\"control\">\r\n                      <div class=\"select is-large\">\r\n                        <select [(ngModel)]=\"hourModel.id\" placeholder=\"Wybierz godzinę\" name=\"Godzina\">\r\n                          <option value={{apphour.id}} *ngFor=\"let apphour of apphours\">{{apphour.hour}}</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"column\">\r\n                  <a class=\"button is-dark is-medium is-outlined\" (click)=\"createAppointment()\">\r\n                    Zarezerwuj wizytę!\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n</div>\r\n"
+module.exports = "<br>\r\n<br>\r\n<div class=\"container\">\r\n  <div class=\"columns\">\r\n    <div class=\"column is-3\">\r\n      <aside class=\"menu\">\r\n        <p class=\"menu-label\">\r\n          Główne\r\n        </p>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <a class=\"button is-danger is-medium\">Kalendarz</a>\r\n          </li>\r\n          <br>\r\n        </ul>\r\n        <ul class=\"menu-list\">\r\n          <li>\r\n            <mat-form-field class=\"example-full-width\">\r\n              <input id=\"picker\" matInput [matDatepicker]=\"dp3\" placeholder=\"Wybierz datę\" [(ngModel)]=\"model.abc\" disabled>\r\n              <mat-datepicker-toggle matSuffix [for]=\"dp3\"></mat-datepicker-toggle>\r\n              <mat-datepicker touchUi=\"true\" #dp3 disabled=\"false\"></mat-datepicker>\r\n            </mat-form-field>\r\n            <br>\r\n          </li>\r\n          <li>\r\n            <br>\r\n            <br>\r\n            <a class=\"button is-dark is-medium\" (click)=\"showHoursEnable()\">Wyświetl wolne terminy</a>\r\n            <br>\r\n          </li>\r\n        </ul>\r\n\r\n      </aside>\r\n    </div>\r\n    <div class=\"column\">\r\n      <div class=\"card article\">\r\n        <div class=\"card-content\">\r\n          <section class=\"hero is-dark welcome is-small\">\r\n            <div class=\"hero-body\">\r\n              <div class=\"container\">\r\n                <h1 class=\"title\">\r\n                  <i class=\"fa fa-user-md\"></i>\r\n                  Szczegóły Doktora\r\n                </h1>\r\n                <h2 class=\"subtitle\" s>\r\n                  <br>\r\n                </h2>\r\n              </div>\r\n            </div>\r\n          </section>\r\n          <div class=\"hero-body\">\r\n            <div class=\"container has-text-centered\">\r\n              <div class=\"columns is-vcentered\">\r\n                <div class=\"column is-2\">\r\n                  <figure class=\"image is-200x200\">\r\n                    <img src=\"https://www.medicentres.com/wp-content/uploads/MedicalDoctorIcon.png\" alt=\"Description\">\r\n                  </figure>\r\n                </div>\r\n                <div *ngIf=\"doctor\">\r\n                  <div class=\"column is-one-third is-offset-1\">\r\n                    <h1 class=\"title is-2\">\r\n                      {{doctor.firstName}} {{doctor.lastName}}\r\n                    </h1>\r\n                    <h2 class=\"subtitle is-4\">\r\n                      {{doctor.email}}\r\n                    </h2>\r\n                    <br>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div *ngIf=\"showHours\">\r\n            <div class=\"columns\">\r\n              <div class=\"column is-3\">\r\n                <div class=\"field\">\r\n                  <div class=\"field is-narrow\">\r\n                    <label class=\"label\">Wybierz godzinę</label>\r\n                    <div class=\"control\">\r\n                      <div class=\"select is-large\">\r\n                        <select [(ngModel)]=\"hourModel.id\" placeholder=\"Wybierz godzinę\" name=\"Godzina\">\r\n                          <option value={{apphour.id}} *ngFor=\"let apphour of apphours\">{{apphour.hour}}</option>\r\n                        </select>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"column\">\r\n                  <a class=\"button is-dark is-medium is-outlined\" (click)=\"createAppointment()\">\r\n                    Zarezerwuj wizytę!\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1069,7 +1222,6 @@ var DoctorDetailsService = (function () {
         var _this = this;
         return this.http.get(this.API_URL + "/" + id + "/hours/free?date=" + date).pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["b" /* tap */])(function (_) { return _this.log("fetched taken hours for doctor = " + id + " and day = " + date); }), Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["a" /* catchError */])(this.handleError("getFreeHoursForDoctorFromGivenDay id=" + id)));
     };
-    //?userEmail=extreme2512@gmail.com&docId=1&appHourId=7&date=7.05.2018
     DoctorDetailsService.prototype.createAppointment = function (email, docId, hourId, date) {
         return this.http.post(this.CREATE_APPOINTMENT_API_URL + ("?userEmail=" + email + "&docId=" + docId + "&appHourId=" + hourId + "&date=" + date), null)
             .map(function (response) {
@@ -2691,7 +2843,7 @@ var UserPanelService = (function () {
     UserPanelService.prototype.getUserIdByEmail = function (email) {
         var _this = this;
         return this.http.get(this.USERID_API_URL + email)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* tap */])(function (appointments) { return _this.log("fetched id"); }), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* catchError */])(this.handleError('getUserIdByEmail', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* tap */])(function (id) { return _this.log("fetched id"); }), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* catchError */])(this.handleError('getUserIdByEmail', [])));
     };
     UserPanelService.prototype.handleError = function (operation, result) {
         var _this = this;
@@ -2738,7 +2890,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table is-striped is-narrow is-hoverable  is-fullwidth \">\r\n  <thead class=\"thead\">\r\n    <th>Imię</th>\r\n    <th>Nazwisko</th>\r\n    <th>E-mail</th>\r\n    <th width=\"10%\">Strona Użytkownika</th>\r\n    <th width=\"10%\">Administrator</th>\r\n    <th width=\"10%\">Prawa administratora</th>\r\n  </thead>\r\n  <tbody *ngFor=\"let user of users\">\r\n    <tr>\r\n      <td width=\"10%\">{{user.firstName}}</td>\r\n      <td width=\"10%\">{{user.lastName}}</td>\r\n      <td width=\"10%\">{{user.email}}</td>\r\n      <td>\r\n        <a class=\"button is-small is-primary\" routerLink='/users/{{user.id}}'>Przejdź</a>\r\n      </td>\r\n      <td width=\"10%\">{{user.admin ? \"Tak\": \"Nie\"}}</td>\r\n      <td *ngIf=\"user.admin==true\">\r\n          <button class=\"button is-small is-primary\" (click)=\"onSubmit(user.id)\" type=\"submit\">Odbierz</button>\r\n        </td>\r\n        <td *ngIf=\"user.admin==false\">\r\n          <button class=\"button is-small is-primary\" (click)=\"onSubmit(user.id)\" type=\"submit\">Nadaj</button>\r\n        </td>\r\n      <br>\r\n      <br>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<table class=\"table is-striped is-narrow is-hoverable  is-fullwidth \">\r\n  <thead class=\"thead\">\r\n    <th>Imię</th>\r\n    <th>Nazwisko</th>\r\n    <th>E-mail</th>\r\n    <th width=\"10%\">Strona Użytkownika</th>\r\n    <th width=\"10%\">Administrator</th>\r\n    <th width=\"10%\">Prawa administratora</th>\r\n  </thead>\r\n  <tbody *ngFor=\"let user of users\">\r\n    <tr>\r\n      <td width=\"10%\">{{user.firstName}}</td>\r\n      <td width=\"10%\">{{user.lastName}}</td>\r\n      <td width=\"10%\">{{user.email}}</td>\r\n      <td>\r\n        <a class=\"button is-small is-primary\" routerLink='/users/{{user.id}}'>Przejdź</a>\r\n      </td>\r\n      <td width=\"10%\">{{user.admin ? \"Tak\": \"Nie\"}}</td>\r\n      <td *ngIf=\"user.admin==true\">\r\n        <button class=\"button is-small is-primary\" (click)=\"onSubmit(user.id)\" type=\"submit\">Odbierz</button>\r\n      </td>\r\n      <td *ngIf=\"user.admin==false\">\r\n        <button class=\"button is-small is-primary\" (click)=\"onSubmit(user.id)\" type=\"submit\">Nadaj</button>\r\n      </td>\r\n      <br>\r\n      <br>\r\n    </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 
@@ -2845,6 +2997,7 @@ var UsersService = (function () {
     function UsersService(http) {
         this.http = http;
         this.USERS_API_URL = '//localhost:9080/users';
+        this.DOCTORS_API_URL = '//localhost:9080/doctors';
     }
     UsersService.prototype.create = function (user) {
         return this.http.post(this.USERS_API_URL, user);
@@ -2865,6 +3018,11 @@ var UsersService = (function () {
         var _this = this;
         return this.http.get(this.USERS_API_URL)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getUsers', [])));
+    };
+    UsersService.prototype.getUsersForDoctor = function (id) {
+        var _this = this;
+        return this.http.get(this.DOCTORS_API_URL + ("/" + id + "/users"))
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["b" /* tap */])(function (users) { return _this.log("fetched users"); }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["a" /* catchError */])(this.handleError('getUsersForDoctor', [])));
     };
     UsersService.prototype.changeAdminRights = function (id) {
         return this.http.post(this.USERS_API_URL + ("/" + id + "/admin"), null)

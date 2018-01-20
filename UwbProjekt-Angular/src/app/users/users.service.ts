@@ -11,6 +11,7 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class UsersService {
   private USERS_API_URL: string = '//localhost:9080/users'
+  private DOCTORS_API_URL: string = '//localhost:9080/doctors'
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +37,14 @@ export class UsersService {
       .pipe(
       tap(users => this.log(`fetched users`)),
       catchError(this.handleError('getUsers', []))
+      );
+  }
+
+  public getUsersForDoctor(id: number): Observable<User[]> {
+    return this.http.get<User[]>(this.DOCTORS_API_URL + `/${id}/users`)
+      .pipe(
+      tap(users => this.log(`fetched users`)),
+      catchError(this.handleError('getUsersForDoctor', []))
       );
   }
 

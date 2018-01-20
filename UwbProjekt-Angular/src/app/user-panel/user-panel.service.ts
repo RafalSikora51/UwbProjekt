@@ -39,7 +39,7 @@ export class UserPanelService {
   public getUserIdByEmail(email: string): Observable<any> {
     return this.http.get<number>(this.USERID_API_URL + email)
       .pipe(
-      tap(appointments => this.log(`fetched id`)),
+      tap(id => this.log(`fetched id`)),
       catchError(this.handleError('getUserIdByEmail', []))
       );
 

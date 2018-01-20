@@ -47,7 +47,7 @@ export class DoctorDetailsService {
       catchError(this.handleError<Apphour[]>(`getFreeHoursForDoctorFromGivenDay id=${id}`))
     );
   }
-  //?userEmail=extreme2512@gmail.com&docId=1&appHourId=7&date=7.05.2018
+  
   createAppointment(email: String, docId: string, hourId: string, date: String): Observable<any> {
     return this.http.post(this.CREATE_APPOINTMENT_API_URL + `?userEmail=${email}&docId=${docId}&appHourId=${hourId}&date=${date}`, null)
       .map((response: HttpResponse<any>) => {
