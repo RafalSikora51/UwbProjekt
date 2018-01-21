@@ -1,20 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Spec } from '../shared/model/spec';
 import { MedicalHistoryService } from './medical-history.service';
-import { SpecsService } from '../specs/specs.service';
 import { MedicalHistory } from '../shared/model/medicalhistory';
 import { UserPanelComponent } from '../user-panel/user-panel.component';
 import { UserPanelService } from '../user-panel/user-panel.service';
-import { AdminPanelComponent } from '../admin-panel/admin-panel.component';
-import { AdminPanelService } from '../admin-panel/admin-panel.service';
-import { Doctor } from '../shared/model/doctor';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from '@angular/router';
-import { Input } from '@angular/core';
-import { User } from '../shared/model/user';
-import { Appointments } from '../shared/model/appointments';
 import { Apphour } from '../shared/model/apphour';
-
+import { Appointments } from '../shared/model/appointments';
 @Component({
   selector: 'app-medical-history',
   templateUrl: './medical-history.component.html',
@@ -22,20 +13,28 @@ import { Apphour } from '../shared/model/apphour';
 })
 export class MedicalHistoryComponent implements OnInit {
   public specs: Spec[];
-  userId: number;
-  specId: number;
   medicalHistories: MedicalHistory[];
-  email: string;
+  medicalHistoryId: number;
+  appointmentDetailsId: number;
+  appointments: Appointments[];
+  showAppointmentDetails: boolean;
   showMedicalHistoryForUser: boolean;
-  constructor(private medicalHistoryService: MedicalHistoryService) { }
+  showAllAppointmentsForUserByMedicalSpec: boolean;
+  appHours: Apphour[];
+  constructor(private medicalHistoryService: MedicalHistoryService,
+    private userPanelComponent: UserPanelComponent) { }
+
 
   ngOnInit() {
 
     this.showMedicalHistoryForUser = false;
-    this.getEmailFromLoggedUser();
-    this.getUserIdByEmail()
+    this.showAllAppointmentsForUserByMedicalSpec = false;
+    this.showAppointmentDetails = false;
     this.getSpecs();
     this.findMedicalHistoryForUser();
+    this.getAllHours();
+
+
   }
 
   getSpecs(): void {
@@ -50,35 +49,35 @@ export class MedicalHistoryComponent implements OnInit {
     );
   }
 
-  getUserIdAndMedicalHistory(){
-    this.getUserIdByEmail();
-    this.findMedicalHistoryForUser();
-  }
-  getEmailFromLoggedUser() {
-    this.email = JSON.parse(localStorage.getItem('currentUser')).email;
-  }
+  findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId): void {
+    const id = this.userPanelComponent.userId;
 
-  getUserIdByEmail(): void {
-    this.medicalHistoryService.getUserIdByEmail(this.email).subscribe(
-      userId => {
-        this.userId = userId;
-        console.log("jestem w getuserIdByEmail, id usera: " + this.userId);
+    this.medicalHistoryId = medicalHistorySpecId;
+    console.log("Id wybranego Spec: " + medicalHistorySpecId);
+    this.medicalHistoryService.findAllAppointmentsForUserByMedicalSpec(id, this.medicalHistoryId).subscribe(
+      appointments => {
+        this.appointments = appointments;
+        console.table(this.appointments);
       },
       error => {
         console.log(error);
       }
     )
   }
+
   findMedicalHistoryForUser(): void {
-    this.medicalHistoryService.findMedicalHistoryForUser(this.userId).subscribe(
+    const id = this.userPanelComponent.userId;
+    this.medicalHistoryService.findMedicalHistoryForUser(id).subscribe(
       medicalHistories => {
         this.medicalHistories = medicalHistories;
+        console.table(this.medicalHistories);
       },
       error => {
         console.log(error);
       }
     );
   }
+
   showMedicalHistoryEnable() {
     if (this.showMedicalHistoryForUser == false) {
       this.showMedicalHistoryForUser = true;
@@ -87,4 +86,39 @@ export class MedicalHistoryComponent implements OnInit {
       this.showMedicalHistoryForUser = false;
     }
   }
+
+  getAllHours(): void {
+    this.medicalHistoryService.getAllHours().subscribe(
+      appHours => {
+        this.appHours = appHours;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+ 
+
+  // Dwie funkcje w jednej - do wyświetlania wizyt
+  showshowAllAppointmentsClick(medicalHistorySpecId) {
+    this.showshowAllAppointmentsForUserByMedicalSpecEnable();
+    this.findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId);
+  }
+  showshowAllAppointmentsForUserByMedicalSpecEnable() {
+    if (this.showAllAppointmentsForUserByMedicalSpec == false) {
+      this.showAllAppointmentsForUserByMedicalSpec = true;
+
+    } else {
+      this.showAllAppointmentsForUserByMedicalSpec = false;
+    }
+  }
+  showAppointmentDetailsEnable() {
+    if (this.showAppointmentDetails == false) {
+      this.showAppointmentDetails = true;
+    } else {
+      this.showAppointmentDetails = false;
+    }
+
+  }
+
 }

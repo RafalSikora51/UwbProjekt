@@ -51,8 +51,6 @@ export class UserPanelComponent implements OnInit {
     this.email = JSON.parse(localStorage.getItem('currentUser')).email;
   }
 
-
-
   getDoctors(): void {
     this.userPanelService.getDoctors().subscribe(
       doctors => {
@@ -64,7 +62,6 @@ export class UserPanelComponent implements OnInit {
       }
     )
   }
-
 
   getUserIdByEmail(): void {
     this.userPanelService.getUserIdByEmail(this.email).subscribe(
@@ -78,24 +75,8 @@ export class UserPanelComponent implements OnInit {
     )
   }
 
-/*
-  //TU DZIAŁA
-
-  findMedicalHistoryForUser(): void {
-    this.userPanelService.findMedicalHistoryForUser(this.userId).subscribe(
-      medicalHistories => {
-        this.medicalHistories = medicalHistories;
-        console.table(this.medicalHistories);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  */
-
   getAllAppointmentsForId(): void {
-    //const id = +this.route.snapshot.paramMap.get('id');
+    
     this.userPanelService.getAllAppointmentsForId(this.userId).subscribe(
       appointments => {
         this.appointments = appointments;

@@ -20,9 +20,10 @@ export class MedicalHistoryService {
 
   private SPEC_URL: string = '//localhost:9080/specs'
   private MEDICALHISTORY_URL: any = '//localhost:9080/users'
+  private APPOINTMENT_URL: any = '//localhost:9080/users'
   private USERID_API_URL: any = '//localhost:9080/users/email?email='
+  private APPHOUR_API_URL: any = '//localhost:9080/hours'
 
-  
   public getSpecs(): Observable<Spec[]> {
     return this.http.get<Spec[]>(this.SPEC_URL)
       .pipe(
@@ -30,7 +31,6 @@ export class MedicalHistoryService {
       catchError(this.handleError('getSpecs', []))
       );
   }
-
 
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -50,6 +50,17 @@ export class MedicalHistoryService {
 
   }
 
+  public findAllAppointmentsForUserByMedicalSpec(userId: number, specId: number): Observable<Appointments[]> {
+
+    return this.http.get<Appointments[]>(`${this.APPOINTMENT_URL}/${userId}/appointments/${specId}`)
+      .pipe(
+      tap(appointments => this.log(`fetched appointments by medicalSpec`)),
+      catchError(this.handleError('findAllAppointmentsForUserByMedicalSpec', []))
+      );
+
+  }
+
+
   public findMedicalHistoryForUser(userId: number): Observable<MedicalHistory[]> {
     return this.http.get<MedicalHistory[]>(`${this.MEDICALHISTORY_URL}/${userId}/histories`)
       .pipe(
@@ -57,6 +68,15 @@ export class MedicalHistoryService {
       catchError(this.handleError('findMedicalHistoryForUser', []))
       );
   }
+
+  getAllHours(): Observable<Apphour[]> {
+    return this.http.get<Apphour[]>(this.APPHOUR_API_URL)
+      .pipe(
+      tap(apphours => this.log(`fetched hours`)),
+      catchError(this.handleError('getAllHours', []))
+      );
+  }
+
   private log(message: string) {
     console.log(message);
   }

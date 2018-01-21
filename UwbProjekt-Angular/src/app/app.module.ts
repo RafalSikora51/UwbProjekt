@@ -101,11 +101,8 @@ import { MedicalHistoryService } from './medical-history/medical-history.service
     DoctorPanelService, AuthGuard, DoctorPanelGuard,
     AdminPanelGuard, AlertService, AuthenticationService,
     RegisterService, DoctorDetailsService, CalendarService, SpecsStatsService,
-<<<<<<< Updated upstream
-    SpecsComponent, DoctorsComponent],
-=======
+    SpecsComponent, DoctorsComponent, MedicalHistoryService,
     SpecsComponent, MedicalHistoryService],
->>>>>>> Stashed changes
 
   bootstrap: [AppComponent]
 })

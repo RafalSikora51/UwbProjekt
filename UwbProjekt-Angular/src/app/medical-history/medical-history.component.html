@@ -1,19 +1,91 @@
-<table class="table is fullwidth is-striped">
-  <thead class="thead">
-    <th>ID</th>
-    <th>Nazwa</th>
-    <th width="10%">Liczba Wizyt</th>
-    <th>Szczegóły wizyt</th>
-  </thead>
-  <tbody *ngFor="let medicalHistory of medicalHistories">
-    <tr>
-      <td>{{medicalHistory.specId}}</td>
-
-      <td>
-        <a class="button is-small is-primary" routerLink='/specs/{{spec.id}}'>{{medicalHistory.specId}}</a>
-      </td>
-      <br>
-      <br>
-    </tr>
-  </tbody>
-</table>
+<section class="section">
+  <div class="columns is-desktop is-multiline">
+    <div class="column is-desktop">
+      <div class="row">
+        <div class="column">
+          <table class="table is-striped">
+            <thead class="thead">
+              <th>ID Specjalizacji</th>
+              <th>Nazwa</th>
+              <th>Ilość wizyt</th>
+              <th>Szczegóły</th>
+            </thead>
+            <tbody *ngFor="let medicalHistory of medicalHistories">
+              <tr>
+                <td>{{medicalHistory.specId}}</td>
+                <div *ngFor="let spec of specs">
+                  <td *ngIf="medicalHistory.specId==spec.id">{{spec.name}}</td>
+                </div>
+                <td>ToDo</td>
+                <td>
+                  <a class="button is-small is-primary" (click)='showshowAllAppointmentsClick(medicalHistory.specId)'>Szczegóły</a>
+                </td>
+                <br>
+                <br>
+              </tr>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="showAllAppointmentsForUserByMedicalSpec">
+            <table class="table is-striped">
+              <thead class="thead">
+                <th>ID Wizyty</th>
+                <th>Data Wizyty</th>
+                <th>Godzina</th>
+                <th>Imię Doktora</th>
+                <th>Nazwisko</th>
+                <th>Szczegóły wizyty</th>
+              </thead>
+              <tbody *ngFor="let appointment of appointments">
+                <tr>
+                  <td>{{appointment.id}}</td>
+                  <td>{{appointment.localDate}}</td>
+                  <tbody *ngFor="let appHour of appHours">
+                    <td *ngIf="appHour.id==appointment.appHourId">{{appHour.hour}}</td>
+                  </tbody>
+                  <td>{{appointment.doctor.firstName}}</td>
+                  <td>{{appointment.doctor.lastName}}</td>
+                  <!-- <td width="20%">{{appointment.medicalHistory.appointmentProcess}}</td> -->
+                  <td>
+                    <a class="button is-small is-primary" (click)='showAppointmentDetailsEnable()'>Szczegóły</a>
+                  </td>
+                  <br>
+                  <br>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="showAppointmentDetails">
+            <table class="table is-striped">
+              <thead class="thead">
+                <th>ID Wizyty</th>
+                <th>Szczegóły wizyty</th>
+              </thead>
+              <tbody *ngFor="let appointment of appointments">
+                <tr>
+                  <td>{{appointment.id}}</td>
+                  <td>{{appointment.medicalHistory.appointmentProcess}} Puste </td>
+                  <br>
+                  <br>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <pagination-template #p="paginationApi" (pageChange)="currentPage = $event" class="pagination is-centered is-outlined">
+          <button [disabled]="p.isFirstPage()" (click)="p.setCurrent(1)" class="pagination-previous is-outlined">Pierwsza strona</button>
+          <button [disabled]="p.isFirstPage()" (click)="p.previous()" class="pagination-previous is-outlined">Poprzednia strona</button>
+          <button [disabled]="p.isLastPage()" (click)="p.next()" class="pagination-previous is-outlined">Następna strona</button>
+          <button [disabled]="p.isLastPage()" (click)="p.setCurrent(p.getLastPage())" class="pagination-previous is-outlined">Ostatnia strona</button>
+          <ul class="pagination-list">
+            <li *ngFor="let page of p.pages">
+              <button class="pagination-link" [ngClass]="{ 'is-current' : p.getCurrent() == page.value}" (click)="p.setCurrent(page.value)">{{page.label}}</button>
+          </ul>
+        </pagination-template>
+      </div>
+    </div>
+  </div>
+</section>

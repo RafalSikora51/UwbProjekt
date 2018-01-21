@@ -62,16 +62,6 @@ export class UserPanelService {
 
   }
 
-/* //TU DZIAŁA
-  public findMedicalHistoryForUser(userId: number): Observable<MedicalHistory[]> {
-    return this.http.get<MedicalHistory[]>(`${this.MEDICALHISTORY_URL}/${userId}/histories`)
-      .pipe(
-      tap(medicalHistory => this.log(`feteched medical history`)),
-      catchError(this.handleError('findMedicalHistoryForUser', []))
-      );
-  }*/
-
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
