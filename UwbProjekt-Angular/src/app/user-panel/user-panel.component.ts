@@ -11,6 +11,7 @@ import { Spec } from '../shared/model/spec';
 import { User } from '../shared/model/user';
 import { Appointments } from '../shared/model/appointments';
 import { Apphour } from '../shared/model/apphour';
+import { MedicalHistory } from '../shared/model/medicalhistory';
 @Component({
   selector: 'app-user-panel',
   templateUrl: './user-panel.component.html',
@@ -21,6 +22,7 @@ import { Apphour } from '../shared/model/apphour';
 export class UserPanelComponent implements OnInit {
 
   showDoctors: boolean;
+  showMedicalHistory: boolean;
   showAddAppointments: boolean;
   showAppointments: boolean;
   doctors: Doctor[];
@@ -28,12 +30,15 @@ export class UserPanelComponent implements OnInit {
   users: User[];
   appointments: Appointments[];
   email: string;
-  id: number;
+  userId: number;
+  medicalHistories: MedicalHistory[];
   constructor(private userPanelService: UserPanelService,
     private route: ActivatedRoute,
     private router: Router, ) { }
 
+
   ngOnInit() {
+    this.showMedicalHistory = false;
     this.showAddAppointments = false;
     this.showAppointments = false;
     this.showDoctors = false;
@@ -63,8 +68,8 @@ export class UserPanelComponent implements OnInit {
 
   getUserIdByEmail(): void {
     this.userPanelService.getUserIdByEmail(this.email).subscribe(
-      id => {
-        this.id = id;
+      userId => {
+        this.userId = userId;
 
       },
       error => {
@@ -73,10 +78,25 @@ export class UserPanelComponent implements OnInit {
     )
   }
 
+/*
+  //TU DZIAŁA
+
+  findMedicalHistoryForUser(): void {
+    this.userPanelService.findMedicalHistoryForUser(this.userId).subscribe(
+      medicalHistories => {
+        this.medicalHistories = medicalHistories;
+        console.table(this.medicalHistories);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  */
 
   getAllAppointmentsForId(): void {
     //const id = +this.route.snapshot.paramMap.get('id');
-    this.userPanelService.getAllAppointmentsForId(this.id).subscribe(
+    this.userPanelService.getAllAppointmentsForId(this.userId).subscribe(
       appointments => {
         this.appointments = appointments;
         console.table(this.appointments);
@@ -120,6 +140,15 @@ export class UserPanelComponent implements OnInit {
     else {
       this.showDoctors = false;
     }
+  }
+
+  showMedicalHistoryEnable() {
+    if (this.showMedicalHistory == false) {
+      this.showMedicalHistory = true;
+    } else {
+      this.showMedicalHistory = false;
+    }
+
 
   }
 

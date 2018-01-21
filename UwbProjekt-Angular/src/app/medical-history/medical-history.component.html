@@ -1,0 +1,19 @@
+<table class="table is fullwidth is-striped">
+  <thead class="thead">
+    <th>ID</th>
+    <th>Nazwa</th>
+    <th width="10%">Liczba Wizyt</th>
+    <th>Szczegóły wizyt</th>
+  </thead>
+  <tbody *ngFor="let medicalHistory of medicalHistories">
+    <tr>
+      <td>{{medicalHistory.specId}}</td>
+
+      <td>
+        <a class="button is-small is-primary" routerLink='/specs/{{spec.id}}'>{{medicalHistory.specId}}</a>
+      </td>
+      <br>
+      <br>
+    </tr>
+  </tbody>
+</table>

@@ -49,6 +49,8 @@ import {
   MatNativeDateModule
 } from '@angular/material';
 import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.component';
+import { MedicalHistoryComponent } from './medical-history/medical-history.component';
+import { MedicalHistoryService } from './medical-history/medical-history.service';
 
 
 @NgModule({
@@ -71,6 +73,7 @@ import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.c
     CalendarComponent,
     SpecsStatsComponent,
     DoctorUsersComponent,
+    MedicalHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,11 @@ import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.c
     DoctorPanelService, AuthGuard, DoctorPanelGuard,
     AdminPanelGuard, AlertService, AuthenticationService,
     RegisterService, DoctorDetailsService, CalendarService, SpecsStatsService,
+<<<<<<< Updated upstream
     SpecsComponent, DoctorsComponent],
+=======
+    SpecsComponent, MedicalHistoryService],
+>>>>>>> Stashed changes
 
   bootstrap: [AppComponent]
 })

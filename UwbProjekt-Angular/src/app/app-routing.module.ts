@@ -18,6 +18,7 @@ import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
 import { RegisterComponent } from './register/register.component';
 import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
+import { MedicalHistoryComponent } from './medical-history/medical-history.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
       { path: 'doctorpanel', component: DoctorPanelComponent, canActivate: [DoctorPanelGuard] },
       { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AdminPanelGuard] },
       { path: 'doctors/:id', component: DoctorDetailsComponent},
-      { path: 'calendar', component: CalendarComponent}
+      { path: 'calendar', component: CalendarComponent},
+      { path: 'medicalhistory', component: MedicalHistoryComponent}
 
     ]
   },

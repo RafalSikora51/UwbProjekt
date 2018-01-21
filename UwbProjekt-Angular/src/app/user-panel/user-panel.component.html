@@ -34,6 +34,15 @@
             <a class="button is-dark is-medium" (click)="showDoctorsEnable()">Wyświetl lekarzy</a>
           </li>
         </ul>
+        <p class="menu-label">
+          Wizyty
+        </p>
+        <ul class="menu-list">
+          <li>
+
+            <a class="button is-dark is-medium" (click)="showMedicalHistoryEnable()">Wyświetl Kartę wizyt</a>
+          </li>
+        </ul>
         <br>
         <a class="button is-danger">Wyloguj</a>
       </aside>
@@ -133,6 +142,23 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <!--  WYŚWIETLANIE KARTY MEDYCZNEJ -->
+          <div *ngIf="showMedicalHistory">
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Karta wizyt - Specjalizacje
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <app-medical-history></app-medical-history>
           </div>
         </div>
       </div>
