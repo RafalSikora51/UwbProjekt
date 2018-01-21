@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +44,11 @@ public class AppointmentController {
 			return new ResponseEntity<List<Appointment>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Appointment>>(appointments, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}/process", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean changeDoctorAdminRights(@PathVariable int id, @RequestParam String appProcess) {
+		return appointmentDao.changeAppointmentProcess(id, appProcess);
 	}
 
 }

@@ -228,13 +228,15 @@ public class DoctorDao {
 			Optional<Doctor> doctorOptional = findDoctorByEmail(email);
 			if (doctorOptional.isPresent()) {
 				return doctorOptional.get().getId();
-			} else
+			} else {
 				throw new Exception("Doctor not found");
-		} else
+			}
+		} else {
 			throw new Exception("Email cant be blank");
+		}
 
 	}
-	
+
 	public boolean changeDoctorAdminRights(int id) {
 		Session session = SessionConnection.getSessionFactory().openSession();
 		Optional<Doctor> doctorOptional = findDoctorById(id);

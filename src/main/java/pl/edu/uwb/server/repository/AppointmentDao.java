@@ -16,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import pl.edu.uwb.server.entity.Appointment;
-import pl.edu.uwb.server.entity.AppointmentHour;
 import pl.edu.uwb.server.entity.Doctor;
 import pl.edu.uwb.server.entity.MedicalHistory;
-import pl.edu.uwb.server.entity.Token;
 import pl.edu.uwb.server.entity.User;
 import pl.edu.uwb.server.util.Helper;
 import pl.edu.uwb.server.util.SessionConnection;
@@ -184,6 +182,38 @@ public class AppointmentDao {
 			return findAllAppointmentsForDoctor(doctorOptional.get());
 		} else
 			throw new Exception("Doctor not found");
+	}
+
+	public Optional<Appointment> findAppointmentById(int id) {
+		logger.debug("findAppointmentById");
+		Session session = SessionConnection.getSessionFactory().openSession();
+		if (session.get(Appointment.class, id) != null) {
+			Appointment appointment = session.load(Appointment.class, id);
+			SessionConnection.shutdown(session);
+			logger.info("Appointment found by id.");
+			return Optional.ofNullable(appointment);
+		} else {
+			SessionConnection.shutdown(session);
+			logger.info("There is no such appointment.");
+			return Optional.empty();
+		}
+	}
+
+	public boolean changeAppointmentProcess(int id, String appProcess) {
+		Session session = SessionConnection.getSessionFactory().openSession();
+		Optional<Appointment> appointmentOptional = findAppointmentById(id);
+		if (appointmentOptional.isPresent()) {
+			session.beginTransaction();
+			Appointment appointment = appointmentOptional.get();
+			appointment.setAppointmentProcess(appProcess);
+			session.saveOrUpdate(appointment);
+			session.getTransaction().commit();
+			SessionConnection.shutdown(session);
+			return true;
+		} else {
+			SessionConnection.shutdown(session);
+			return false;
+		}
 	}
 
 }
