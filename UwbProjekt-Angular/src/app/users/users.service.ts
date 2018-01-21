@@ -13,12 +13,9 @@ export class UsersService {
   private USERS_API_URL: string = '//localhost:9080/users'
   private DOCTORS_API_URL: string = '//localhost:9080/doctors'
 
-  constructor(private http: HttpClient) { }
-
-  create(user: User) {
-    return this.http.post(this.USERS_API_URL, user);
-}
-
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -52,6 +49,13 @@ export class UsersService {
     return this.http.post(this.USERS_API_URL + `/${id}/admin` ,null)
     .pipe(
       catchError(this.handleError('changeAdminRights', []))
+    );
+  }
+
+  public getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.USERS_API_URL}/${id}`).pipe(
+      tap(_ => this.log(`fetched user id = ${id}`)),
+      catchError(this.handleError<User>(`getUserById id=${id}`))
     );
   }
 

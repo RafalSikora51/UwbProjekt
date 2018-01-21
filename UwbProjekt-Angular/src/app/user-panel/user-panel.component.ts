@@ -76,7 +76,7 @@ export class UserPanelComponent implements OnInit {
   }
 
   getAllAppointmentsForId(): void {
-    
+
     this.userPanelService.getAllAppointmentsForId(this.userId).subscribe(
       appointments => {
         this.appointments = appointments;
@@ -129,8 +129,6 @@ export class UserPanelComponent implements OnInit {
     } else {
       this.showMedicalHistory = false;
     }
-
-
   }
 
 }

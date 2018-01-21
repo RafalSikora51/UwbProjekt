@@ -6,4 +6,4 @@ export interface Doctor {
   firstName: string;
   admin: boolean;
   specId: number;
-  }
+}

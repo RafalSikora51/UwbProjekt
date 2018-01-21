@@ -8,6 +8,7 @@ import { DoctorPanelService } from '../doctor-panel/doctor-panel.service';
 export class DoctorPanelComponent implements OnInit {
 
   showUsers: boolean;
+  showAppointments: boolean;
   id: number;
   email: string;
 
@@ -19,7 +20,7 @@ export class DoctorPanelComponent implements OnInit {
 
   ngOnInit() {
     this.showUsers = false;
-    //this.doctorUsersComponent.getUsers
+    this.showAppointments = false;
     this.getEmailFromLoggedDoctor();
     this.getDoctorIdByEmail();
   }
@@ -45,12 +46,23 @@ export class DoctorPanelComponent implements OnInit {
   }
 
   showUsersEnable() {
-    if (this.showUsers == false)
+    if (this.showUsers == false) {
       this.showUsers = true;
-    else {
+    } else {
       this.showUsers = false;
     }
   }
+
+  showAppointmentsEnable() {
+    if (this.showAppointments == false) {
+      this.showAppointments = true;
+    } else {
+      this.showAppointments = false;
+    }
+  }
+
+
+
 
 
 }

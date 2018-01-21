@@ -8,7 +8,7 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorDetailsService } from './doctor-details.service';
-import { Doctor } from './doctor';
+import { Doctor } from '../../shared/model/doctor';
 import { Apphour } from '../../shared/model/apphour';
 import { HeaderComponent } from '../../header/header.component';
 
@@ -30,6 +30,10 @@ export class DoctorDetailsComponent implements OnInit {
   idDoctor: string;
   loggedUser: any;
   email: string;
+  showUsers: boolean;
+  showAppointments: boolean;
+  id: number;
+  showInfoForAdmin: boolean;
 
   constructor(
     private doctorDetailsService: DoctorDetailsService,
@@ -43,7 +47,10 @@ export class DoctorDetailsComponent implements OnInit {
     this.getDoctorById();
     this.adapter.setLocale('pl');
     this.showHours = false;
+    this.showUsers = false;
+    this.showAppointments = false;
     this.idDoctor = this.route.snapshot.paramMap.get('id');
+    this.checkIfShowInfoForAdmin();
   }
 
   isUserLoggedIn() { return JSON.parse(localStorage.getItem('currentUser')) };
@@ -53,16 +60,26 @@ export class DoctorDetailsComponent implements OnInit {
 
   getEmailFromLoggedUser() {
     if (this.isUserLoggedIn()) {
-      this.email=JSON.parse(localStorage.getItem('currentUser')).email;
+      this.email = JSON.parse(localStorage.getItem('currentUser')).email;
     }
     else if (this.isAdminLoggedIn()) {
-      this.email=JSON.parse(localStorage.getItem('currentAdmin')).email;
+      this.email = JSON.parse(localStorage.getItem('currentAdmin')).email;
     }
     else if (this.isDoctorLoggedIn()) {
-      this.email=JSON.parse(localStorage.getItem('currentDoctor')).email;
+      this.email = JSON.parse(localStorage.getItem('currentDoctor')).email;
     }
     else {
-      this.email=JSON.parse(localStorage.getItem('currentDoctorAdmin')).email;
+      this.email = JSON.parse(localStorage.getItem('currentDoctorAdmin')).email;
+    }
+  }
+
+
+  checkIfShowInfoForAdmin() {
+    if (this.isAdminLoggedIn() || this.isDoctorAdminLoggedIn()) {
+      this.showInfoForAdmin = true;
+    }
+    else {
+      this.showInfoForAdmin = false;
     }
   }
 
@@ -116,14 +133,25 @@ export class DoctorDetailsComponent implements OnInit {
     if (this.model.abc !== undefined) {
       this.showHours = !this.showHours;
       this.getFreeHoursForDoctorFromGivenDay(this.model.abc.toLocaleDateString());
-      console.log('pokazuje godziny');
-      console.log(this.showHours);
-    }
-    else {
+    } else {
       this.toastr.error('Zanim zostaną wyświetlone dostępne godziny, wybierz dzień!');
     }
   }
 
+  showUsersEnable() {
+    if (this.showUsers == false) {
+      this.showUsers = true;
+    } else {
+      this.showUsers = false;
+    }
+  }
 
+  showAppointmentsEnable() {
+    if (this.showAppointments == false) {
+      this.showAppointments = true;
+    } else {
+      this.showAppointments = false;
+    }
+  }
 
 }

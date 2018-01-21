@@ -30,12 +30,12 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/index';
 import { DoctorPanelGuard } from './guard/doctorpanel.guard';
 import { AdminPanelGuard } from './guard/adminpanel.guard';
+import { UserDetailsGuard } from './guard/userdetails.guard';
+import { LoggedUserGuard } from './guard/loggeduser.guard';
 import { AlertService, AuthenticationService, } from './services/index';
 import { RegisterService } from './register/register.service';
 import { DoctorDetailsService } from './doctors/doctor-details/doctor-details.service';
 import { DoctorDetailsComponent } from './doctors/doctor-details/doctor-details.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { CalendarService } from './calendar/calendar.service';
 import { SpecsStatsComponent } from './specs-stats/specs-stats.component';
 import { SpecsStatsService } from './specs-stats/specs-stats.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,6 +51,9 @@ import {
 import { DoctorUsersComponent } from './doctor-panel/doctor-users/doctor-users.component';
 import { MedicalHistoryComponent } from './medical-history/medical-history.component';
 import { MedicalHistoryService } from './medical-history/medical-history.service';
+import { DoctorAppointmentsComponent } from './doctor-panel/doctor-appointments/doctor-appointments.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { LOCALE_ID } from '@angular/core';
 
 
 @NgModule({
@@ -70,10 +73,11 @@ import { MedicalHistoryService } from './medical-history/medical-history.service
     AlertComponent,
     RegisterComponent,
     DoctorDetailsComponent,
-    CalendarComponent,
     SpecsStatsComponent,
     DoctorUsersComponent,
     MedicalHistoryComponent,
+    DoctorAppointmentsComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,10 +103,10 @@ import { MedicalHistoryService } from './medical-history/medical-history.service
   providers: [UsersService, SpecsService, DoctorsService,
     SpecdetailsService, UserPanelService, AdminPanelService,
     DoctorPanelService, AuthGuard, DoctorPanelGuard,
-    AdminPanelGuard, AlertService, AuthenticationService,
-    RegisterService, DoctorDetailsService, CalendarService, SpecsStatsService,
+    AdminPanelGuard, UserDetailsGuard, LoggedUserGuard, AlertService, AuthenticationService,
+    RegisterService, DoctorDetailsService, SpecsStatsService,
     SpecsComponent, DoctorsComponent, MedicalHistoryService,
-    SpecsComponent, MedicalHistoryService],
+    SpecsComponent, MedicalHistoryService, UserPanelComponent, DoctorPanelComponent],
 
   bootstrap: [AppComponent]
 })

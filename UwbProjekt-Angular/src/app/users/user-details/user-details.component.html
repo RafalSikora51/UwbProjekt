@@ -1,0 +1,97 @@
+<br>
+<br>
+<div class="container">
+  <div class="columns">
+    <div class="column is-3">
+      <aside class="menu">
+        <p class="menu-label">
+          Informacje
+        </p>
+        <ul class="menu-list">
+          <li>
+            <a class="button is-dark is-medium" (click)="showUserDetailsEnable()">Dane Pacjenta</a>
+          </li>
+          <br>
+          <li>
+            <a class="button is-dark is-medium" (click)="showMedicalHistoryEnable()">Historia medyczna</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <div class="column">
+      <div class="card article">
+        <div class="card-content">
+          <section class="hero is-dark welcome is-small">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  <i class="fa fa-user-circle"></i>
+                  Informacje o Pacjencie
+                </h1>
+                <h2 class="subtitle">
+                  <br>
+                </h2>
+              </div>
+            </div>
+          </section>
+          <br>
+          <br>
+
+
+          <!--  WYŚWIETLANIE KARTY MEDYCZNEJ -->
+          <div *ngIf="showMedicalHistory">
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Historia medyczna
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <app-medical-history></app-medical-history>
+          </div>
+
+          <div *ngIf="showUserDetails">
+            <section class="hero is-dark is-bold is-small promo-block">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    <i class="fa fa-users"></i>
+                    Dane pacjenta
+                  </h1>
+                  <h2 class="subtitle">
+                  </h2>
+                </div>
+              </div>
+            </section>
+            <br>
+            <div *ngIf="user">
+              <div class="column is-one-third is-offset-1">
+                <h1 class="title is-2">
+                  {{user.firstName}} {{user.lastName}}
+                </h1>
+                <p>Email: {{user.email}}</p>
+                <p>Pesel: {{user.countryId}}</p>
+                <p>Data rejestracji: {{user.createdOn | date:'dd.MM.yyyy'}}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

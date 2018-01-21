@@ -3,17 +3,16 @@
     <div class="column is-desktop">
       <div class="row">
         <div class="column">
-          <table class="table is fullwidth is-striped">
+          <table class="table is-striped is-narrow is-hoverable">
             <thead class="thead">
-              <th>ID</th>
               <th>Nazwa</th>
-              <th width="10%">Liczba Lekarzy</th>
+              <th >Liczba Lekarzy</th>
               <th>Strona specjalizacji</th>
             </thead>
             <tbody *ngFor="let spec of specs">
               <tr>
-                <td width="10%">{{spec.id}}</td>
-                <td width="10%">{{spec.name}}</td>
+                <!-- <td width="10%">{{spec.id}}</td>  width="10%"-->
+                <td >{{spec.name}}</td>
                 <table class="is-hoverable">
                   <tbody *ngFor="let specStat of specsStats | paginate: { itemsPerPage: 8, currentPage: currentPage }">
                     <td *ngIf="specStat.id==spec.id">{{specStat.count}}</td>

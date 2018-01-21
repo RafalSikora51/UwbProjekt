@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../users/users.service';
-
-import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 import { DoctorPanelComponent } from '../doctor-panel.component'
-
 import { User } from '../../shared/model/user';
 
 @Component({
@@ -19,8 +17,8 @@ export class DoctorUsersComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private toastr: ToastrService,
-    private doctorPanelComponent: DoctorPanelComponent
+    private doctorPanelComponent: DoctorPanelComponent,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -28,7 +26,13 @@ export class DoctorUsersComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.getUsersForDoctor(this.doctorPanelComponent.id).subscribe(
+    let id;
+    if (this.route.snapshot.paramMap.get('id')) {
+      id = this.route.snapshot.paramMap.get('id');
+    } else {
+      id = this.doctorPanelComponent.id;
+    }
+    this.userService.getUsersForDoctor(id).subscribe(
       users => {
         this.users = users;
         console.table(this.users);

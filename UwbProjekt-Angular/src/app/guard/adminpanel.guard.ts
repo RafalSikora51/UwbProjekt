@@ -10,7 +10,7 @@ export class AdminPanelGuard implements CanActivate {
         if (localStorage.getItem('currentAdmin') || localStorage.getItem('currentDoctorAdmin')) {
             return true;
         } else {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
             return false;
         }
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Spec } from '../shared/model/spec';
 import { MedicalHistoryService } from './medical-history.service';
 import { MedicalHistory } from '../shared/model/medicalhistory';
@@ -23,8 +24,10 @@ export class MedicalHistoryComponent implements OnInit {
   showMedicalHistoryForUser: boolean;
   showAllAppointmentsForUserByMedicalSpec: boolean;
   appHours: Apphour[];
-  constructor(private medicalHistoryService: MedicalHistoryService,
-    private userPanelComponent: UserPanelComponent) { }
+  constructor(
+    private medicalHistoryService: MedicalHistoryService,
+    private userPanelComponent: UserPanelComponent,
+    private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -52,7 +55,13 @@ export class MedicalHistoryComponent implements OnInit {
   }
 
   findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId): void {
-    const id = this.userPanelComponent.userId;
+    let id;
+    if (this.route.snapshot.paramMap.get('id')) {
+      id = this.route.snapshot.paramMap.get('id');
+    } else {
+      id = this.userPanelComponent.userId;
+    }
+
     this.medicalHistoryId = medicalHistorySpecId;
     this.medicalHistoryService.findAllAppointmentsForUserByMedicalSpec(id, this.medicalHistoryId).subscribe(
       appointments => {
@@ -66,7 +75,14 @@ export class MedicalHistoryComponent implements OnInit {
   }
 
   findMedicalHistoryForUser(): void {
-    const id = this.userPanelComponent.userId;
+    let id;
+    if (this.route.snapshot.paramMap.get('id')) {
+      id = this.route.snapshot.paramMap.get('id');
+    } else {
+      id = this.userPanelComponent.userId;
+    }
+
+
     this.medicalHistoryService.findMedicalHistoryForUser(id).subscribe(
       medicalHistories => {
         this.medicalHistories = medicalHistories;

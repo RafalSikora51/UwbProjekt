@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { Doctor } from '../shared/model/doctor';
 import { catchError, map, tap } from 'rxjs/operators';
 import { OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -15,8 +14,9 @@ import { MedicalHistory } from '../shared/model/medicalhistory';
 @Injectable()
 export class UserPanelService {
 
-  constructor(private http: HttpClient,
-    private toastr: ToastrService) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private DOCTORS_API_URL: any = '//localhost:9080/doctors'
   private APPOINT_API_URL: any = '//localhost:9080/users'

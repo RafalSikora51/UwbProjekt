@@ -14,7 +14,7 @@
             <br>
           </li>
           <li>
-            <a class="button is-dark is-medium" (click)="addSpecEnable()">Wizyty</a>
+            <a class="button is-dark is-medium" (click)="showAppointmentsEnable()">Wizyty</a>
             <br>
           </li>
         </ul>
@@ -57,7 +57,22 @@
             <app-doctor-users></app-doctor-users>
           </div>
 
-
+          <div *ngIf="showAppointments">
+              <section class="hero is-dark is-bold is-small promo-block">
+                <div class="hero-body">
+                  <div class="container">
+                    <h1 class="title">
+                      <i class="fa fa-users"></i>
+                      Moje Wizyty
+                    </h1>
+                    <h2 class="subtitle">
+                    </h2>
+                  </div>
+                </div>
+              </section>
+              <br>
+              <app-doctor-appointments></app-doctor-appointments>
+            </div>
 
 
         </div>
