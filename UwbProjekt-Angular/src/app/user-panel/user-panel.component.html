@@ -5,46 +5,17 @@
     <div class="column is-3">
       <aside class="menu">
         <p class="menu-label">
-          Główne
-        </p>
-        <ul class="menu-list">
-          <li>
-            <a href="/userpanel" routerLinkActive="active" class="button is-primary is-medium">Moje konto</a>
-          </li>
-        </ul>
-        <p class="menu-label">
           Wizyty
         </p>
         <ul class="menu-list">
           <li>
-            <br>
             <a class="button is-dark is-medium" routerLink="/specs">Zarezerwuj wizytę</a>
           </li>
+          <br>
           <li>
-            <br>
-            <a class="button is-dark is-medium" (click)="showAppointmentsEnable()">Wyświetl moje wizyty</a>
-          </li>
-        </ul>
-        <p class="menu-label">
-          Lekarze
-        </p>
-        <ul class="menu-list">
-          <li>
-
-            <a class="button is-dark is-medium" (click)="showDoctorsEnable()">Wyświetl lekarzy</a>
-          </li>
-        </ul>
-        <p class="menu-label">
-          Wizyty
-        </p>
-        <ul class="menu-list">
-          <li>
-
             <a class="button is-dark is-medium" (click)="showMedicalHistoryEnable()">Wyświetl kartę wizyt</a>
           </li>
         </ul>
-        <br>
-        <a class="button is-danger">Wyloguj</a>
       </aside>
     </div>
     <div class="column">
@@ -128,15 +99,15 @@
               <tbody *ngFor="let appointment of appointments">
                 <tr>
 
-                  <td >{{appointment.localDate}}</td>
+                  <td>{{appointment.localDate}}</td>
                   <tbody *ngFor="let appHour of appHours">
                     <td *ngIf="appHour.id==appointment.appHourId">{{appHour.hour}}</td>
                   </tbody>
 
-                  <td >{{appointment.doctor.firstName}}</td>
-                  <td >{{appointment.doctor.lastName}}</td>
+                  <td>{{appointment.doctor.firstName}}</td>
+                  <td>{{appointment.doctor.lastName}}</td>
                   <td width="20%">{{appointment.medicalHistory.appointmentProcess}} button routerLink?</td>
-                  
+
                   <br>
                   <br>
                 </tr>

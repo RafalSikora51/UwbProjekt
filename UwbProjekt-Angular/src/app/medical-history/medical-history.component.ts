@@ -15,6 +15,8 @@ export class MedicalHistoryComponent implements OnInit {
   public specs: Spec[];
   medicalHistories: MedicalHistory[];
   medicalHistoryId: number;
+  currentPage = 1;
+  model: any = {};
   appointmentDetailsId: number;
   appointments: Appointments[];
   showAppointmentDetails: boolean;
@@ -51,9 +53,7 @@ export class MedicalHistoryComponent implements OnInit {
 
   findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId): void {
     const id = this.userPanelComponent.userId;
-
     this.medicalHistoryId = medicalHistorySpecId;
-    console.log("Id wybranego Spec: " + medicalHistorySpecId);
     this.medicalHistoryService.findAllAppointmentsForUserByMedicalSpec(id, this.medicalHistoryId).subscribe(
       appointments => {
         this.appointments = appointments;
@@ -97,22 +97,21 @@ export class MedicalHistoryComponent implements OnInit {
       }
     )
   }
- 
 
-  // Dwie funkcje w jednej - do wyświetlania wizyt
   showshowAllAppointmentsClick(medicalHistorySpecId) {
-    this.showshowAllAppointmentsForUserByMedicalSpecEnable();
-    this.findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId);
+    this.showshowAllAppointmentsForUserByMedicalSpecEnable(medicalHistorySpecId);
+
   }
-  showshowAllAppointmentsForUserByMedicalSpecEnable() {
+  showshowAllAppointmentsForUserByMedicalSpecEnable(medicalHistorySpecId) {
     if (this.showAllAppointmentsForUserByMedicalSpec == false) {
       this.showAllAppointmentsForUserByMedicalSpec = true;
-
+      this.findAllAppointmentsForUserByMedicalSpec(medicalHistorySpecId);
     } else {
       this.showAllAppointmentsForUserByMedicalSpec = false;
     }
   }
-  showAppointmentDetailsEnable() {
+  showAppointmentDetailsEnable(id: number) {
+    this.model.id = id;
     if (this.showAppointmentDetails == false) {
       this.showAppointmentDetails = true;
     } else {

@@ -10,6 +10,7 @@ import { SpecdetailsService } from '../specdetails/specdetails.service';
 })
 export class SpecdetailsComponent implements OnInit {
  
+  currentPage = 1;
   doctors: Doctor[];
 
   constructor(private specdetailsService: SpecdetailsService, private route: ActivatedRoute) { }
