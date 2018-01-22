@@ -4,8 +4,8 @@ import { Appointments } from '../../shared/model/appointments';
 import { Apphour } from '../../shared/model/apphour';
 import { DoctorPanelComponent } from '../doctor-panel.component';
 import { DoctorPanelService } from '../doctor-panel.service'
-
-
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-doctor-appointments',
@@ -18,17 +18,22 @@ export class DoctorAppointmentsComponent implements OnInit {
   appHours: Apphour[];
   currentPage = 1;
   showAppointmentDetails: boolean;
+  showAppointmentForm: boolean;
   model: any = {};
-
-
+  AppointmentID: number;
+  appProcess: any;
+  submitted = false;
+  error: String = '';
   constructor(
     private doctorPancelService: DoctorPanelService,
     private doctorPanelComponent: DoctorPanelComponent,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.showAppointmentDetails = false;
+    this.showAppointmentForm = false;
     this.getAllAppointmentsForDoctor();
     this.getAllHours();
   }
@@ -50,7 +55,25 @@ export class DoctorAppointmentsComponent implements OnInit {
       }
     );
   }
-
+  editAppointmentProcess() {
+    this.AppointmentID = this.model.id;
+    this.appProcess = this.model.appointmentProcess;
+    this.doctorPancelService.editAppointmentProcess(this.AppointmentID, this.appProcess)
+      .subscribe(
+      result => {
+        if (result === true) {
+          this.toastr.success('Edycja przebiegła pomyślnie!');
+        } else {
+          this.error = 'Nieprawidłowe dane podczas edycji!';
+        }
+      },
+      () => {
+        this.error = 'Błąd połączenia z serwerem.'
+        this.toastr.error('Błąd połączenia z serwerem.');
+      },
+      () => console.log('done!'));
+  }
+  
   getAllHours(): void {
     this.doctorPancelService.getAllHours().subscribe(
       appHours => {
@@ -62,9 +85,17 @@ export class DoctorAppointmentsComponent implements OnInit {
     )
   }
 
+  showAppointmentProcessForm(id) {
+    this.model.id = id;
+    console.log("Jestem w ShowAppointmentProcessForm, id modelu : " + this.model.id);
+    if (this.showAppointmentForm == false) {
+      this.showAppointmentForm = true;
+    } else {
+      this.showAppointmentForm = false;
+    }
+  }
   showAppointmentDetailsEnable(id: number) {
     this.model.id = id;
-    console.log(this.model.id + ' AAAAAAAAAAAAAAAAaa')
     if (this.showAppointmentDetails == false) {
       this.showAppointmentDetails = true;
     } else {
@@ -73,5 +104,12 @@ export class DoctorAppointmentsComponent implements OnInit {
 
   }
 
+  onSubmit() {
+
+    console.log("Jestem w onSubmit " + this.model.id + "AppointmentProcess: " + this.model.appointmentProcess);
+    this.editAppointmentProcess();
+
+
+  }
 
 }

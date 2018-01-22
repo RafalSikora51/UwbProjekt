@@ -24,6 +24,18 @@ export class DoctorPanelService {
   private DOCTORID_API_URL: any = '//localhost:9080/doctors/email?email='
   private DOCTOR_APPOINT_API_URL: any = '//localhost:9080/doctors'
   private APPHOUR_API_URL: any = '//localhost:9080/hours'
+  private APPPROCESS_API_URL: any = '//localhost:9080/appointments'
+
+  public editAppointmentProcess(id: number, appProcess: string): Observable<any> {
+    console.log("Jestem w doctor service");
+    console.log("Wartosc ID i appProcess:");
+    console.log(id+"   "+appProcess);
+    return this.http.put(`${this.APPPROCESS_API_URL}/${id}/process?appProcess=${appProcess}`, null)
+    .pipe(
+      tap(id => this.log(`fetched id`)),
+      catchError(this.handleError('editAppointmentProcess', []))
+      );
+  }
 
   public getDoctorIdByEmail(email: string): Observable<any> {
     return this.http.get<number>(this.DOCTORID_API_URL + email)
@@ -33,6 +45,7 @@ export class DoctorPanelService {
       );
 
   }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -61,7 +74,7 @@ export class DoctorPanelService {
       catchError(this.handleError('getAllHours', []))
       );
   }
- 
+
 
 
 }

@@ -3,7 +3,6 @@
     <div class="column is-desktop">
       <div class="row">
         <div class="column">
-
           <table class="table is-striped is-narrow is-hoverable">
             <thead class="thead">
               <th>Data Wizyty</th>
@@ -21,10 +20,51 @@
                 <td>
                   <a class="button is-small is-primary" (click)='showAppointmentDetailsEnable(appointment.id)'>Szczegóły</a>
                 </td>
-
               </tr>
             </tbody>
           </table>
+          <div *ngIf="showAppointmentDetails">
+            <table class="table is-striped is-narrow is-hoverable">
+              <thead class="thead">
+                <th>ID Wizyty</th>
+                <th>Szczegóły wizyty</th>
+              </thead>
+              <tbody *ngFor="let appointment of apps">
+                <tr>
+                  <td *ngIf="appointment.id==model.id">{{appointment.id}}</td>
+                  <tbody>
+                    <div *ngIf="appointment.id==model.id">
+                      <td>{{appointment.appointmentProcess}}</td>
+                      <td>
+                        <a class="button is-small is-primary" (click)='showAppointmentProcessForm(model.id)'>Edytuj szczegóły wizyty</a>
+                      </td>
+                    </div>
+                  </tbody>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="showAppointmentForm">
+            <form (ngSubmit)="onSubmit()">
+              <div *ngFor="let appointment of apps">
+                <div *ngIf="appointment.id==model.id">
+                  <div class="column is-half">
+                    <div class="field">
+                      <label class="label">Edycja opisu wizyty o ID: {{appointment.id}}</label>
+                      <div class="control">
+                        <textarea class="input" type="text" placeholder="Textarea" [(ngModel)]="model.appointmentProcess" name="appointmentProcess"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button type="submit" class="button is-primary" type="submit">Akceptuj</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="column">
             <pagination-template #p="paginationApi" (pageChange)="currentPage = $event" class="pagination is-centered is-outlined">
               <button [disabled]="p.isFirstPage()" (click)="p.setCurrent(1)" class="pagination-previous is-outlined">Pierwsza strona</button>
@@ -37,24 +77,6 @@
               </ul>
             </pagination-template>
           </div>
-
-          <div *ngIf="showAppointmentDetails">
-            <table class="table is-striped is-narrow is-hoverable">
-              <thead class="thead">
-                <th>ID Wizyty</th>
-                <th>Szczegóły wizyty</th>
-              </thead>
-              <tbody *ngFor="let appointment of apps">
-                <tr>
-                  <td *ngIf="appointment.id==model.id">{{appointment.id}}</td>
-                  <tbody>
-                    <td *ngIf="appointment.id==model.id">{{appointment.appointmentProcess}}</td>
-                  </tbody>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
         </div>
       </div>
     </div>

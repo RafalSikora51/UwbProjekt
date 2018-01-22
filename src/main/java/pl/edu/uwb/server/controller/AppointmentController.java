@@ -46,7 +46,7 @@ public class AppointmentController {
 		return new ResponseEntity<List<Appointment>>(appointments, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}/process", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}/process", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean changeDoctorAdminRights(@PathVariable int id, @RequestParam String appProcess) {
 		return appointmentDao.changeAppointmentProcess(id, appProcess);
 	}
